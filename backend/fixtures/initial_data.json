@@ -1,0 +1,1453 @@
+[
+{
+  "model": "destinations.region",
+  "pk": "0e77c04f-e55d-4d24-b245-564836df3a44",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.757Z",
+    "updated_at": "2026-09-08T15:08:02.757Z",
+    "name": "Europe",
+    "code": "EUR",
+    "description": "Schengen zone, UK, and greater Europe",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.region",
+  "pk": "2667ff26-ebc3-4a84-ab17-86cd07b912e6",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.759Z",
+    "updated_at": "2026-09-08T15:08:02.759Z",
+    "name": "Asia",
+    "code": "ASI",
+    "description": "East, Southeast, and South Asia",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.region",
+  "pk": "57c3421e-2a2b-4bfd-b360-102c3dffbdc5",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.761Z",
+    "updated_at": "2026-09-08T15:08:02.761Z",
+    "name": "Americas",
+    "code": "AME",
+    "description": "North, Central, and South America",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.region",
+  "pk": "7279efac-f692-45c3-a3c0-a22e1242d55a",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.764Z",
+    "updated_at": "2026-09-08T15:08:02.764Z",
+    "name": "Worldwide",
+    "code": "WLD",
+    "description": "All destinations globally",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.region",
+  "pk": "8893b40e-3dca-428a-a8cf-23873597448a",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.762Z",
+    "updated_at": "2026-09-08T15:08:02.762Z",
+    "name": "Middle East & Africa",
+    "code": "MEA",
+    "description": "Gulf countries and African continent",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "00feb3e6-0b70-4a3e-91cf-e11bd4894840",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.790Z",
+    "updated_at": "2026-09-08T15:08:02.790Z",
+    "region": "2667ff26-ebc3-4a84-ab17-86cd07b912e6",
+    "name": "Pakistan",
+    "iso_code": "PK",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "06a53f32-021d-4a27-a18a-492bbfebe8d5",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.776Z",
+    "updated_at": "2026-09-08T15:08:02.776Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Spain",
+    "iso_code": "ES",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "26d1eddd-a195-470e-bb31-4f9ebe686825",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.788Z",
+    "updated_at": "2026-09-08T15:08:02.788Z",
+    "region": "8893b40e-3dca-428a-a8cf-23873597448a",
+    "name": "United Arab Emirates",
+    "iso_code": "AE",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.10",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "7faa98f1-177d-4f76-82d8-a013114b572f",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.779Z",
+    "updated_at": "2026-09-08T15:08:02.779Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Greece",
+    "iso_code": "GR",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "82bac386-15fe-4c1f-803e-b92dbc2028b9",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.777Z",
+    "updated_at": "2026-09-08T15:08:02.777Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Switzerland",
+    "iso_code": "CH",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.10",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "8840d257-e850-4e93-926c-c53bccfd42eb",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.786Z",
+    "updated_at": "2026-09-08T15:08:02.786Z",
+    "region": "57c3421e-2a2b-4bfd-b360-102c3dffbdc5",
+    "name": "United States",
+    "iso_code": "US",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.40",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "90e84957-a60c-44f8-aadf-bb5cbd0d7f81",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.772Z",
+    "updated_at": "2026-09-08T15:08:02.772Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Germany",
+    "iso_code": "DE",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "9eb4b9f5-38bb-481c-a48d-6848602e7a7e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.774Z",
+    "updated_at": "2026-09-08T15:08:02.774Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Italy",
+    "iso_code": "IT",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "a8d472d2-b3b4-4d97-be81-8985fb33d782",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.768Z",
+    "updated_at": "2026-09-08T15:08:02.768Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "France",
+    "iso_code": "FR",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "af98504f-06a0-44b6-8571-dfee782918fa",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.784Z",
+    "updated_at": "2026-09-08T15:08:02.784Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "United Kingdom",
+    "iso_code": "GB",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.15",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "b196b488-3101-40c5-8e15-24282875860f",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.785Z",
+    "updated_at": "2026-09-08T15:08:02.785Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Turkey",
+    "iso_code": "TR",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.05",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "b334edab-0722-483b-bdb4-f817c7881a19",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.787Z",
+    "updated_at": "2026-09-08T15:08:02.787Z",
+    "region": "2667ff26-ebc3-4a84-ab17-86cd07b912e6",
+    "name": "Thailand",
+    "iso_code": "TH",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.10",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "cb815a78-3c3b-4526-b766-583d2d951852",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.781Z",
+    "updated_at": "2026-09-08T15:08:02.781Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Poland",
+    "iso_code": "PL",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "f04fcf0c-f8f7-493f-a091-708b40476d3c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.789Z",
+    "updated_at": "2026-09-08T15:08:02.789Z",
+    "region": "2667ff26-ebc3-4a84-ab17-86cd07b912e6",
+    "name": "Japan",
+    "iso_code": "JP",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.15",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "0e2f2a6a-9aba-4997-b3e4-d1cd7597a423",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.810Z",
+    "updated_at": "2026-09-08T15:08:02.810Z",
+    "name": "United States",
+    "destination_type": "COUNTRY",
+    "country": "8840d257-e850-4e93-926c-c53bccfd42eb",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "108f39d2-f700-46ea-91ac-10971b0babb6",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.803Z",
+    "updated_at": "2026-09-08T15:08:02.803Z",
+    "name": "Switzerland",
+    "destination_type": "COUNTRY",
+    "country": "82bac386-15fe-4c1f-803e-b92dbc2028b9",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "10db7b24-994b-43ac-a2eb-e3b656c40216",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.801Z",
+    "updated_at": "2026-09-08T15:08:02.801Z",
+    "name": "Italy",
+    "destination_type": "COUNTRY",
+    "country": "9eb4b9f5-38bb-481c-a48d-6848602e7a7e",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "22196a56-f366-430d-91b3-de78b933c5a3",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.794Z",
+    "updated_at": "2026-09-08T15:08:02.794Z",
+    "name": "Schengen Zone (all member states)",
+    "destination_type": "SCHENGEN",
+    "country": null,
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "24fd89f0-25ac-4647-b7b3-d0260fd8bca2",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.805Z",
+    "updated_at": "2026-09-08T15:08:02.805Z",
+    "name": "Poland",
+    "destination_type": "COUNTRY",
+    "country": "cb815a78-3c3b-4526-b766-583d2d951852",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "4f7684f9-9d0e-43b8-b8c9-748e6035754a",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.802Z",
+    "updated_at": "2026-09-08T15:08:02.802Z",
+    "name": "Spain",
+    "destination_type": "COUNTRY",
+    "country": "06a53f32-021d-4a27-a18a-492bbfebe8d5",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "50d6a898-000d-47d5-9e0b-1e8fcf4f3eba",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.804Z",
+    "updated_at": "2026-09-08T15:08:02.804Z",
+    "name": "Greece",
+    "destination_type": "COUNTRY",
+    "country": "7faa98f1-177d-4f76-82d8-a013114b572f",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "5569a9bb-c22c-4afd-84a3-bb4465c5c391",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.797Z",
+    "updated_at": "2026-09-08T15:08:02.797Z",
+    "name": "France",
+    "destination_type": "COUNTRY",
+    "country": "a8d472d2-b3b4-4d97-be81-8985fb33d782",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "61c49fa2-fc4a-4f89-b6ad-8fee7c8c5418",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.819Z",
+    "updated_at": "2026-09-08T15:08:02.819Z",
+    "name": "Japan",
+    "destination_type": "COUNTRY",
+    "country": "f04fcf0c-f8f7-493f-a091-708b40476d3c",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "723d6df6-7b75-437c-a248-3ef6f29ad5e5",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.795Z",
+    "updated_at": "2026-09-08T15:08:02.795Z",
+    "name": "Europe (entire continent)",
+    "destination_type": "REGION",
+    "country": null,
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "96cfb962-b812-44a8-8061-eb9fee772e7e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.792Z",
+    "updated_at": "2026-09-08T15:08:02.792Z",
+    "name": "Worldwide (all countries)",
+    "destination_type": "WORLDWIDE",
+    "country": null,
+    "region": "7279efac-f692-45c3-a3c0-a22e1242d55a",
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "9ace4c90-a5c1-44d6-b7b7-0bb21f54b2a4",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.799Z",
+    "updated_at": "2026-09-08T15:08:02.799Z",
+    "name": "Germany",
+    "destination_type": "COUNTRY",
+    "country": "90e84957-a60c-44f8-aadf-bb5cbd0d7f81",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "b0539c87-72a4-4a12-b105-2d73a3f80ff2",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.813Z",
+    "updated_at": "2026-09-08T15:08:02.813Z",
+    "name": "Thailand",
+    "destination_type": "COUNTRY",
+    "country": "b334edab-0722-483b-bdb4-f817c7881a19",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "c5a0f1c8-66a1-46ec-bcc4-9d75290bece6",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.807Z",
+    "updated_at": "2026-09-08T15:08:02.807Z",
+    "name": "Turkey",
+    "destination_type": "COUNTRY",
+    "country": "b196b488-3101-40c5-8e15-24282875860f",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "d2bd8b52-4299-4244-ab69-9c194045d71a",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.806Z",
+    "updated_at": "2026-09-08T15:08:02.806Z",
+    "name": "United Kingdom",
+    "destination_type": "COUNTRY",
+    "country": "af98504f-06a0-44b6-8571-dfee782918fa",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "d5609584-e4c5-4c96-b00e-7c9ce4c40ffe",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.817Z",
+    "updated_at": "2026-09-08T15:08:02.817Z",
+    "name": "United Arab Emirates",
+    "destination_type": "COUNTRY",
+    "country": "26d1eddd-a195-470e-bb31-4f9ebe686825",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "f2cebefc-0f52-4371-99ca-2f05b78cc175",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.821Z",
+    "updated_at": "2026-09-08T15:08:02.821Z",
+    "name": "Pakistan",
+    "destination_type": "COUNTRY",
+    "country": "00feb3e6-0b70-4a3e-91cf-e11bd4894840",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "products.product",
+  "pk": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.822Z",
+    "updated_at": "2026-09-08T15:08:02.822Z",
+    "name": "Worldwide Travel Insurance",
+    "slug": "travel-insurance",
+    "description": "Comprehensive medical, emergency, and trip cancellation insurance accepted globally and by Schengen consulates.",
+    "product_type": "TRAVEL",
+    "is_active": true
+  }
+},
+{
+  "model": "products.product",
+  "pk": "e9081b8b-33e7-4d11-91b1-9940172db140",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.825Z",
+    "updated_at": "2026-09-08T15:08:02.825Z",
+    "name": "Schengen Visa Insurance",
+    "slug": "schengen-visa-insurance",
+    "description": "Meets 100% of EU Regulation requirements: €30,000+ medical cover, zero deductible, repatriation guaranteed.",
+    "product_type": "VISA",
+    "is_active": true
+  }
+},
+{
+  "model": "products.plan",
+  "pk": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.830Z",
+    "updated_at": "2026-09-08T15:08:02.830Z",
+    "product": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
+    "name": "Gold",
+    "code": "GOLD",
+    "description": "Most popular tariff! Includes comprehensive €50,000 medical protection, baggage loss, and flight delays.",
+    "base_price_per_day": "2.50",
+    "currency": "EUR",
+    "medical_limit_display": "€50,000",
+    "is_popular": true,
+    "is_active": true,
+    "display_order": 2
+  }
+},
+{
+  "model": "products.plan",
+  "pk": "1b44c7da-3285-400a-8006-974257805f92",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.827Z",
+    "updated_at": "2026-09-08T15:08:02.827Z",
+    "product": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
+    "name": "Start",
+    "code": "START",
+    "description": "Essential coverage for budget-conscious travelers. Covers unexpected medical emergencies and repatriation.",
+    "base_price_per_day": "1.50",
+    "currency": "EUR",
+    "medical_limit_display": "€30,000",
+    "is_popular": false,
+    "is_active": true,
+    "display_order": 1
+  }
+},
+{
+  "model": "products.plan",
+  "pk": "30575349-b72b-4761-9125-2fee1a856ed4",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.833Z",
+    "updated_at": "2026-09-08T15:08:02.833Z",
+    "product": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
+    "name": "Max+",
+    "code": "MAX_PLUS",
+    "description": "Maximum peace of mind with €100,000 coverage, active sports, legal assistance, and high baggage limit.",
+    "base_price_per_day": "4.00",
+    "currency": "EUR",
+    "medical_limit_display": "€100,000",
+    "is_popular": false,
+    "is_active": true,
+    "display_order": 3
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "0b149cfe-fc84-4241-939d-bce630c4993c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.842Z",
+    "updated_at": "2026-09-08T15:08:02.842Z",
+    "name": "Flight Delay & Cancellation",
+    "code": "FLIGHT_DELAY",
+    "category": "FLIGHT",
+    "description": "Compensates meals, hotels, and tickets if flight delayed over 4 hours",
+    "icon": "plane-departure",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "1608523f-1745-421b-9b22-a1c7907dfa62",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.835Z",
+    "updated_at": "2026-09-08T15:08:02.835Z",
+    "name": "Emergency Medical Treatment",
+    "code": "MED_TREATMENT",
+    "category": "MEDICAL",
+    "description": "Inpatient and outpatient medical treatment in accredited clinics",
+    "icon": "hospital",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.840Z",
+    "updated_at": "2026-09-08T15:08:02.840Z",
+    "name": "Lost & Delayed Baggage",
+    "code": "BAGGAGE",
+    "category": "BAGGAGE",
+    "description": "Reimbursement for damaged or lost registered airline baggage",
+    "icon": "luggage",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "52b15cfb-b483-4240-b4d0-050fcdee3d9b",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.844Z",
+    "updated_at": "2026-09-08T15:08:02.844Z",
+    "name": "Emergency Dental Care",
+    "code": "DENTAL",
+    "category": "MEDICAL",
+    "description": "Acute emergency dental pain relief and tooth repair",
+    "icon": "tooth",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "593718cf-4042-474d-8d5e-e489b796b555",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.846Z",
+    "updated_at": "2026-09-08T15:08:02.846Z",
+    "name": "24/7 Multilingual Emergency Hotline",
+    "code": "HOTLINE_24_7",
+    "category": "ASSISTANCE",
+    "description": "Direct coordinator support across all timezones in English, German, and Spanish",
+    "icon": "headset",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.837Z",
+    "updated_at": "2026-09-08T15:08:02.837Z",
+    "name": "Emergency Medical Evacuation & Repatriation",
+    "code": "MED_EVACUATION",
+    "category": "MEDICAL",
+    "description": "Air ambulance, emergency transport, and medical escort repatriation",
+    "icon": "ambulance",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "978e5696-6a17-4154-93b5-36af018a2e1c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.843Z",
+    "updated_at": "2026-09-08T15:08:02.843Z",
+    "name": "Active Recreation & Amateur Sports",
+    "code": "SPORTS_COVER",
+    "category": "SPORTS",
+    "description": "Covers injuries sustained during skiing, gym, swimming, and cycling",
+    "icon": "snowboarding",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.838Z",
+    "updated_at": "2026-09-08T15:08:02.838Z",
+    "name": "COVID-19 Treatment & Quarantine",
+    "code": "COVID19",
+    "category": "COVID",
+    "description": "Testing and hospitalization treatment for acute COVID-19",
+    "icon": "shield-virus",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "f73e2215-67bb-4cbc-98d9-adb53f795ff1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.845Z",
+    "updated_at": "2026-09-08T15:08:02.845Z",
+    "name": "Legal Assistance & Civil Liability",
+    "code": "LEGAL_LIABILITY",
+    "category": "LEGAL",
+    "description": "Lawyer consultation and liability for third-party property damage",
+    "icon": "scale-balanced",
+    "is_active": true
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "132ec00a-1e9a-4173-9454-4044f26dd6cd",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.885Z",
+    "updated_at": "2026-09-08T15:08:02.885Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "593718cf-4042-474d-8d5e-e489b796b555",
+    "limit_display": "VIP 24/7 Priority",
+    "limit_amount": null,
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "1ddb2176-201f-43c8-a110-58a1725e38b8",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.874Z",
+    "updated_at": "2026-09-08T15:08:02.874Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
+    "limit_display": "€50,000",
+    "limit_amount": "50000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "387c25d4-010a-4be7-aef1-7b15bfd538e1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.866Z",
+    "updated_at": "2026-09-08T15:08:02.866Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
+    "limit_display": "€1,000 Included",
+    "limit_amount": "1000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "4c37829f-24c4-40f4-99e7-e06bbc5f7790",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.861Z",
+    "updated_at": "2026-09-08T15:08:02.861Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
+    "limit_display": "€30,000",
+    "limit_amount": "30000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "4eebd388-1eb9-4024-835c-45c4ed9de140",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.855Z",
+    "updated_at": "2026-09-08T15:08:02.855Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "593718cf-4042-474d-8d5e-e489b796b555",
+    "limit_display": "24/7 Included",
+    "limit_amount": null,
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "527fd0fd-36c8-4059-bdb8-f97904db1ee3",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.852Z",
+    "updated_at": "2026-09-08T15:08:02.852Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
+    "limit_display": "€10,000",
+    "limit_amount": "10000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "5eef5d02-b76e-45d9-8ec8-d2130fca7c12",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.879Z",
+    "updated_at": "2026-09-08T15:08:02.879Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "978e5696-6a17-4154-93b5-36af018a2e1c",
+    "limit_display": "€50,000 Included",
+    "limit_amount": "50000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "6284e014-21bc-44be-9fdd-e900068b3ea7",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.859Z",
+    "updated_at": "2026-09-08T15:08:02.859Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "1608523f-1745-421b-9b22-a1c7907dfa62",
+    "limit_display": "€50,000",
+    "limit_amount": "50000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "6a5fa598-fcf2-4b93-b5d7-aeebbf003f2d",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.870Z",
+    "updated_at": "2026-09-08T15:08:02.870Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "593718cf-4042-474d-8d5e-e489b796b555",
+    "limit_display": "24/7 Included",
+    "limit_amount": null,
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "74ac3be0-7339-41c6-9258-05e7ce070539",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.872Z",
+    "updated_at": "2026-09-08T15:08:02.872Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "1608523f-1745-421b-9b22-a1c7907dfa62",
+    "limit_display": "€100,000",
+    "limit_amount": "100000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "93c102f2-dd36-4cdf-839b-801b3bb3fe9e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.876Z",
+    "updated_at": "2026-09-08T15:08:02.876Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
+    "limit_display": "€2,000 Included",
+    "limit_amount": "2000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "9445d147-7bf9-4afa-a839-7067f8ba6c49",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.849Z",
+    "updated_at": "2026-09-08T15:08:02.849Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "1608523f-1745-421b-9b22-a1c7907dfa62",
+    "limit_display": "€30,000",
+    "limit_amount": "30000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "9aecf5b8-ae53-4cea-85c7-9ea642dff13c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.867Z",
+    "updated_at": "2026-09-08T15:08:02.867Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "0b149cfe-fc84-4241-939d-bce630c4993c",
+    "limit_display": "€300 Included",
+    "limit_amount": "300.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "a9c3011e-6334-410d-8371-61f6bcf17c4f",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.884Z",
+    "updated_at": "2026-09-08T15:08:02.884Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "f73e2215-67bb-4cbc-98d9-adb53f795ff1",
+    "limit_display": "€25,000 Included",
+    "limit_amount": "25000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "ad4ab857-dcd8-4c11-a76e-32b9623824c7",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.882Z",
+    "updated_at": "2026-09-08T15:08:02.882Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "52b15cfb-b483-4240-b4d0-050fcdee3d9b",
+    "limit_display": "€500 Included",
+    "limit_amount": "500.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "b140f80e-46d7-4107-be5a-cced0eae9639",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.868Z",
+    "updated_at": "2026-09-08T15:08:02.868Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "52b15cfb-b483-4240-b4d0-050fcdee3d9b",
+    "limit_display": "€300 Included",
+    "limit_amount": "300.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "bf31a4b4-5bae-4f98-8b26-9a6e6406ee4e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.854Z",
+    "updated_at": "2026-09-08T15:08:02.854Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
+    "limit_display": "€30,000 Included",
+    "limit_amount": "30000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "c49e85e3-6e80-4eef-91c7-0ed3b51cf6c7",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.858Z",
+    "updated_at": "2026-09-08T15:08:02.858Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "978e5696-6a17-4154-93b5-36af018a2e1c",
+    "limit_display": "Up to €10,000",
+    "limit_amount": "10000.00",
+    "deductible_display": "€0",
+    "is_included": false,
+    "is_optional_addon": true,
+    "addon_price_per_day": "0.90"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "c6a5bf37-bd9e-4753-acc0-b7cd18587528",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.871Z",
+    "updated_at": "2026-09-08T15:08:02.871Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "978e5696-6a17-4154-93b5-36af018a2e1c",
+    "limit_display": "Up to €20,000",
+    "limit_amount": "20000.00",
+    "deductible_display": "€0",
+    "is_included": false,
+    "is_optional_addon": true,
+    "addon_price_per_day": "0.80"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "d27f0d8f-fb78-4d68-a5a7-b1284723659e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.857Z",
+    "updated_at": "2026-09-08T15:08:02.857Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
+    "limit_display": "Up to €1,000",
+    "limit_amount": "1000.00",
+    "deductible_display": "€0",
+    "is_included": false,
+    "is_optional_addon": true,
+    "addon_price_per_day": "0.60"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "df3ca112-7172-44bd-bf81-60cb73617815",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.875Z",
+    "updated_at": "2026-09-08T15:08:02.875Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
+    "limit_display": "€100,000 Included",
+    "limit_amount": "100000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "e1a39df5-b69c-472a-8173-3e27dd955ad9",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.878Z",
+    "updated_at": "2026-09-08T15:08:02.878Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "0b149cfe-fc84-4241-939d-bce630c4993c",
+    "limit_display": "€600 Included",
+    "limit_amount": "600.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "f374b926-c740-4ace-aeb1-7a0edea3be78",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.863Z",
+    "updated_at": "2026-09-08T15:08:02.863Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
+    "limit_display": "€50,000 Included",
+    "limit_amount": "50000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.traveltype",
+  "pk": "276b5dcd-6782-4a9d-afd6-2126163c0432",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.889Z",
+    "updated_at": "2026-09-08T15:08:02.889Z",
+    "name": "Active / Sports",
+    "code": "ACTIVE",
+    "description": "Amateur fitness, cycling, skiing on marked pistes, swimming, surfing",
+    "risk_multiplier": "1.50",
+    "is_active": true
+  }
+},
+{
+  "model": "products.traveltype",
+  "pk": "4d791ba5-c754-4fa8-ab99-c80ed3fa2edb",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.890Z",
+    "updated_at": "2026-09-08T15:08:02.890Z",
+    "name": "Extreme / High Risk",
+    "code": "EXTREME",
+    "description": "Mountaineering, off-piste skiing, scuba diving, skydiving, paragliding",
+    "risk_multiplier": "2.50",
+    "is_active": true
+  }
+},
+{
+  "model": "products.traveltype",
+  "pk": "6b6cf0c5-2955-4cc9-a4f4-7e11efa2e0cb",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.887Z",
+    "updated_at": "2026-09-08T15:08:02.887Z",
+    "name": "Calm / Leisure",
+    "code": "CALM",
+    "description": "Sightseeing, beach relaxation, museums, and business trips",
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.agebracketrule",
+  "pk": "59b70dfd-0502-4a09-8dda-d3ea587f0477",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.894Z",
+    "updated_at": "2026-09-08T15:08:02.894Z",
+    "name": "Seniors",
+    "min_age": 65,
+    "max_age": 74,
+    "multiplier": "1.50",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.agebracketrule",
+  "pk": "9e90a419-76c3-4459-adc5-54b8ffcfe814",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.895Z",
+    "updated_at": "2026-09-08T15:08:02.895Z",
+    "name": "Elderly",
+    "min_age": 75,
+    "max_age": 100,
+    "multiplier": "2.20",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.agebracketrule",
+  "pk": "9f3c3514-ae11-4ccc-a1cf-aba40d7d1b87",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.893Z",
+    "updated_at": "2026-09-08T15:08:02.893Z",
+    "name": "Adults",
+    "min_age": 18,
+    "max_age": 64,
+    "multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.agebracketrule",
+  "pk": "ae244fa4-3f8e-4287-90a5-f5e367dbcdc1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.892Z",
+    "updated_at": "2026-09-08T15:08:02.892Z",
+    "name": "Infants & Children",
+    "min_age": 0,
+    "max_age": 17,
+    "multiplier": "0.85",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.durationdiscountrule",
+  "pk": "39a0ca81-ceae-4b2a-8421-37045c5b6b01",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.902Z",
+    "updated_at": "2026-09-08T15:08:02.902Z",
+    "name": "Seasonal / Nomad Discount",
+    "min_days": 90,
+    "max_days": null,
+    "discount_percentage": "20.00",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.durationdiscountrule",
+  "pk": "5b216a13-6e7f-4522-97ef-b8964bd8cd87",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.901Z",
+    "updated_at": "2026-09-08T15:08:02.901Z",
+    "name": "Long Stay Discount",
+    "min_days": 30,
+    "max_days": 89,
+    "discount_percentage": "10.00",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.durationdiscountrule",
+  "pk": "e51466f2-393a-40d3-9e7f-3334be8533c1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.900Z",
+    "updated_at": "2026-09-08T15:08:02.900Z",
+    "name": "Medium Stay Discount",
+    "min_days": 15,
+    "max_days": 29,
+    "discount_percentage": "5.00",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.durationdiscountrule",
+  "pk": "f2e6fcea-fd62-4c03-be70-0e7cf7ce37b6",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.897Z",
+    "updated_at": "2026-09-08T15:08:02.897Z",
+    "name": "Short Stay",
+    "min_days": 1,
+    "max_days": 14,
+    "discount_percentage": "0.00",
+    "is_active": true
+  }
+},
+{
+  "model": "promotions.promotion",
+  "pk": "5058f839-8030-4307-a91f-43f5ab07d62c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.906Z",
+    "updated_at": "2026-09-08T15:08:02.906Z",
+    "code": "SUMMER20",
+    "description": "20% summer holiday special",
+    "discount_type": "PERCENTAGE",
+    "discount_value": "20.00",
+    "min_amount": "25.00",
+    "max_discount": "50.00",
+    "start_date": null,
+    "end_date": null,
+    "usage_limit": null,
+    "times_used": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "promotions.promotion",
+  "pk": "5bd1b8c4-24e4-4730-8754-bd7beccb91f1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.907Z",
+    "updated_at": "2026-09-08T15:08:02.907Z",
+    "code": "WELCOME5",
+    "description": "€5 off on first insurance order",
+    "discount_type": "FIXED",
+    "discount_value": "5.00",
+    "min_amount": "15.00",
+    "max_discount": null,
+    "start_date": null,
+    "end_date": null,
+    "usage_limit": null,
+    "times_used": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "promotions.promotion",
+  "pk": "a83313bb-7801-4bb7-b20b-b90c2af1f120",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.904Z",
+    "updated_at": "2026-09-08T15:08:02.904Z",
+    "code": "EKTA10",
+    "description": "10% off any travel insurance quote",
+    "discount_type": "PERCENTAGE",
+    "discount_value": "10.00",
+    "min_amount": "10.00",
+    "max_discount": null,
+    "start_date": null,
+    "end_date": null,
+    "usage_limit": null,
+    "times_used": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "10ac1631-32b6-47d3-b8ab-4f5a78eb85cd",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.911Z",
+    "updated_at": "2026-09-08T15:08:02.911Z",
+    "reviewer_name": "Farhan Khan",
+    "rating": 5,
+    "comment": "Very transparent pricing, no hidden charges. Downloaded the electronic PDF policy immediately after payment.",
+    "country": "Pakistan",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "2630d440-586b-484d-9733-4ffdb53ae741",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.912Z",
+    "updated_at": "2026-09-08T15:08:02.912Z",
+    "reviewer_name": "Elena Schulz",
+    "rating": 4,
+    "comment": "Great pricing for active skiing insurance in Austria. Very smooth process.",
+    "country": "Germany",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "b30b91e6-c384-4907-9a36-fef3334b1e03",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.909Z",
+    "updated_at": "2026-09-08T15:08:02.909Z",
+    "reviewer_name": "Sarah Jenkins",
+    "rating": 5,
+    "comment": "Bought policy in 2 minutes for our Spain trip. Embassy accepted it instantly for Schengen requirements!",
+    "country": "United Kingdom",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "d2696169-dad5-481c-b72d-3a18dfe19cd9",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.910Z",
+    "updated_at": "2026-09-08T15:08:02.910Z",
+    "reviewer_name": "Marco Rossi",
+    "rating": 5,
+    "comment": "Excellent assistance when my flight in Frankfurt got cancelled. Received rapid support on WhatsApp.",
+    "country": "Italy",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "cms.page",
+  "pk": "0d386986-5da1-42a1-9914-feb25e8fd275",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.923Z",
+    "updated_at": "2026-09-08T15:08:02.923Z",
+    "title": "About EKTA Traveling",
+    "slug": "about-us",
+    "content": "EKTA Traveling is an innovative travel insurance platform delivering instant digital insurance policies globally since 2020. Our electronic certificates are backed by international underwriters and accepted by embassies worldwide.",
+    "is_active": true
+  }
+},
+{
+  "model": "cms.page",
+  "pk": "490d87b0-cbc2-4c84-a21f-40deb1e07a2e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.924Z",
+    "updated_at": "2026-09-08T15:08:02.924Z",
+    "title": "Terms & Conditions",
+    "slug": "terms",
+    "content": "Comprehensive terms and conditions of travel insurance contract, liability exclusions, claim reporting deadlines, and policyholder rights.",
+    "is_active": true
+  }
+},
+{
+  "model": "cms.page",
+  "pk": "994295de-58c8-47d4-b854-686f54b3c4b3",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.925Z",
+    "updated_at": "2026-09-08T15:08:02.925Z",
+    "title": "Privacy Policy",
+    "slug": "privacy-policy",
+    "content": "Information on GDPR compliance, encryption standards, data protection, and secure payment handling.",
+    "is_active": true
+  }
+},
+{
+  "model": "cms.page",
+  "pk": "e5fc4808-0576-428f-a62c-4f98a299753c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.926Z",
+    "updated_at": "2026-09-08T15:08:02.926Z",
+    "title": "Refund Policy",
+    "slug": "refund-policy",
+    "content": "Full refund is granted if cancellation is requested prior to the start of the insurance coverage period.",
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "37c80dca-fb57-44ab-9b53-d74c046a0677",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.919Z",
+    "updated_at": "2026-09-08T15:08:02.919Z",
+    "category": "POLICY",
+    "question": "How can I or border control verify my policy authenticity?",
+    "answer": "You can verify any policy at any time using our public verification tool at /api/v1/policies/validate/{policy_number} or by scanning the QR code on your policy certificate.",
+    "display_order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "4ad9b5b3-97e8-4d3f-a606-9cc1e92a7e46",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.918Z",
+    "updated_at": "2026-09-08T15:08:02.918Z",
+    "category": "PURCHASE",
+    "question": "How quickly will I receive my insurance policy?",
+    "answer": "Immediately after successful payment! The electronic insurance certificate and policy document are generated automatically and sent to your email within seconds.",
+    "display_order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "7abe0dc0-9330-42b3-a973-d814eff81ede",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.916Z",
+    "updated_at": "2026-09-08T15:08:02.916Z",
+    "category": "GENERAL",
+    "question": "Is EKTA insurance valid for Schengen visa applications?",
+    "answer": "Yes! All EKTA policies fully meet Regulation (EC) No 810/2009 of the European Parliament. They include €30,000+ medical cover, repatriation, and zero deductible across all 29 Schengen states.",
+    "display_order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "8c58207b-48a2-48b5-9712-bdf6d3981e92",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.920Z",
+    "updated_at": "2026-09-08T15:08:02.920Z",
+    "category": "COVERAGE",
+    "question": "Does the policy cover COVID-19?",
+    "answer": "Yes, all our plans (Start, Gold, Max+) cover diagnostic testing, outpatient care, and inpatient hospitalization associated with acute COVID-19 infection.",
+    "display_order": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "ff2a4342-447a-49f7-b51c-cc2eb2e39b96",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.921Z",
+    "updated_at": "2026-09-08T15:08:02.921Z",
+    "category": "REFUND",
+    "question": "Can I cancel my policy and get a refund?",
+    "answer": "Yes. You can request a refund prior to the policy start date directly via our online refund request form.",
+    "display_order": 5,
+    "is_active": true
+  }
+}
+]

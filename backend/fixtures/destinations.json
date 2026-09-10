@@ -1,0 +1,510 @@
+[
+{
+  "model": "destinations.region",
+  "pk": "0e77c04f-e55d-4d24-b245-564836df3a44",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.757Z",
+    "updated_at": "2026-09-08T15:08:02.757Z",
+    "name": "Europe",
+    "code": "EUR",
+    "description": "Schengen zone, UK, and greater Europe",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.region",
+  "pk": "2667ff26-ebc3-4a84-ab17-86cd07b912e6",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.759Z",
+    "updated_at": "2026-09-08T15:08:02.759Z",
+    "name": "Asia",
+    "code": "ASI",
+    "description": "East, Southeast, and South Asia",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.region",
+  "pk": "57c3421e-2a2b-4bfd-b360-102c3dffbdc5",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.761Z",
+    "updated_at": "2026-09-08T15:08:02.761Z",
+    "name": "Americas",
+    "code": "AME",
+    "description": "North, Central, and South America",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.region",
+  "pk": "7279efac-f692-45c3-a3c0-a22e1242d55a",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.764Z",
+    "updated_at": "2026-09-08T15:08:02.764Z",
+    "name": "Worldwide",
+    "code": "WLD",
+    "description": "All destinations globally",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.region",
+  "pk": "8893b40e-3dca-428a-a8cf-23873597448a",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.762Z",
+    "updated_at": "2026-09-08T15:08:02.762Z",
+    "name": "Middle East & Africa",
+    "code": "MEA",
+    "description": "Gulf countries and African continent",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "00feb3e6-0b70-4a3e-91cf-e11bd4894840",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.790Z",
+    "updated_at": "2026-09-08T15:08:02.790Z",
+    "region": "2667ff26-ebc3-4a84-ab17-86cd07b912e6",
+    "name": "Pakistan",
+    "iso_code": "PK",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "06a53f32-021d-4a27-a18a-492bbfebe8d5",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.776Z",
+    "updated_at": "2026-09-08T15:08:02.776Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Spain",
+    "iso_code": "ES",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "26d1eddd-a195-470e-bb31-4f9ebe686825",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.788Z",
+    "updated_at": "2026-09-08T15:08:02.788Z",
+    "region": "8893b40e-3dca-428a-a8cf-23873597448a",
+    "name": "United Arab Emirates",
+    "iso_code": "AE",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.10",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "7faa98f1-177d-4f76-82d8-a013114b572f",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.779Z",
+    "updated_at": "2026-09-08T15:08:02.779Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Greece",
+    "iso_code": "GR",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "82bac386-15fe-4c1f-803e-b92dbc2028b9",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.777Z",
+    "updated_at": "2026-09-08T15:08:02.777Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Switzerland",
+    "iso_code": "CH",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.10",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "8840d257-e850-4e93-926c-c53bccfd42eb",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.786Z",
+    "updated_at": "2026-09-08T15:08:02.786Z",
+    "region": "57c3421e-2a2b-4bfd-b360-102c3dffbdc5",
+    "name": "United States",
+    "iso_code": "US",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.40",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "90e84957-a60c-44f8-aadf-bb5cbd0d7f81",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.772Z",
+    "updated_at": "2026-09-08T15:08:02.772Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Germany",
+    "iso_code": "DE",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "9eb4b9f5-38bb-481c-a48d-6848602e7a7e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.774Z",
+    "updated_at": "2026-09-08T15:08:02.774Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Italy",
+    "iso_code": "IT",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "a8d472d2-b3b4-4d97-be81-8985fb33d782",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.768Z",
+    "updated_at": "2026-09-08T15:08:02.768Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "France",
+    "iso_code": "FR",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "af98504f-06a0-44b6-8571-dfee782918fa",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.784Z",
+    "updated_at": "2026-09-08T15:08:02.784Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "United Kingdom",
+    "iso_code": "GB",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.15",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "b196b488-3101-40c5-8e15-24282875860f",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.785Z",
+    "updated_at": "2026-09-08T15:08:02.785Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Turkey",
+    "iso_code": "TR",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.05",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "b334edab-0722-483b-bdb4-f817c7881a19",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.787Z",
+    "updated_at": "2026-09-08T15:08:02.787Z",
+    "region": "2667ff26-ebc3-4a84-ab17-86cd07b912e6",
+    "name": "Thailand",
+    "iso_code": "TH",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.10",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "cb815a78-3c3b-4526-b766-583d2d951852",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.781Z",
+    "updated_at": "2026-09-08T15:08:02.781Z",
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "name": "Poland",
+    "iso_code": "PL",
+    "currency": "EUR",
+    "is_schengen": true,
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.country",
+  "pk": "f04fcf0c-f8f7-493f-a091-708b40476d3c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.789Z",
+    "updated_at": "2026-09-08T15:08:02.789Z",
+    "region": "2667ff26-ebc3-4a84-ab17-86cd07b912e6",
+    "name": "Japan",
+    "iso_code": "JP",
+    "currency": "EUR",
+    "is_schengen": false,
+    "risk_multiplier": "1.15",
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "0e2f2a6a-9aba-4997-b3e4-d1cd7597a423",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.810Z",
+    "updated_at": "2026-09-08T15:08:02.810Z",
+    "name": "United States",
+    "destination_type": "COUNTRY",
+    "country": "8840d257-e850-4e93-926c-c53bccfd42eb",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "108f39d2-f700-46ea-91ac-10971b0babb6",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.803Z",
+    "updated_at": "2026-09-08T15:08:02.803Z",
+    "name": "Switzerland",
+    "destination_type": "COUNTRY",
+    "country": "82bac386-15fe-4c1f-803e-b92dbc2028b9",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "10db7b24-994b-43ac-a2eb-e3b656c40216",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.801Z",
+    "updated_at": "2026-09-08T15:08:02.801Z",
+    "name": "Italy",
+    "destination_type": "COUNTRY",
+    "country": "9eb4b9f5-38bb-481c-a48d-6848602e7a7e",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "22196a56-f366-430d-91b3-de78b933c5a3",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.794Z",
+    "updated_at": "2026-09-08T15:08:02.794Z",
+    "name": "Schengen Zone (all member states)",
+    "destination_type": "SCHENGEN",
+    "country": null,
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "24fd89f0-25ac-4647-b7b3-d0260fd8bca2",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.805Z",
+    "updated_at": "2026-09-08T15:08:02.805Z",
+    "name": "Poland",
+    "destination_type": "COUNTRY",
+    "country": "cb815a78-3c3b-4526-b766-583d2d951852",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "4f7684f9-9d0e-43b8-b8c9-748e6035754a",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.802Z",
+    "updated_at": "2026-09-08T15:08:02.802Z",
+    "name": "Spain",
+    "destination_type": "COUNTRY",
+    "country": "06a53f32-021d-4a27-a18a-492bbfebe8d5",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "50d6a898-000d-47d5-9e0b-1e8fcf4f3eba",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.804Z",
+    "updated_at": "2026-09-08T15:08:02.804Z",
+    "name": "Greece",
+    "destination_type": "COUNTRY",
+    "country": "7faa98f1-177d-4f76-82d8-a013114b572f",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "5569a9bb-c22c-4afd-84a3-bb4465c5c391",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.797Z",
+    "updated_at": "2026-09-08T15:08:02.797Z",
+    "name": "France",
+    "destination_type": "COUNTRY",
+    "country": "a8d472d2-b3b4-4d97-be81-8985fb33d782",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "61c49fa2-fc4a-4f89-b6ad-8fee7c8c5418",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.819Z",
+    "updated_at": "2026-09-08T15:08:02.819Z",
+    "name": "Japan",
+    "destination_type": "COUNTRY",
+    "country": "f04fcf0c-f8f7-493f-a091-708b40476d3c",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "723d6df6-7b75-437c-a248-3ef6f29ad5e5",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.795Z",
+    "updated_at": "2026-09-08T15:08:02.795Z",
+    "name": "Europe (entire continent)",
+    "destination_type": "REGION",
+    "country": null,
+    "region": "0e77c04f-e55d-4d24-b245-564836df3a44",
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "96cfb962-b812-44a8-8061-eb9fee772e7e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.792Z",
+    "updated_at": "2026-09-08T15:08:02.792Z",
+    "name": "Worldwide (all countries)",
+    "destination_type": "WORLDWIDE",
+    "country": null,
+    "region": "7279efac-f692-45c3-a3c0-a22e1242d55a",
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "9ace4c90-a5c1-44d6-b7b7-0bb21f54b2a4",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.799Z",
+    "updated_at": "2026-09-08T15:08:02.799Z",
+    "name": "Germany",
+    "destination_type": "COUNTRY",
+    "country": "90e84957-a60c-44f8-aadf-bb5cbd0d7f81",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "b0539c87-72a4-4a12-b105-2d73a3f80ff2",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.813Z",
+    "updated_at": "2026-09-08T15:08:02.813Z",
+    "name": "Thailand",
+    "destination_type": "COUNTRY",
+    "country": "b334edab-0722-483b-bdb4-f817c7881a19",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "c5a0f1c8-66a1-46ec-bcc4-9d75290bece6",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.807Z",
+    "updated_at": "2026-09-08T15:08:02.807Z",
+    "name": "Turkey",
+    "destination_type": "COUNTRY",
+    "country": "b196b488-3101-40c5-8e15-24282875860f",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "d2bd8b52-4299-4244-ab69-9c194045d71a",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.806Z",
+    "updated_at": "2026-09-08T15:08:02.806Z",
+    "name": "United Kingdom",
+    "destination_type": "COUNTRY",
+    "country": "af98504f-06a0-44b6-8571-dfee782918fa",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "d5609584-e4c5-4c96-b00e-7c9ce4c40ffe",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.817Z",
+    "updated_at": "2026-09-08T15:08:02.817Z",
+    "name": "United Arab Emirates",
+    "destination_type": "COUNTRY",
+    "country": "26d1eddd-a195-470e-bb31-4f9ebe686825",
+    "region": null,
+    "is_popular": true,
+    "is_active": true
+  }
+},
+{
+  "model": "destinations.destination",
+  "pk": "f2cebefc-0f52-4371-99ca-2f05b78cc175",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.821Z",
+    "updated_at": "2026-09-08T15:08:02.821Z",
+    "name": "Pakistan",
+    "destination_type": "COUNTRY",
+    "country": "00feb3e6-0b70-4a3e-91cf-e11bd4894840",
+    "region": null,
+    "is_popular": false,
+    "is_active": true
+  }
+}
+]

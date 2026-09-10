@@ -1,0 +1,115 @@
+[
+{
+  "model": "cms.page",
+  "pk": "0d386986-5da1-42a1-9914-feb25e8fd275",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.923Z",
+    "updated_at": "2026-09-08T15:08:02.923Z",
+    "title": "About EKTA Traveling",
+    "slug": "about-us",
+    "content": "EKTA Traveling is an innovative travel insurance platform delivering instant digital insurance policies globally since 2020. Our electronic certificates are backed by international underwriters and accepted by embassies worldwide.",
+    "is_active": true
+  }
+},
+{
+  "model": "cms.page",
+  "pk": "490d87b0-cbc2-4c84-a21f-40deb1e07a2e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.924Z",
+    "updated_at": "2026-09-08T15:08:02.924Z",
+    "title": "Terms & Conditions",
+    "slug": "terms",
+    "content": "Comprehensive terms and conditions of travel insurance contract, liability exclusions, claim reporting deadlines, and policyholder rights.",
+    "is_active": true
+  }
+},
+{
+  "model": "cms.page",
+  "pk": "994295de-58c8-47d4-b854-686f54b3c4b3",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.925Z",
+    "updated_at": "2026-09-08T15:08:02.925Z",
+    "title": "Privacy Policy",
+    "slug": "privacy-policy",
+    "content": "Information on GDPR compliance, encryption standards, data protection, and secure payment handling.",
+    "is_active": true
+  }
+},
+{
+  "model": "cms.page",
+  "pk": "e5fc4808-0576-428f-a62c-4f98a299753c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.926Z",
+    "updated_at": "2026-09-08T15:08:02.926Z",
+    "title": "Refund Policy",
+    "slug": "refund-policy",
+    "content": "Full refund is granted if cancellation is requested prior to the start of the insurance coverage period.",
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "37c80dca-fb57-44ab-9b53-d74c046a0677",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.919Z",
+    "updated_at": "2026-09-08T15:08:02.919Z",
+    "category": "POLICY",
+    "question": "How can I or border control verify my policy authenticity?",
+    "answer": "You can verify any policy at any time using our public verification tool at /api/v1/policies/validate/{policy_number} or by scanning the QR code on your policy certificate.",
+    "display_order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "4ad9b5b3-97e8-4d3f-a606-9cc1e92a7e46",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.918Z",
+    "updated_at": "2026-09-08T15:08:02.918Z",
+    "category": "PURCHASE",
+    "question": "How quickly will I receive my insurance policy?",
+    "answer": "Immediately after successful payment! The electronic insurance certificate and policy document are generated automatically and sent to your email within seconds.",
+    "display_order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "7abe0dc0-9330-42b3-a973-d814eff81ede",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.916Z",
+    "updated_at": "2026-09-08T15:08:02.916Z",
+    "category": "GENERAL",
+    "question": "Is EKTA insurance valid for Schengen visa applications?",
+    "answer": "Yes! All EKTA policies fully meet Regulation (EC) No 810/2009 of the European Parliament. They include €30,000+ medical cover, repatriation, and zero deductible across all 29 Schengen states.",
+    "display_order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "8c58207b-48a2-48b5-9712-bdf6d3981e92",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.920Z",
+    "updated_at": "2026-09-08T15:08:02.920Z",
+    "category": "COVERAGE",
+    "question": "Does the policy cover COVID-19?",
+    "answer": "Yes, all our plans (Start, Gold, Max+) cover diagnostic testing, outpatient care, and inpatient hospitalization associated with acute COVID-19 infection.",
+    "display_order": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "cms.faq",
+  "pk": "ff2a4342-447a-49f7-b51c-cc2eb2e39b96",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.921Z",
+    "updated_at": "2026-09-08T15:08:02.921Z",
+    "category": "REFUND",
+    "question": "Can I cancel my policy and get a refund?",
+    "answer": "Yes. You can request a refund prior to the policy start date directly via our online refund request form.",
+    "display_order": 5,
+    "is_active": true
+  }
+}
+]

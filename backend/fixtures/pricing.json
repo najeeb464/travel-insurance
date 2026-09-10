@@ -1,0 +1,106 @@
+[
+{
+  "model": "pricing.agebracketrule",
+  "pk": "59b70dfd-0502-4a09-8dda-d3ea587f0477",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.894Z",
+    "updated_at": "2026-09-08T15:08:02.894Z",
+    "name": "Seniors",
+    "min_age": 65,
+    "max_age": 74,
+    "multiplier": "1.50",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.agebracketrule",
+  "pk": "9e90a419-76c3-4459-adc5-54b8ffcfe814",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.895Z",
+    "updated_at": "2026-09-08T15:08:02.895Z",
+    "name": "Elderly",
+    "min_age": 75,
+    "max_age": 100,
+    "multiplier": "2.20",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.agebracketrule",
+  "pk": "9f3c3514-ae11-4ccc-a1cf-aba40d7d1b87",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.893Z",
+    "updated_at": "2026-09-08T15:08:02.893Z",
+    "name": "Adults",
+    "min_age": 18,
+    "max_age": 64,
+    "multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.agebracketrule",
+  "pk": "ae244fa4-3f8e-4287-90a5-f5e367dbcdc1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.892Z",
+    "updated_at": "2026-09-08T15:08:02.892Z",
+    "name": "Infants & Children",
+    "min_age": 0,
+    "max_age": 17,
+    "multiplier": "0.85",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.durationdiscountrule",
+  "pk": "39a0ca81-ceae-4b2a-8421-37045c5b6b01",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.902Z",
+    "updated_at": "2026-09-08T15:08:02.902Z",
+    "name": "Seasonal / Nomad Discount",
+    "min_days": 90,
+    "max_days": null,
+    "discount_percentage": "20.00",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.durationdiscountrule",
+  "pk": "5b216a13-6e7f-4522-97ef-b8964bd8cd87",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.901Z",
+    "updated_at": "2026-09-08T15:08:02.901Z",
+    "name": "Long Stay Discount",
+    "min_days": 30,
+    "max_days": 89,
+    "discount_percentage": "10.00",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.durationdiscountrule",
+  "pk": "e51466f2-393a-40d3-9e7f-3334be8533c1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.900Z",
+    "updated_at": "2026-09-08T15:08:02.900Z",
+    "name": "Medium Stay Discount",
+    "min_days": 15,
+    "max_days": 29,
+    "discount_percentage": "5.00",
+    "is_active": true
+  }
+},
+{
+  "model": "pricing.durationdiscountrule",
+  "pk": "f2e6fcea-fd62-4c03-be70-0e7cf7ce37b6",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.897Z",
+    "updated_at": "2026-09-08T15:08:02.897Z",
+    "name": "Short Stay",
+    "min_days": 1,
+    "max_days": 14,
+    "discount_percentage": "0.00",
+    "is_active": true
+  }
+}
+]

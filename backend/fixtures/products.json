@@ -1,0 +1,615 @@
+[
+{
+  "model": "products.product",
+  "pk": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.822Z",
+    "updated_at": "2026-09-08T15:08:02.822Z",
+    "name": "Worldwide Travel Insurance",
+    "slug": "travel-insurance",
+    "description": "Comprehensive medical, emergency, and trip cancellation insurance accepted globally and by Schengen consulates.",
+    "product_type": "TRAVEL",
+    "is_active": true
+  }
+},
+{
+  "model": "products.product",
+  "pk": "e9081b8b-33e7-4d11-91b1-9940172db140",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.825Z",
+    "updated_at": "2026-09-08T15:08:02.825Z",
+    "name": "Schengen Visa Insurance",
+    "slug": "schengen-visa-insurance",
+    "description": "Meets 100% of EU Regulation requirements: €30,000+ medical cover, zero deductible, repatriation guaranteed.",
+    "product_type": "VISA",
+    "is_active": true
+  }
+},
+{
+  "model": "products.plan",
+  "pk": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.830Z",
+    "updated_at": "2026-09-08T15:08:02.830Z",
+    "product": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
+    "name": "Gold",
+    "code": "GOLD",
+    "description": "Most popular tariff! Includes comprehensive €50,000 medical protection, baggage loss, and flight delays.",
+    "base_price_per_day": "2.50",
+    "currency": "EUR",
+    "medical_limit_display": "€50,000",
+    "is_popular": true,
+    "is_active": true,
+    "display_order": 2
+  }
+},
+{
+  "model": "products.plan",
+  "pk": "1b44c7da-3285-400a-8006-974257805f92",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.827Z",
+    "updated_at": "2026-09-08T15:08:02.827Z",
+    "product": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
+    "name": "Start",
+    "code": "START",
+    "description": "Essential coverage for budget-conscious travelers. Covers unexpected medical emergencies and repatriation.",
+    "base_price_per_day": "1.50",
+    "currency": "EUR",
+    "medical_limit_display": "€30,000",
+    "is_popular": false,
+    "is_active": true,
+    "display_order": 1
+  }
+},
+{
+  "model": "products.plan",
+  "pk": "30575349-b72b-4761-9125-2fee1a856ed4",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.833Z",
+    "updated_at": "2026-09-08T15:08:02.833Z",
+    "product": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
+    "name": "Max+",
+    "code": "MAX_PLUS",
+    "description": "Maximum peace of mind with €100,000 coverage, active sports, legal assistance, and high baggage limit.",
+    "base_price_per_day": "4.00",
+    "currency": "EUR",
+    "medical_limit_display": "€100,000",
+    "is_popular": false,
+    "is_active": true,
+    "display_order": 3
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "0b149cfe-fc84-4241-939d-bce630c4993c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.842Z",
+    "updated_at": "2026-09-08T15:08:02.842Z",
+    "name": "Flight Delay & Cancellation",
+    "code": "FLIGHT_DELAY",
+    "category": "FLIGHT",
+    "description": "Compensates meals, hotels, and tickets if flight delayed over 4 hours",
+    "icon": "plane-departure",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "1608523f-1745-421b-9b22-a1c7907dfa62",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.835Z",
+    "updated_at": "2026-09-08T15:08:02.835Z",
+    "name": "Emergency Medical Treatment",
+    "code": "MED_TREATMENT",
+    "category": "MEDICAL",
+    "description": "Inpatient and outpatient medical treatment in accredited clinics",
+    "icon": "hospital",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.840Z",
+    "updated_at": "2026-09-08T15:08:02.840Z",
+    "name": "Lost & Delayed Baggage",
+    "code": "BAGGAGE",
+    "category": "BAGGAGE",
+    "description": "Reimbursement for damaged or lost registered airline baggage",
+    "icon": "luggage",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "52b15cfb-b483-4240-b4d0-050fcdee3d9b",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.844Z",
+    "updated_at": "2026-09-08T15:08:02.844Z",
+    "name": "Emergency Dental Care",
+    "code": "DENTAL",
+    "category": "MEDICAL",
+    "description": "Acute emergency dental pain relief and tooth repair",
+    "icon": "tooth",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "593718cf-4042-474d-8d5e-e489b796b555",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.846Z",
+    "updated_at": "2026-09-08T15:08:02.846Z",
+    "name": "24/7 Multilingual Emergency Hotline",
+    "code": "HOTLINE_24_7",
+    "category": "ASSISTANCE",
+    "description": "Direct coordinator support across all timezones in English, German, and Spanish",
+    "icon": "headset",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.837Z",
+    "updated_at": "2026-09-08T15:08:02.837Z",
+    "name": "Emergency Medical Evacuation & Repatriation",
+    "code": "MED_EVACUATION",
+    "category": "MEDICAL",
+    "description": "Air ambulance, emergency transport, and medical escort repatriation",
+    "icon": "ambulance",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "978e5696-6a17-4154-93b5-36af018a2e1c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.843Z",
+    "updated_at": "2026-09-08T15:08:02.843Z",
+    "name": "Active Recreation & Amateur Sports",
+    "code": "SPORTS_COVER",
+    "category": "SPORTS",
+    "description": "Covers injuries sustained during skiing, gym, swimming, and cycling",
+    "icon": "snowboarding",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.838Z",
+    "updated_at": "2026-09-08T15:08:02.838Z",
+    "name": "COVID-19 Treatment & Quarantine",
+    "code": "COVID19",
+    "category": "COVID",
+    "description": "Testing and hospitalization treatment for acute COVID-19",
+    "icon": "shield-virus",
+    "is_active": true
+  }
+},
+{
+  "model": "products.coverage",
+  "pk": "f73e2215-67bb-4cbc-98d9-adb53f795ff1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.845Z",
+    "updated_at": "2026-09-08T15:08:02.845Z",
+    "name": "Legal Assistance & Civil Liability",
+    "code": "LEGAL_LIABILITY",
+    "category": "LEGAL",
+    "description": "Lawyer consultation and liability for third-party property damage",
+    "icon": "scale-balanced",
+    "is_active": true
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "132ec00a-1e9a-4173-9454-4044f26dd6cd",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.885Z",
+    "updated_at": "2026-09-08T15:08:02.885Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "593718cf-4042-474d-8d5e-e489b796b555",
+    "limit_display": "VIP 24/7 Priority",
+    "limit_amount": null,
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "1ddb2176-201f-43c8-a110-58a1725e38b8",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.874Z",
+    "updated_at": "2026-09-08T15:08:02.874Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
+    "limit_display": "€50,000",
+    "limit_amount": "50000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "387c25d4-010a-4be7-aef1-7b15bfd538e1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.866Z",
+    "updated_at": "2026-09-08T15:08:02.866Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
+    "limit_display": "€1,000 Included",
+    "limit_amount": "1000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "4c37829f-24c4-40f4-99e7-e06bbc5f7790",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.861Z",
+    "updated_at": "2026-09-08T15:08:02.861Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
+    "limit_display": "€30,000",
+    "limit_amount": "30000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "4eebd388-1eb9-4024-835c-45c4ed9de140",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.855Z",
+    "updated_at": "2026-09-08T15:08:02.855Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "593718cf-4042-474d-8d5e-e489b796b555",
+    "limit_display": "24/7 Included",
+    "limit_amount": null,
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "527fd0fd-36c8-4059-bdb8-f97904db1ee3",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.852Z",
+    "updated_at": "2026-09-08T15:08:02.852Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
+    "limit_display": "€10,000",
+    "limit_amount": "10000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "5eef5d02-b76e-45d9-8ec8-d2130fca7c12",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.879Z",
+    "updated_at": "2026-09-08T15:08:02.879Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "978e5696-6a17-4154-93b5-36af018a2e1c",
+    "limit_display": "€50,000 Included",
+    "limit_amount": "50000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "6284e014-21bc-44be-9fdd-e900068b3ea7",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.859Z",
+    "updated_at": "2026-09-08T15:08:02.859Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "1608523f-1745-421b-9b22-a1c7907dfa62",
+    "limit_display": "€50,000",
+    "limit_amount": "50000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "6a5fa598-fcf2-4b93-b5d7-aeebbf003f2d",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.870Z",
+    "updated_at": "2026-09-08T15:08:02.870Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "593718cf-4042-474d-8d5e-e489b796b555",
+    "limit_display": "24/7 Included",
+    "limit_amount": null,
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "74ac3be0-7339-41c6-9258-05e7ce070539",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.872Z",
+    "updated_at": "2026-09-08T15:08:02.872Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "1608523f-1745-421b-9b22-a1c7907dfa62",
+    "limit_display": "€100,000",
+    "limit_amount": "100000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "93c102f2-dd36-4cdf-839b-801b3bb3fe9e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.876Z",
+    "updated_at": "2026-09-08T15:08:02.876Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
+    "limit_display": "€2,000 Included",
+    "limit_amount": "2000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "9445d147-7bf9-4afa-a839-7067f8ba6c49",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.849Z",
+    "updated_at": "2026-09-08T15:08:02.849Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "1608523f-1745-421b-9b22-a1c7907dfa62",
+    "limit_display": "€30,000",
+    "limit_amount": "30000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "9aecf5b8-ae53-4cea-85c7-9ea642dff13c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.867Z",
+    "updated_at": "2026-09-08T15:08:02.867Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "0b149cfe-fc84-4241-939d-bce630c4993c",
+    "limit_display": "€300 Included",
+    "limit_amount": "300.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "a9c3011e-6334-410d-8371-61f6bcf17c4f",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.884Z",
+    "updated_at": "2026-09-08T15:08:02.884Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "f73e2215-67bb-4cbc-98d9-adb53f795ff1",
+    "limit_display": "€25,000 Included",
+    "limit_amount": "25000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "ad4ab857-dcd8-4c11-a76e-32b9623824c7",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.882Z",
+    "updated_at": "2026-09-08T15:08:02.882Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "52b15cfb-b483-4240-b4d0-050fcdee3d9b",
+    "limit_display": "€500 Included",
+    "limit_amount": "500.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "b140f80e-46d7-4107-be5a-cced0eae9639",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.868Z",
+    "updated_at": "2026-09-08T15:08:02.868Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "52b15cfb-b483-4240-b4d0-050fcdee3d9b",
+    "limit_display": "€300 Included",
+    "limit_amount": "300.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "bf31a4b4-5bae-4f98-8b26-9a6e6406ee4e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.854Z",
+    "updated_at": "2026-09-08T15:08:02.854Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
+    "limit_display": "€30,000 Included",
+    "limit_amount": "30000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "c49e85e3-6e80-4eef-91c7-0ed3b51cf6c7",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.858Z",
+    "updated_at": "2026-09-08T15:08:02.858Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "978e5696-6a17-4154-93b5-36af018a2e1c",
+    "limit_display": "Up to €10,000",
+    "limit_amount": "10000.00",
+    "deductible_display": "€0",
+    "is_included": false,
+    "is_optional_addon": true,
+    "addon_price_per_day": "0.90"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "c6a5bf37-bd9e-4753-acc0-b7cd18587528",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.871Z",
+    "updated_at": "2026-09-08T15:08:02.871Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "978e5696-6a17-4154-93b5-36af018a2e1c",
+    "limit_display": "Up to €20,000",
+    "limit_amount": "20000.00",
+    "deductible_display": "€0",
+    "is_included": false,
+    "is_optional_addon": true,
+    "addon_price_per_day": "0.80"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "d27f0d8f-fb78-4d68-a5a7-b1284723659e",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.857Z",
+    "updated_at": "2026-09-08T15:08:02.857Z",
+    "plan": "1b44c7da-3285-400a-8006-974257805f92",
+    "coverage": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
+    "limit_display": "Up to €1,000",
+    "limit_amount": "1000.00",
+    "deductible_display": "€0",
+    "is_included": false,
+    "is_optional_addon": true,
+    "addon_price_per_day": "0.60"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "df3ca112-7172-44bd-bf81-60cb73617815",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.875Z",
+    "updated_at": "2026-09-08T15:08:02.875Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
+    "limit_display": "€100,000 Included",
+    "limit_amount": "100000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "e1a39df5-b69c-472a-8173-3e27dd955ad9",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.878Z",
+    "updated_at": "2026-09-08T15:08:02.878Z",
+    "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
+    "coverage": "0b149cfe-fc84-4241-939d-bce630c4993c",
+    "limit_display": "€600 Included",
+    "limit_amount": "600.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.plancoverage",
+  "pk": "f374b926-c740-4ace-aeb1-7a0edea3be78",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.863Z",
+    "updated_at": "2026-09-08T15:08:02.863Z",
+    "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
+    "coverage": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
+    "limit_display": "€50,000 Included",
+    "limit_amount": "50000.00",
+    "deductible_display": "€0",
+    "is_included": true,
+    "is_optional_addon": false,
+    "addon_price_per_day": "0.00"
+  }
+},
+{
+  "model": "products.traveltype",
+  "pk": "276b5dcd-6782-4a9d-afd6-2126163c0432",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.889Z",
+    "updated_at": "2026-09-08T15:08:02.889Z",
+    "name": "Active / Sports",
+    "code": "ACTIVE",
+    "description": "Amateur fitness, cycling, skiing on marked pistes, swimming, surfing",
+    "risk_multiplier": "1.50",
+    "is_active": true
+  }
+},
+{
+  "model": "products.traveltype",
+  "pk": "4d791ba5-c754-4fa8-ab99-c80ed3fa2edb",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.890Z",
+    "updated_at": "2026-09-08T15:08:02.890Z",
+    "name": "Extreme / High Risk",
+    "code": "EXTREME",
+    "description": "Mountaineering, off-piste skiing, scuba diving, skydiving, paragliding",
+    "risk_multiplier": "2.50",
+    "is_active": true
+  }
+},
+{
+  "model": "products.traveltype",
+  "pk": "6b6cf0c5-2955-4cc9-a4f4-7e11efa2e0cb",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.887Z",
+    "updated_at": "2026-09-08T15:08:02.887Z",
+    "name": "Calm / Leisure",
+    "code": "CALM",
+    "description": "Sightseeing, beach relaxation, museums, and business trips",
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+}
+]

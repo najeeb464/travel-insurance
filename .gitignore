@@ -1,0 +1,16 @@
+frontend/node_modules
+frontend/node_modules/*
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+.env
+ENV/
+env.bak/
+venv.bak/
+
+dist/

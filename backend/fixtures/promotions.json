@@ -1,0 +1,59 @@
+[
+{
+  "model": "promotions.promotion",
+  "pk": "5058f839-8030-4307-a91f-43f5ab07d62c",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.906Z",
+    "updated_at": "2026-09-08T15:08:02.906Z",
+    "code": "SUMMER20",
+    "description": "20% summer holiday special",
+    "discount_type": "PERCENTAGE",
+    "discount_value": "20.00",
+    "min_amount": "25.00",
+    "max_discount": "50.00",
+    "start_date": null,
+    "end_date": null,
+    "usage_limit": null,
+    "times_used": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "promotions.promotion",
+  "pk": "5bd1b8c4-24e4-4730-8754-bd7beccb91f1",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.907Z",
+    "updated_at": "2026-09-08T15:08:02.907Z",
+    "code": "WELCOME5",
+    "description": "€5 off on first insurance order",
+    "discount_type": "FIXED",
+    "discount_value": "5.00",
+    "min_amount": "15.00",
+    "max_discount": null,
+    "start_date": null,
+    "end_date": null,
+    "usage_limit": null,
+    "times_used": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "promotions.promotion",
+  "pk": "a83313bb-7801-4bb7-b20b-b90c2af1f120",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.904Z",
+    "updated_at": "2026-09-08T15:08:02.904Z",
+    "code": "EKTA10",
+    "description": "10% off any travel insurance quote",
+    "discount_type": "PERCENTAGE",
+    "discount_value": "10.00",
+    "min_amount": "10.00",
+    "max_discount": null,
+    "start_date": null,
+    "end_date": null,
+    "usage_limit": null,
+    "times_used": 0,
+    "is_active": true
+  }
+}
+]

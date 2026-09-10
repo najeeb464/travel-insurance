@@ -1,0 +1,58 @@
+[
+{
+  "model": "reviews.review",
+  "pk": "10ac1631-32b6-47d3-b8ab-4f5a78eb85cd",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.911Z",
+    "updated_at": "2026-09-08T15:08:02.911Z",
+    "reviewer_name": "Farhan Khan",
+    "rating": 5,
+    "comment": "Very transparent pricing, no hidden charges. Downloaded the electronic PDF policy immediately after payment.",
+    "country": "Pakistan",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "2630d440-586b-484d-9733-4ffdb53ae741",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.912Z",
+    "updated_at": "2026-09-08T15:08:02.912Z",
+    "reviewer_name": "Elena Schulz",
+    "rating": 4,
+    "comment": "Great pricing for active skiing insurance in Austria. Very smooth process.",
+    "country": "Germany",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "b30b91e6-c384-4907-9a36-fef3334b1e03",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.909Z",
+    "updated_at": "2026-09-08T15:08:02.909Z",
+    "reviewer_name": "Sarah Jenkins",
+    "rating": 5,
+    "comment": "Bought policy in 2 minutes for our Spain trip. Embassy accepted it instantly for Schengen requirements!",
+    "country": "United Kingdom",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "d2696169-dad5-481c-b72d-3a18dfe19cd9",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.910Z",
+    "updated_at": "2026-09-08T15:08:02.910Z",
+    "reviewer_name": "Marco Rossi",
+    "rating": 5,
+    "comment": "Excellent assistance when my flight in Frankfurt got cancelled. Received rapid support on WhatsApp.",
+    "country": "Italy",
+    "is_verified": true,
+    "is_active": true
+  }
+}
+]
