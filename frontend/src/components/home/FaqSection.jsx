@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle, FileCheck } from 'lucide-react';
 import { cmsApi } from '../../api';
 
@@ -21,8 +22,8 @@ const FaqSection = ({ onOpenValidateModal }) => {
     {
       id: 1,
       category_display: 'General Questions',
-      question: 'Is EKTA insurance valid for Schengen visa applications?',
-      answer: 'Yes! All EKTA policies fully meet Regulation (EC) No 810/2009 of the European Parliament. They include €30,000+ medical cover, emergency medical evacuation, repatriation of mortal remains, and zero deductible across all 29 Schengen states.',
+      question: 'Is AeroSure insurance valid for Schengen visa applications?',
+      answer: 'Yes! All AeroSure policies fully meet Regulation (EC) No 810/2009 of the European Parliament. They include €30,000+ medical cover, emergency medical evacuation, repatriation of mortal remains, and zero deductible across all 29 Schengen states.',
     },
     {
       id: 2,
@@ -53,19 +54,26 @@ const FaqSection = ({ onOpenValidateModal }) => {
   const displayFaqs = faqs.length > 0 ? faqs : fallbackFaqs;
 
   return (
-    <section id="faq" className="py-20 bg-white border-t border-slate-100">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-3 mb-12">
-          <span className="text-xs font-black uppercase tracking-wider text-brand-600 bg-brand-50 px-3 py-1 rounded-full">
-            Help Center
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            Frequently Asked Questions
+    <section id="faq" className="py-20 bg-white text-slate-900 relative overflow-hidden border-t border-slate-100">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center space-y-3 mb-12"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 text-[#00875A] text-xs font-bold font-sans">
+            <HelpCircle className="w-3.5 h-3.5 text-[#00875A]" />
+            <span>Help centre</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-slate-900 tracking-tight">
+            Questions, meet answers.
           </h2>
-          <p className="text-sm text-slate-600">
-            Everything you need to know about our coverage, embassy requirements, and claims.
+          <p className="text-sm sm:text-base text-slate-600 font-sans">
+            Everything worth knowing before you protect your journey.
           </p>
-        </div>
+        </motion.div>
 
         <div className="space-y-4">
           {displayFaqs.map((faq, idx) => {
@@ -73,47 +81,70 @@ const FaqSection = ({ onOpenValidateModal }) => {
             return (
               <div
                 key={faq.id || idx}
-                className="border border-slate-200 rounded-2xl overflow-hidden transition-all bg-slate-50/50"
+                className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
+                  isOpen 
+                    ? 'bg-white border-[#00875A] shadow-md' 
+                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
+                }`}
               >
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:bg-slate-100/50 transition-colors"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-heading font-bold text-slate-900 text-sm sm:text-base transition-colors"
                 >
                   <span>{faq.question}</span>
                   <ChevronDown
-                    className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-brand-600' : ''
+                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 text-[#00875A]' : 'text-slate-400'
                     }`}
                   />
                 </button>
 
-                {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100/80">
-                    {faq.answer}
-                  </div>
-                )}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 font-sans">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
         </div>
 
         {/* Verification banner callout */}
-        <div className="mt-12 p-6 rounded-3xl bg-brand-50 border border-brand-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3">
-            <FileCheck className="w-8 h-8 text-brand-600 flex-shrink-0" />
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 p-6 rounded-3xl bg-emerald-50 border border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left shadow-sm"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-white border border-emerald-200 text-[#00875A] flex items-center justify-center flex-shrink-0 shadow-sm">
+              <FileCheck className="w-6 h-6" />
+            </div>
             <div>
-              <h4 className="text-sm font-bold text-slate-900">Need to check a certificate issued by EKTA?</h4>
-              <p className="text-xs text-slate-600">Use our live public database tool to confirm status and authenticity.</p>
+              <h4 className="text-sm font-bold text-slate-900">Need to verify a certificate issued by AeroSure?</h4>
+              <p className="text-xs text-slate-600">Use our live public database tool to confirm status, coverage dates, and embassy status.</p>
             </div>
           </div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={onOpenValidateModal}
-            className="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-md shadow-brand-500/20 transition-all flex-shrink-0"
+            className="px-5 py-3 rounded-xl bg-[#00875A] hover:bg-[#00734c] text-white font-bold text-xs shadow-md shadow-emerald-700/20 transition-all flex-shrink-0"
           >
-            Open Verification Tool
-          </button>
-        </div>
+            Open Live Verification Tool
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );

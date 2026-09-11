@@ -23,6 +23,69 @@
   background: #94a3b8;
 }
 
+/* UI animations and glassmorphism helpers */
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-dark {
+  background: rgba(11, 19, 43, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-dark-card {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #67E8F9 0%, #3B82F6 50%, #60A5FA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FDE047 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #6EE7B7 0%, #10B981 50%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-box-cyan {
+  box-shadow: 0 0 40px -5px rgba(6, 182, 212, 0.25);
+}
+
+.glow-box-emerald {
+  box-shadow: 0 0 40px -5px rgba(16, 185, 129, 0.25);
+}
+
+.glow-box-gold {
+  box-shadow: 0 0 40px -5px rgba(245, 158, 11, 0.3);
+}
+
+.hover-glow {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-glow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 82, 255, 0.2), 0 8px 10px -6px rgba(0, 82, 255, 0.15);
+}
+
+/* Custom focus ring smooth transition */
+input, select, button {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
 /* Print styles for policy certificate */
 @media print {
   body * {

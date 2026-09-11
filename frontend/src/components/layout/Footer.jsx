@@ -1,40 +1,40 @@
 import React from 'react';
-import { Shield, Phone, Mail, MessageSquare, Lock, Globe, ExternalLink } from 'lucide-react';
+import { Plane, Shield, Phone, Lock, ArrowRight } from 'lucide-react';
 
 const Footer = ({ onOpenValidateModal, onOpenRefundModal }) => {
   return (
-    <footer className="bg-slate-900 text-slate-400 border-t border-slate-800">
+    <footer className="bg-[#002E21] text-emerald-100/70 border-t border-emerald-900/60">
       {/* Upper reassurance banner */}
-      <div className="border-b border-slate-800/80 bg-slate-950/40">
+      <div className="border-b border-emerald-900/60 bg-[#00251a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-900/60 border border-emerald-700/50 flex items-center justify-center text-emerald-300 flex-shrink-0">
                 <Shield className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-white font-semibold text-sm">100% Schengen Accredited</h4>
-                <p className="text-xs text-slate-400">Strictly satisfies Regulation (EC) No 810/2009 across all EU states.</p>
+                <h4 className="text-white font-bold text-sm">Accepted Worldwide</h4>
+                <p className="text-xs text-emerald-200/70">Meets visa and border entry criteria across 190+ countries.</p>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 flex-shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-900/60 border border-emerald-700/50 flex items-center justify-center text-emerald-300 flex-shrink-0">
                 <Phone className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-white font-semibold text-sm">24/7 Worldwide Assistance</h4>
-                <p className="text-xs text-slate-400">+380 44 590 55 55 / +44 20 7946 0192</p>
+                <h4 className="text-white font-bold text-sm">24/7 Human Assistance</h4>
+                <p className="text-xs text-emerald-200/70">Multilingual travel coordinators ready at any hour.</p>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 flex-shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-900/60 border border-emerald-700/50 flex items-center justify-center text-emerald-300 flex-shrink-0">
                 <Lock className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-white font-semibold text-sm">Instant Delivery & 256-Bit SSL</h4>
-                <p className="text-xs text-slate-400">Issued electronically in under 2 minutes directly to your inbox.</p>
+                <h4 className="text-white font-bold text-sm">Covered in 2 Minutes</h4>
+                <p className="text-xs text-emerald-200/70">Digital policy certificate sent straight to your email.</p>
               </div>
             </div>
           </div>
@@ -47,79 +47,76 @@ const Footer = ({ onOpenValidateModal, onOpenRefundModal }) => {
           {/* Brand col */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-brand-600 flex items-center justify-center text-white font-black">
-                <Shield className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-xl bg-[#00875A] flex items-center justify-center text-white shadow-md">
+                <Plane className="w-5 h-5 stroke-[2.4] -rotate-45" />
               </div>
-              <span className="text-xl font-black tracking-tight text-white">EKTA TRAVELING</span>
+              <span className="text-2xl font-black font-heading tracking-tight text-white">AeroSure</span>
             </div>
-            <p className="text-xs leading-relaxed text-slate-400 max-w-sm">
-              EKTA is an authorized international digital travel insurance technology provider. 
-              Our electronic policies are legally recognized by visa centers, embassies, and border control services globally.
+            <p className="text-xs leading-relaxed text-emerald-200/80 max-w-sm font-sans">
+              Digital travel protection built for people who want to spend less time on paperwork and more time going places.
             </p>
             <div className="pt-2">
               <button
                 onClick={onOpenValidateModal}
-                className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 underline underline-offset-4 flex items-center gap-1.5"
+                className="text-xs font-mono font-semibold text-emerald-300 hover:text-white underline underline-offset-4 flex items-center gap-1.5"
               >
-                Verify an existing insurance certificate online →
+                <span>Verify policy certificate online</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
-          {/* Column 2: Products */}
+          {/* Column 2: Explore */}
           <div>
-            <h5 className="text-sm font-semibold text-white tracking-wide uppercase mb-3">Insurance Products</h5>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#quote-section" className="hover:text-white transition-colors">Worldwide Travel Insurance</a></li>
-              <li><a href="#quote-section" className="hover:text-white transition-colors">Schengen Visa Insurance</a></li>
-              <li><a href="#quote-section" className="hover:text-white transition-colors">Extreme Sports & Ski Cover</a></li>
-              <li><a href="#quote-section" className="hover:text-white transition-colors">COVID-19 Health Protection</a></li>
-              <li><a href="#quote-section" className="hover:text-white transition-colors">Annual Multi-Trip Cover</a></li>
+            <h5 className="text-xs font-mono font-bold text-white tracking-widest uppercase mb-4">Explore</h5>
+            <ul className="space-y-2.5 text-xs font-sans">
+              <li><a href="#coverage" className="hover:text-white transition-colors">Coverage</a></li>
+              <li><a href="#how" className="hover:text-white transition-colors">How it works</a></li>
+              <li><a href="#reviews" className="hover:text-white transition-colors">Traveller stories</a></li>
+              <li><a href="#faq" className="hover:text-white transition-colors">Common questions</a></li>
             </ul>
           </div>
 
-          {/* Column 3: Customer Care */}
+          {/* Column 3: Support */}
           <div>
-            <h5 className="text-sm font-semibold text-white tracking-wide uppercase mb-3">Support & Services</h5>
-            <ul className="space-y-2 text-xs">
+            <h5 className="text-xs font-mono font-bold text-white tracking-widest uppercase mb-4">Support</h5>
+            <ul className="space-y-2.5 text-xs font-sans">
               <li>
                 <button onClick={onOpenValidateModal} className="hover:text-white text-left transition-colors">
-                  Validate Insurance
+                  Verify Policy
                 </button>
               </li>
               <li>
                 <button onClick={onOpenRefundModal} className="hover:text-white text-left transition-colors">
-                  Request Policy Refund
+                  Request Refund
                 </button>
               </li>
-              <li><a href="#faq" className="hover:text-white transition-colors">Emergency Claims Guide</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors">Frequently Asked Questions</a></li>
-              <li><span className="text-slate-500">support@ektatraveling.com</span></li>
+              <li><a href="mailto:help@aerosure.example" className="text-emerald-300 hover:underline">help@aerosure.example</a></li>
             </ul>
           </div>
 
-          {/* Column 4: Payment Methods */}
+          {/* Column 4: Accepted Payments */}
           <div>
-            <h5 className="text-sm font-semibold text-white tracking-wide uppercase mb-3">Accepted Payments</h5>
-            <div className="grid grid-cols-2 gap-2 text-center text-xs font-semibold text-slate-300">
-              <div className="p-2 bg-slate-800/80 rounded-lg border border-slate-700">Visa</div>
-              <div className="p-2 bg-slate-800/80 rounded-lg border border-slate-700">Mastercard</div>
-              <div className="p-2 bg-slate-800/80 rounded-lg border border-slate-700">Apple Pay</div>
-              <div className="p-2 bg-slate-800/80 rounded-lg border border-slate-700">PayPal</div>
+            <h5 className="text-xs font-mono font-bold text-white tracking-widest uppercase mb-4">Accepted Payments</h5>
+            <div className="grid grid-cols-2 gap-2 text-center text-xs font-mono font-bold text-emerald-100">
+              <div className="p-2 bg-[#003828] rounded-xl border border-emerald-800/80">Visa</div>
+              <div className="p-2 bg-[#003828] rounded-xl border border-emerald-800/80">Mastercard</div>
+              <div className="p-2 bg-[#003828] rounded-xl border border-emerald-800/80">Apple Pay</div>
+              <div className="p-2 bg-[#003828] rounded-xl border border-emerald-800/80">PayPal</div>
             </div>
-            <p className="text-[11px] text-slate-500 mt-3">
-              All transactions encrypted via TLS 1.3 with 3D Secure 2.0 authorization.
+            <p className="text-[11px] text-emerald-300/70 mt-3 font-mono">
+              256-Bit SSL Encrypted Financial Checkout.
             </p>
           </div>
         </div>
 
         {/* Bottom copyright */}
-        <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} EKTA Traveling. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#terms" className="hover:text-slate-400">Terms of Service</a>
-            <a href="#privacy" className="hover:text-slate-400">Privacy Policy</a>
-            <a href="#refund" onClick={onOpenRefundModal} className="hover:text-slate-400">Refund Policy</a>
+        <div className="mt-12 pt-8 border-t border-emerald-900/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-emerald-300/70 font-sans">
+          <p>© {new Date().getFullYear()} AeroSure — Travel Insurance in Minutes. All rights reserved.</p>
+          <div className="flex gap-6 font-mono text-[11px]">
+            <a href="#terms" className="hover:text-white">Terms</a>
+            <a href="#privacy" className="hover:text-white">Privacy</a>
+            <a href="#refund" onClick={onOpenRefundModal} className="hover:text-white">Refunds</a>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { X, Lock, Mail, User, Phone, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, Lock, Mail, User, Phone, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const AuthModal = ({ isOpen, onClose }) => {
@@ -14,8 +15,6 @@ const AuthModal = ({ isOpen, onClose }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  if (!isOpen) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,142 +44,172 @@ const AuthModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        <div className="p-6 bg-slate-900 text-white flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold">
-              <User className="w-5 h-5" />
-            </div>
-            <div>
-              <h3 className="text-base font-bold">
-                {isRegister ? 'Create EKTA Client Account' : 'Client Sign In'}
-              </h3>
-              <p className="text-xs text-slate-400">Access your policies, certificates, and orders</p>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4"
+        >
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.94, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 15 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            className="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden text-slate-900"
           >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <div className="p-6 sm:p-8 space-y-6">
-          {error && (
-            <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 flex-shrink-0" />
-              <span>{error}</span>
+            {/* Header */}
+            <div className="p-6 bg-slate-900 border-b border-slate-800 text-white flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#00875A] flex items-center justify-center text-white font-bold shadow-md">
+                  <User className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold">
+                    {isRegister ? 'Create Client Account' : 'Client Sign In'}
+                  </h3>
+                  <p className="text-xs text-slate-400 font-sans">Access active policies & certificates</p>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-          )}
 
-          {/* Tab toggle */}
-          <div className="flex p-1 bg-slate-100 rounded-xl">
-            <button
-              type="button"
-              onClick={() => { setIsRegister(false); setError(''); }}
-              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
-                !isRegister ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
-              }`}
-            >
-              Sign In
-            </button>
-            <button
-              type="button"
-              onClick={() => { setIsRegister(true); setError(''); }}
-              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
-                isRegister ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
-              }`}
-            >
-              Register
-            </button>
-          </div>
+            {/* Form */}
+            <div className="p-6 space-y-4">
+              {error && (
+                <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-500 flex-shrink-0" />
+                  <span>{error}</span>
+                </div>
+              )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {isRegister && (
-              <>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-600 mb-1">First Name</label>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {isRegister && (
+                  <>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-1">
+                          First Name
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="John"
+                          value={firstName}
+                          onChange={(e) => setFirstName(e.target.value)}
+                          className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-1">
+                          Last Name
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Doe"
+                          value={lastName}
+                          onChange={(e) => setLastName(e.target.value)}
+                          className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-1">
+                        Phone Number
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="tel"
+                          placeholder="+92 300 1234567"
+                          value={phoneNumber}
+                          onChange={(e) => setPhoneNumber(e.target.value)}
+                          className="w-full p-3 pl-9 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        />
+                        <Phone className="w-4 h-4 text-slate-400 absolute left-3 top-3.5" />
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                <div>
+                  <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-1">
+                    Email Address
+                  </label>
+                  <div className="relative">
                     <input
-                      type="text"
+                      type="email"
                       required
-                      placeholder="John"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                      className="w-full p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                      placeholder="john@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full p-3 pl-9 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-slate-600 mb-1">Last Name</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Doe"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      className="w-full p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                    />
+                    <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-3.5" />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1">Mobile Phone</label>
-                  <input
-                    type="tel"
-                    placeholder="+92 300 1234567"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="w-full p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                  />
+                  <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-1">
+                    Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="password"
+                      required
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full p-3 pl-9 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    />
+                    <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-3.5" />
+                  </div>
                 </div>
-              </>
-            )}
 
-            <div>
-              <label className="block text-xs font-bold text-slate-600 mb-1">Email Address</label>
-              <div className="relative">
-                <input
-                  type="email"
-                  required
-                  placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-3 pl-10 rounded-xl border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                />
-                <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-3.5 px-6 rounded-xl bg-[#00875A] hover:bg-[#00734c] text-white font-bold text-xs shadow-md shadow-emerald-700/20 transition-all disabled:opacity-50 mt-2"
+                >
+                  {loading ? 'Processing...' : (isRegister ? 'Register Account' : 'Sign In')}
+                </button>
+              </form>
+
+              <div className="pt-2 text-center text-xs text-slate-500">
+                {isRegister ? (
+                  <p>
+                    Already have an account?{' '}
+                    <button
+                      onClick={() => setIsRegister(false)}
+                      className="font-bold text-[#00875A] hover:underline"
+                    >
+                      Sign In
+                    </button>
+                  </p>
+                ) : (
+                  <p>
+                    Don't have an account?{' '}
+                    <button
+                      onClick={() => setIsRegister(true)}
+                      className="font-bold text-[#00875A] hover:underline"
+                    >
+                      Register Now
+                    </button>
+                  </p>
+                )}
               </div>
             </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-600 mb-1">Password</label>
-              <div className="relative">
-                <input
-                  type="password"
-                  required
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-3 pl-10 rounded-xl border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                />
-                <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-500/25 transition-all disabled:opacity-50"
-              >
-                {loading ? 'Please wait...' : (isRegister ? 'Create Account' : 'Sign In')}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

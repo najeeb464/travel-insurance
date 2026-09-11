@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { AuthProvider } from './context/AuthContext';
 import { BookingProvider, useBooking } from './context/BookingContext';
 import Navbar from './components/layout/Navbar';
@@ -14,8 +15,15 @@ import UserDashboard from './components/customer/UserDashboard';
 import RefundRequestModal from './components/customer/RefundRequestModal';
 import WhyChooseUs from './components/home/WhyChooseUs';
 import HowItWorks from './components/home/HowItWorks';
+import StoriesBanner from './components/home/StoriesBanner';
 import ReviewsSection from './components/home/ReviewsSection';
 import FaqSection from './components/home/FaqSection';
+
+const stepVariants = {
+  initial: { opacity: 0, y: 15 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } },
+  exit: { opacity: 0, y: -15, transition: { duration: 0.25, ease: 'easeIn' } },
+};
 
 const AppContent = () => {
   const { currentStep, setIssuedPolicy, setCurrentStep } = useBooking();
@@ -52,7 +60,7 @@ const AppContent = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
+    <div className="min-h-screen flex flex-col bg-slate-50 overflow-x-hidden">
       {/* Top Navigation */}
       <Navbar
         onOpenValidateModal={() => handleOpenValidate()}
@@ -62,31 +70,62 @@ const AppContent = () => {
 
       {/* Dynamic Content based on Booking Step */}
       <main className="flex-grow">
-        {currentStep === 1 && (
-          <>
-            <HeroQuoteCalculator />
-            <WhyChooseUs />
-            <HowItWorks />
-            <ReviewsSection />
-            <FaqSection onOpenValidateModal={() => handleOpenValidate()} />
-          </>
-        )}
+        <AnimatePresence mode="wait">
+          {currentStep === 1 && (
+            <motion.div
+              key="step-1"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <HeroQuoteCalculator />
+              <WhyChooseUs />
+              <HowItWorks />
+              <StoriesBanner />
+              <ReviewsSection />
+              <FaqSection onOpenValidateModal={() => handleOpenValidate()} />
+            </motion.div>
+          )}
 
-        {currentStep === 2 && (
-          <>
-            <PlanComparisonCards />
-            <WhyChooseUs />
-            <FaqSection onOpenValidateModal={() => handleOpenValidate()} />
-          </>
-        )}
+          {currentStep === 2 && (
+            <motion.div
+              key="step-2"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <PlanComparisonCards />
+              <WhyChooseUs />
+              <FaqSection onOpenValidateModal={() => handleOpenValidate()} />
+            </motion.div>
+          )}
 
-        {currentStep === 3 && (
-          <TravelerForm onOpenPaymentModal={handleOpenPayment} />
-        )}
+          {currentStep === 3 && (
+            <motion.div
+              key="step-3"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <TravelerForm onOpenPaymentModal={handleOpenPayment} />
+            </motion.div>
+          )}
 
-        {currentStep === 4 && (
-          <PolicySuccessView onOpenValidateModal={handleOpenValidate} />
-        )}
+          {currentStep === 4 && (
+            <motion.div
+              key="step-4"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <PolicySuccessView onOpenValidateModal={handleOpenValidate} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
 
       {/* Footer */}
