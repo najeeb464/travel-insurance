@@ -7,7 +7,7 @@ from .serializers import PolicySerializer, PolicyValidationSerializer
 
 class PolicyValidateView(views.APIView):
     """
-    Public validation endpoint matching EKTA's 'Validate Insurance' feature.
+    Public validation endpoint matching Tavara's 'Validate Insurance' feature.
     Allows travelers, border agents, and embassies to verify authentic policy validity
     without disclosing full private passport numbers or sensitive personal data.
     """

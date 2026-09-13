@@ -131,7 +131,7 @@ class EktaInsuranceBookingFlowTests(APITestCase):
         checkout_res = self.client.post('/api/v1/payments/checkout/', checkout_payload, format='json')
         self.assertEqual(checkout_res.status_code, status.HTTP_200_OK)
         policy_number = checkout_res.data['policy_number']
-        self.assertTrue(policy_number.startswith('EKTA-'))
+        self.assertTrue(policy_number.startswith('TAVARA-'))
 
         # 4. Verify Order transitioned to ISSUED / PAID
         order = Order.objects.get(order_number=order_number)
@@ -195,3 +195,103 @@ class EktaInsuranceBookingFlowTests(APITestCase):
         refund_res = self.client.post('/api/v1/refunds/request/', refund_payload, format='json')
         self.assertEqual(refund_res.status_code, status.HTTP_201_CREATED)
         self.assertEqual(refund_res.data['status'], 'REQUESTED')
+
+    def test_admin_stats_access_control_and_aggregations(self):
+        from apps.accounts.models import User
+
+        # 1. Unauthenticated -> 401 or 403
+        unauth_res = self.client.get('/api/v1/orders/admin-stats/')
+        self.assertIn(unauth_res.status_code, [status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN])
+
+        # 2. Regular customer -> 403 Forbidden
+        customer = User.objects.create_user(
+            username='regular_customer',
+            email='cust@example.com',
+            password='Password123!',
+            role=User.Role.CUSTOMER
+        )
+        self.client.force_authenticate(user=customer)
+        cust_res = self.client.get('/api/v1/orders/admin-stats/')
+        self.assertEqual(cust_res.status_code, status.HTTP_403_FORBIDDEN)
+
+        # 3. Staff / Admin user -> 200 OK with statistics
+        admin_user = User.objects.get(email='admin@ektatraveling.com')
+        self.client.force_authenticate(user=admin_user)
+        admin_res = self.client.get('/api/v1/orders/admin-stats/')
+        self.assertEqual(admin_res.status_code, status.HTTP_200_OK)
+        data = admin_res.data
+        self.assertIn('overview', data)
+        self.assertIn('order_breakdown', data)
+        self.assertIn('quote_breakdown', data)
+        self.assertIn('destinations_breakdown', data)
+        self.assertIn('plans_breakdown', data)
+        self.assertIn('recent_orders', data)
+        self.assertIn('recent_policies', data)
+        self.assertIn('recent_refunds', data)
+        self.assertIn('recent_customers', data)
+        self.assertIn('total_customers', data['overview'])
+        self.assertIn('gross_revenue', data['overview'])
+        self.assertIn('total_policies', data['overview'])
+
+    def test_admin_refund_action_approve(self):
+        from apps.accounts.models import User
+        from apps.refunds.models import RefundRequest
+
+        admin_user = User.objects.get(email='admin@ektatraveling.com')
+
+        # Create quote, order, pay it and create refund request
+        quote_payload = {
+            'destination_id': str(self.destination.id),
+            'plan_id': str(self.plan.id),
+            'start_date': str(self.start_date),
+            'end_date': str(self.end_date),
+            'travelers_ages': [25],
+        }
+        quote_res = self.client.post('/api/v1/quotes/calculate/', quote_payload, format='json')
+        quote_num = quote_res.data['quote']['quote_number']
+
+        order_payload = {
+            'quote_number': quote_num,
+            'contact_email': 'refund.admin@example.com',
+            'contact_phone': '+1987654322',
+            'contact_full_name': 'Bob Smith',
+            'travelers': [{
+                'first_name': 'Bob',
+                'last_name': 'Smith',
+                'date_of_birth': '1995-01-01',
+                'gender': 'MALE',
+                'nationality': 'Pakistan',
+                'passport_number': 'AB112233',
+                'passport_expiry': '2030-01-01',
+                'is_primary': True
+            }]
+        }
+        order_res = self.client.post('/api/v1/orders/create/', order_payload, format='json')
+        order_number = order_res.data['order_number']
+        self.client.post('/api/v1/payments/checkout/', {'order_number': order_number}, format='json')
+
+        refund_req = RefundRequest.objects.create(
+            order=Order.objects.get(order_number=order_number),
+            contact_email='refund.admin@example.com',
+            reason='Customer flight cancelled',
+            requested_amount=order_res.data['total'],
+            currency='EUR'
+        )
+
+        # Admin approves refund
+        self.client.force_authenticate(user=admin_user)
+        action_res = self.client.post(f'/api/v1/orders/admin-refunds/{refund_req.id}/action/', {
+            'action': 'approve',
+            'notes': 'Verified flight cancellation notice'
+        }, format='json')
+
+        self.assertEqual(action_res.status_code, status.HTTP_200_OK)
+        refund_req.refresh_from_db()
+        self.assertEqual(refund_req.status, RefundRequest.Status.COMPLETED)
+        self.assertEqual(refund_req.admin_notes, 'Verified flight cancellation notice')
+        self.assertIsNotNone(refund_req.processed_at)
+
+        # Order and policy should be marked REFUNDED
+        order = Order.objects.get(order_number=order_number)
+        self.assertEqual(order.status, Order.Status.REFUNDED)
+        self.assertEqual(order.policy.status, Policy.Status.REFUNDED)

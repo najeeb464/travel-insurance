@@ -17,7 +17,7 @@ const PolicySuccessView = ({ onOpenValidateModal }) => {
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="bg-white p-8 sm:p-10 rounded-3xl border border-emerald-200 shadow-xl text-center space-y-5 relative overflow-hidden"
+          className="bg-white p-8 sm:p-10 rounded-3xl border border-emerald-200 shadow-xl text-center space-y-5 relative overflow-hidden print:hidden"
         >
           <motion.div 
             initial={{ scale: 0, rotate: -180 }}

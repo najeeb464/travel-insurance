@@ -1,9 +1,10 @@
-from rest_framework import views, status, permissions
+from rest_framework import views, status, permissions, generics
 from rest_framework.response import Response
 from apps.destinations.models import Destination
 from apps.products.models import Plan, TravelType, PlanCoverage
 from apps.promotions.models import Promotion
 from apps.pricing.services import PricingEngine
+from apps.products.serializers import PlanCoverageSerializer
 from .models import Quote, QuoteTraveler, QuoteSelectedAddon
 from .serializers import QuoteSerializer, CalculateQuoteRequestSerializer
 
@@ -97,7 +98,7 @@ class CalculateQuoteView(views.APIView):
             }, status=status.HTTP_201_CREATED)
 
         # Otherwise calculate quotes for all active plans
-        plans = Plan.objects.filter(is_active=True).order_by('display_order', 'base_price_per_day')
+        plans = Plan.objects.filter(is_active=True).prefetch_related('coverages__coverage').order_by('display_order', 'base_price_per_day')
         plan_quotes = []
         created_quotes = []
 
@@ -146,6 +147,7 @@ class CalculateQuoteView(views.APIView):
                 'medical_limit_display': p.medical_limit_display,
                 'is_popular': p.is_popular,
                 'pricing': pricing,
+                'coverages': PlanCoverageSerializer(p.coverages.all(), many=True).data,
             })
 
         return Response({
@@ -166,3 +168,33 @@ class QuoteDetailView(views.APIView):
         except Quote.DoesNotExist:
             return Response({'error': 'Quote not found'}, status=status.HTTP_404_NOT_FOUND)
         return Response(QuoteSerializer(quote).data)
+
+    def delete(self, request, quote_number):
+        try:
+            quote = Quote.objects.get(quote_number=quote_number)
+        except Quote.DoesNotExist:
+            return Response({'error': 'Quote not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        if quote.status == Quote.Status.CONVERTED:
+            return Response({
+                'error': 'This quote has already been converted into an order and cannot be deleted.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Verify customer ownership if authenticated
+        if quote.customer and request.user.is_authenticated and not request.user.is_staff:
+            if quote.customer != request.user:
+                return Response({'error': 'Permission denied.'}, status=status.HTTP_403_FORBIDDEN)
+
+        quote.delete()
+        return Response({
+            'message': 'Quote successfully removed.',
+            'quote_number': quote_number
+        }, status=status.HTTP_200_OK)
+
+
+class MyQuotesListView(generics.ListAPIView):
+    serializer_class = QuoteSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Quote.objects.filter(customer=self.request.user).select_related('destination', 'plan', 'travel_type').order_by('-created_at')

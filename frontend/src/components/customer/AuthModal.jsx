@@ -25,7 +25,6 @@ const AuthModal = ({ isOpen, onClose }) => {
       if (isRegister) {
         await register({
           email: email.trim(),
-          username: username.trim() || email.split('@')[0],
           password,
           first_name: firstName.trim(),
           last_name: lastName.trim(),
@@ -37,7 +36,32 @@ const AuthModal = ({ isOpen, onClose }) => {
       onClose();
     } catch (err) {
       console.error(err);
-      setError(err.response?.data?.detail || err.response?.data?.message || 'Authentication failed. Please check credentials.');
+      const data = err.response?.data;
+      if (data) {
+        if (typeof data === 'string') {
+          setError(data);
+        } else if (data.detail) {
+          setError(data.detail);
+        } else if (data.message) {
+          setError(data.message);
+        } else if (data.non_field_errors) {
+          setError(Array.isArray(data.non_field_errors) ? data.non_field_errors.join(' ') : String(data.non_field_errors));
+        } else if (typeof data === 'object') {
+          const formattedErrors = Object.entries(data)
+            .map(([field, msgs]) => {
+              const cleanField = field.replace(/_/g, ' ');
+              const fieldLabel = cleanField.charAt(0).toUpperCase() + cleanField.slice(1);
+              const text = Array.isArray(msgs) ? msgs.join(' ') : String(msgs);
+              return `${fieldLabel}: ${text}`;
+            })
+            .join(' | ');
+          setError(formattedErrors || (isRegister ? 'Registration failed. Please check your details.' : 'Authentication failed. Please check credentials.'));
+        } else {
+          setError(isRegister ? 'Registration failed. Please try again.' : 'Authentication failed. Please check credentials.');
+        }
+      } else {
+        setError(err.message || (isRegister ? 'Registration failed. Please try again.' : 'Authentication failed. Please check credentials.'));
+      }
     } finally {
       setLoading(false);
     }
@@ -187,7 +211,11 @@ const AuthModal = ({ isOpen, onClose }) => {
                   <p>
                     Already have an account?{' '}
                     <button
-                      onClick={() => setIsRegister(false)}
+                      type="button"
+                      onClick={() => {
+                        setIsRegister(false);
+                        setError('');
+                      }}
                       className="font-bold text-[#00875A] hover:underline"
                     >
                       Sign In
@@ -197,7 +225,11 @@ const AuthModal = ({ isOpen, onClose }) => {
                   <p>
                     Don't have an account?{' '}
                     <button
-                      onClick={() => setIsRegister(true)}
+                      type="button"
+                      onClick={() => {
+                        setIsRegister(true);
+                        setError('');
+                      }}
                       className="font-bold text-[#00875A] hover:underline"
                     >
                       Register Now

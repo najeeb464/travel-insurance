@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions, status
+from rest_framework import generics, permissions, status, serializers, exceptions
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -7,7 +7,25 @@ from .serializers import UserSerializer, RegisterSerializer, CustomerProfileSeri
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields[self.username_field] = serializers.CharField(required=False)
+        self.fields['username'] = serializers.CharField(required=False)
+
     def validate(self, attrs):
+        email_or_username = (attrs.get(self.username_field) or attrs.get('username') or '').strip()
+        if not email_or_username:
+            raise serializers.ValidationError({'email': 'Email is required.'})
+
+        user_match = User.objects.filter(email__iexact=email_or_username).first()
+        if not user_match:
+            user_match = User.objects.filter(username__iexact=email_or_username).first()
+
+        if user_match:
+            attrs[self.username_field] = user_match.email
+        else:
+            attrs[self.username_field] = email_or_username.lower()
+
         data = super().validate(attrs)
         data['user'] = UserSerializer(self.user).data
         return data

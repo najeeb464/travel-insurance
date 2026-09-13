@@ -16,10 +16,10 @@ from django.conf import settings
 @permission_classes([AllowAny])
 def api_root(request):
     """
-    EKTA Travel Insurance REST API Root Index
+    Tavara Travel Insurance REST API Root Index
     """
     return Response({
-        'name': 'EKTA Travel Insurance API',
+        'name': 'Tavara Travel Insurance API',
         'version': 'v1',
         'status': 'healthy',
         'endpoints': {

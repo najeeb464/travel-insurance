@@ -1,4 +1,5 @@
 import uuid
+import datetime
 from django.utils import timezone
 from apps.orders.models import Order
 from .models import Policy
@@ -22,9 +23,15 @@ class PolicyService:
             end_date = order.quote.end_date
 
         if isinstance(start_date, str):
-            start_date = timezone.datetime.fromisoformat(start_date).date()
+            try:
+                start_date = datetime.datetime.strptime(start_date[:10], '%Y-%m-%d').date()
+            except Exception:
+                start_date = timezone.now().date()
         if isinstance(end_date, str):
-            end_date = timezone.datetime.fromisoformat(end_date).date()
+            try:
+                end_date = datetime.datetime.strptime(end_date[:10], '%Y-%m-%d').date()
+            except Exception:
+                end_date = timezone.now().date()
 
         destination_name = snapshot.get('destination', 'Worldwide')
         plan_name = snapshot.get('plan_name', 'Standard')
@@ -68,12 +75,27 @@ class PolicyService:
             },
             'emergency_assistance': {
                 'hotline': '+380 44 590 55 55 / +44 20 7946 0192',
-                'email': 'support@ektatraveling.com',
+                'email': 'support@tavarainsurance.com',
                 'viber_whatsapp': '+380 67 123 4567',
                 'available_24_7': True,
             },
-            'terms_and_conditions_url': 'https://ektatraveling.com/terms',
+            'terms_and_conditions_url': 'https://tavarainsurance.com/terms',
         }
+
+        # Determine clean medical limit display (e.g. €30,000)
+        med_limit = snapshot.get('medical_limit')
+        if not med_limit and order.quote and order.quote.plan:
+            med_limit = order.quote.plan.medical_limit_display
+        if not med_limit:
+            code = snapshot.get('plan_code', '').upper()
+            if code == 'START':
+                med_limit = '€30,000'
+            elif code == 'COMFORT':
+                med_limit = '€50,000'
+            elif code == 'PREMIUM':
+                med_limit = '€100,000'
+            else:
+                med_limit = '€30,000'
 
         policy = Policy.objects.create(
             policy_number=policy_number,
@@ -83,7 +105,7 @@ class PolicyService:
             end_date=end_date,
             destination_name=destination_name,
             plan_name=plan_name,
-            medical_limit=snapshot.get('plan_code', '€30,000'),
+            medical_limit=med_limit,
             status=Policy.Status.ISSUED,
             certificate_data=certificate_data,
             issued_at=timezone.now(),

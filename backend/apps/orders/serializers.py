@@ -54,7 +54,13 @@ class CreateOrderFromQuoteSerializer(serializers.Serializer):
             raise serializers.ValidationError("Quote not found.")
 
         if quote.status == Quote.Status.CONVERTED:
-            raise serializers.ValidationError("This quote has already been converted into an order.")
+            from apps.orders.models import Order
+            pending_order = Order.objects.filter(quote=quote, status=Order.Status.PENDING_PAYMENT).first()
+            if not pending_order:
+                paid_order = Order.objects.filter(quote=quote, status=Order.Status.PAID).first()
+                if paid_order:
+                    raise serializers.ValidationError("This quote has already been completed and paid. Please calculate a new quote.")
+                raise serializers.ValidationError("This quote has already been converted into an order.")
         if quote.is_expired:
             raise serializers.ValidationError("This quote has expired. Please calculate a new quote.")
         return value

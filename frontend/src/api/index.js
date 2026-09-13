@@ -18,6 +18,8 @@ export const productsApi = {
 export const quotesApi = {
   calculate: (data) => api.post('/quotes/calculate/', data),
   getQuote: (quoteNumber) => api.get(`/quotes/${quoteNumber}/`),
+  getMyQuotes: () => api.get('/quotes/my-quotes/'),
+  deleteQuote: (quoteNumber) => api.delete(`/quotes/${quoteNumber}/`),
 };
 
 export const ordersApi = {
@@ -25,6 +27,7 @@ export const ordersApi = {
   getOrder: (orderNumber) => api.get(`/orders/${orderNumber}/`),
   getMyOrders: () => api.get('/orders/my-orders/'),
   cancel: (orderNumber) => api.post(`/orders/${orderNumber}/cancel/`),
+  deleteOrder: (orderNumber) => api.delete(`/orders/${orderNumber}/`),
 };
 
 export const paymentsApi = {
@@ -65,4 +68,10 @@ export const authApi = {
   login: (data) => api.post('/auth/login/', data),
   getMe: () => api.get('/auth/me/'),
   updateProfile: (data) => api.put('/auth/profile/', data),
+};
+
+export const adminApi = {
+  getStats: () => api.get('/orders/admin-stats/'),
+  actionRefund: (refundId, action, notes = '') =>
+    api.post(`/orders/admin-refunds/${refundId}/action/`, { action, notes }),
 };

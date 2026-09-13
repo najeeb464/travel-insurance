@@ -44,7 +44,7 @@ const StoriesBanner = () => {
             </h3>
 
             <p className="text-sm sm:text-base text-emerald-100/80 leading-relaxed font-sans max-w-2xl">
-              From mountain roads to coastal escapes, AeroSure keeps documents, medical protection, and human support close at hand.
+              From mountain roads to coastal escapes, Tavara keeps documents, medical protection, and human support close at hand.
             </p>
           </div>
 

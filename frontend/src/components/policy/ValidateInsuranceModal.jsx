@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { policiesApi } from '../../api';
 
-const ValidateInsuranceModal = ({ isOpen, onClose, initialPolicyNumber = '' }) => {
+const ValidateInsuranceModal = ({ isOpen, onClose, initialPolicyNumber = '', onOpenPublicVerify }) => {
   const [policyNumber, setPolicyNumber] = useState(initialPolicyNumber);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -83,7 +83,7 @@ const ValidateInsuranceModal = ({ isOpen, onClose, initialPolicyNumber = '' }) =
                     <input
                       type="text"
                       required
-                      placeholder="e.g. AEROSURE-2026-ABC1234"
+                      placeholder="e.g. TAVARA-2026-ABC1234"
                       value={policyNumber}
                       onChange={(e) => setPolicyNumber(e.target.value.toUpperCase())}
                       className="w-full p-3.5 pl-10 rounded-xl bg-slate-50 border border-slate-200 text-sm font-mono font-bold uppercase tracking-wider text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -135,6 +135,20 @@ const ValidateInsuranceModal = ({ isOpen, onClose, initialPolicyNumber = '' }) =
                       <span className="font-bold text-[#00875A]">{result.embassy_status || 'Compliant (EC 810/2009)'}</span>
                     </div>
                   </div>
+
+                  {onOpenPublicVerify && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        onClose();
+                        onOpenPublicVerify(result.policy_number);
+                      }}
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#00875A] hover:bg-[#00734c] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer mt-2"
+                    >
+                      <FileCheck className="w-4 h-4" />
+                      <span>View Full Official Document & Certificate</span>
+                    </button>
+                  )}
                 </div>
               )}
             </div>

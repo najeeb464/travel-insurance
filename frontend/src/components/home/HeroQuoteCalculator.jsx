@@ -41,6 +41,15 @@ const HeroQuoteCalculator = () => {
   const [showDestDropdown, setShowDestDropdown] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const fallbackTravelTypes = [
+    { id: '7c60920c-9c77-4808-af86-af7ff3ef0212', code: 'VISIT_VISA', name: 'Visit / Tourist Visa', description: 'Embassy-compliant insurance for Schengen, UK, US & Worldwide visitor visas' },
+    { id: '6b6cf0c5-2955-4cc9-a4f4-7e11efa2e0cb', code: 'CALM', name: 'Calm / Leisure', description: 'Sightseeing, beach relaxation, museums, and business trips' },
+    { id: '276b5dcd-6782-4a9d-afd6-2126163c0432', code: 'ACTIVE', name: 'Active / Sports', description: 'Amateur fitness, cycling, skiing on marked pistes, swimming, surfing' },
+    { id: '4d791ba5-c754-4fa8-ab99-c80ed3fa2edb', code: 'EXTREME', name: 'Extreme / High Risk', description: 'Mountaineering, off-piste skiing, scuba diving, skydiving, paragliding' },
+  ];
+
+  const effectiveTravelTypes = travelTypes.length > 0 ? travelTypes : fallbackTravelTypes;
+
   useEffect(() => {
     // Load destinations
     destinationsApi.getDestinations()
@@ -58,12 +67,20 @@ const HeroQuoteCalculator = () => {
     productsApi.getTravelTypes()
       .then((res) => {
         const types = res.data.results || [];
-        setTravelTypes(types);
-        if (types.length > 0 && !travelType) {
-          setTravelType(types[0]);
+        const finalTypes = types.length > 0 ? types : fallbackTravelTypes;
+        setTravelTypes(finalTypes);
+        if (!travelType && finalTypes.length > 0) {
+          const defaultType = finalTypes.find(t => t.code === 'VISIT_VISA') || finalTypes[0];
+          setTravelType(defaultType);
         }
       })
-      .catch((err) => console.error('Failed to load travel types:', err));
+      .catch((err) => {
+        console.error('Failed to load travel types:', err);
+        setTravelTypes(fallbackTravelTypes);
+        if (!travelType) {
+          setTravelType(fallbackTravelTypes[0]);
+        }
+      });
   }, []);
 
   const filteredDestinations = destinations.filter(d => 
@@ -183,6 +200,10 @@ const HeroQuoteCalculator = () => {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <span>Visit Visa & Embassy approved</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                 <span>Instant certificate</span>
               </div>
               <div className="flex items-center gap-2">
@@ -224,6 +245,49 @@ const HeroQuoteCalculator = () => {
               )}
 
               <form onSubmit={handleCalculateQuote} className="space-y-4">
+
+                {/* Visit Visa Quick Mode Banner */}
+                <div 
+                  onClick={() => {
+                    const visitType = effectiveTravelTypes.find(t => t.code === 'VISIT_VISA') || effectiveTravelTypes[0];
+                    setTravelType(visitType);
+                    if (!selectedDestination || (selectedDestination.destination_type !== 'SCHENGEN' && selectedDestination.destination_type !== 'WORLDWIDE')) {
+                      const scheng = destinations.find(d => d.name.includes('Schengen')) || destinations[0];
+                      if (scheng) setSelectedDestination(scheng);
+                    }
+                  }}
+                  className={`cursor-pointer p-3 rounded-2xl border transition-all flex items-center justify-between gap-3 ${
+                    travelType?.code === 'VISIT_VISA'
+                      ? 'bg-gradient-to-r from-emerald-50 via-teal-50/70 to-emerald-50 border-[#00875A] shadow-sm'
+                      : 'bg-slate-50 hover:bg-slate-100 border-slate-200'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
+                      travelType?.code === 'VISIT_VISA' ? 'bg-[#00875A] text-white' : 'bg-slate-200 text-slate-700'
+                    }`}>
+                      <ShieldCheck className="w-4 h-4" />
+                    </div>
+                    <div className="truncate">
+                      <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <span>Visit Visa Travel Insurance</span>
+                        <span className="text-[9px] bg-emerald-100 text-[#00875A] font-extrabold px-1.5 py-0.5 rounded">
+                          100% Embassy Approved
+                        </span>
+                      </div>
+                      <p className="text-[10px] text-slate-500 truncate mt-0.5">
+                        Schengen €30k+, UK, US, Gulf & Global Visas • Zero Deductible
+                      </p>
+                    </div>
+                  </div>
+                  <span className={`text-[10px] font-bold px-2.5 py-1 rounded-lg flex-shrink-0 transition-colors ${
+                    travelType?.code === 'VISIT_VISA'
+                      ? 'bg-[#00875A] text-white shadow-sm'
+                      : 'bg-white border border-slate-200 text-slate-700'
+                  }`}>
+                    {travelType?.code === 'VISIT_VISA' ? 'Selected ✓' : 'Select'}
+                  </span>
+                </div>
                 
                 {/* Destination Quick Selector Grid */}
                 <div>
@@ -398,30 +462,67 @@ const HeroQuoteCalculator = () => {
                 </div>
 
                 {/* Trip Style / Risk Pills */}
-                {travelTypes.length > 0 && (
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
-                      TRIP STYLE
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {travelTypes.slice(0, 3).map((tt) => {
-                        const isSelected = travelType?.id === tt.id;
+                {effectiveTravelTypes.length > 0 && (
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                        TRIP STYLE / PURPOSE
+                      </label>
+                      {travelType?.code === 'VISIT_VISA' && (
+                        <span className="text-[10px] text-[#00875A] font-bold flex items-center gap-1">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#00875A]" />
+                          Embassy Compliant
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      {effectiveTravelTypes.map((tt) => {
+                        const isSelected = travelType?.id === tt.id || travelType?.code === tt.code;
+                        const isVisa = tt.code === 'VISIT_VISA';
                         return (
                           <button
                             type="button"
-                            key={tt.id}
+                            key={tt.id || tt.code}
                             onClick={() => setTravelType(tt)}
-                            className={`py-2 px-3 text-xs font-bold rounded-xl transition-all text-center border ${
+                            className={`p-2.5 text-xs font-bold rounded-xl transition-all text-left flex flex-col justify-between border ${
                               isSelected
-                                ? 'bg-[#00875A] text-white border-[#00875A]'
+                                ? 'bg-[#00875A] text-white border-[#00875A] shadow-md shadow-emerald-700/20'
                                 : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                             }`}
                           >
-                            {tt.name}
+                            <div className="flex items-center justify-between w-full">
+                              <span className="truncate">{tt.name}</span>
+                              {isVisa && (
+                                <span className={`text-[9px] px-1.5 py-0.5 rounded font-extrabold ${
+                                  isSelected ? 'bg-emerald-900 text-emerald-100' : 'bg-emerald-100 text-[#00875A]'
+                                }`}>
+                                  Visa Ready
+                                </span>
+                              )}
+                            </div>
+                            <span className={`text-[10px] font-normal truncate mt-0.5 ${
+                              isSelected ? 'text-emerald-100' : 'text-slate-400'
+                            }`}>
+                              {isVisa ? 'Schengen, UK, US, Gulf' : tt.description}
+                            </span>
                           </button>
                         );
                       })}
                     </div>
+
+                    {/* Reassurance banner if Visit Visa is selected */}
+                    {travelType?.code === 'VISIT_VISA' && (
+                      <div className="p-3 bg-emerald-50 border border-emerald-300/80 rounded-xl text-xs space-y-1">
+                        <div className="flex items-center gap-1.5 font-bold text-[#00875A]">
+                          <ShieldCheck className="w-4 h-4 text-[#00875A] flex-shrink-0" />
+                          <span>100% Embassy & Consulate Guaranteed</span>
+                        </div>
+                        <p className="text-[11px] text-slate-600 leading-snug">
+                          Meets European Parliament Regulation (EC) No 810/2009 for Schengen visas & worldwide consulates: €30,000+ medical cover, zero deductible, repatriation + 100% money-back guarantee on visa refusal.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 )}
 

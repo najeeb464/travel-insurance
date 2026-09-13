@@ -40,7 +40,7 @@ class Policy(TimeStampedModel):
     def generate_policy_number(cls):
         now = timezone.now()
         hex_suffix = uuid.uuid4().hex[:7].upper()
-        return f"EKTA-{now.year}-{hex_suffix}"
+        return f"TAVARA-{now.year}-{hex_suffix}"
 
     @property
     def is_currently_active(self):

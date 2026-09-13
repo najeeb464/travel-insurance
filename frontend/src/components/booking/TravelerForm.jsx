@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   User, 
@@ -11,13 +11,17 @@ import {
   Globe,
   Sparkles,
   ShieldCheck,
-  CreditCard
+  CreditCard,
+  Lock,
+  FileCheck,
+  Zap
 } from 'lucide-react';
 import { useBooking } from '../../context/BookingContext';
 import { useAuth } from '../../context/AuthContext';
 import { ordersApi } from '../../api';
 
 const TravelerForm = ({ onOpenPaymentModal }) => {
+  const formRef = useRef(null);
   const { 
     selectedPlanOption, 
     setCurrentStep, 
@@ -72,6 +76,11 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
     e.preventDefault();
     setError('');
 
+    if (!selectedPlanOption?.quote_number) {
+      setError('Please select a valid insurance plan quote before proceeding.');
+      return;
+    }
+
     if (!contactFullName.trim() || !contactEmail.trim() || !contactPhone.trim()) {
       setError('Please provide complete buyer contact information.');
       return;
@@ -101,11 +110,56 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
       onOpenPaymentModal(res.data);
     } catch (err) {
       console.error('Order creation error:', err);
-      setError(err.response?.data?.error || err.response?.data?.message || 'Failed to create order. Please check information.');
+      const data = err.response?.data;
+      let errorMsg = 'Failed to create order. Please verify your information.';
+      if (typeof data === 'string') {
+        errorMsg = data;
+      } else if (data?.detail) {
+        errorMsg = data.detail;
+      } else if (data?.error) {
+        errorMsg = data.error;
+      } else if (data?.quote_number) {
+        errorMsg = Array.isArray(data.quote_number) ? data.quote_number.join(' ') : data.quote_number;
+      } else if (data?.travelers) {
+        errorMsg = typeof data.travelers === 'string' ? data.travelers : 'Please verify all traveler details.';
+      } else if (typeof data === 'object') {
+        const firstKey = Object.keys(data)[0];
+        const val = data[firstKey];
+        errorMsg = Array.isArray(val) ? `${firstKey}: ${val[0]}` : String(val);
+      }
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
   };
+
+  if (!selectedPlanOption) {
+    return (
+      <section className="py-20 bg-slate-50 text-slate-900 border-t border-slate-200">
+        <div className="max-w-xl mx-auto px-4 text-center">
+          <div className="w-16 h-16 rounded-3xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center mx-auto mb-5 shadow-sm">
+            <AlertCircle className="w-8 h-8" />
+          </div>
+          <h3 className="text-2xl font-serif font-bold text-slate-900 mb-2">
+            No Plan Selected
+          </h3>
+          <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+            Please choose an insurance coverage tariff before entering traveler and passport information.
+          </p>
+          <button
+            onClick={() => {
+              setCurrentStep(2);
+              window.scrollTo({ top: 100, behavior: 'smooth' });
+            }}
+            className="px-6 py-3.5 rounded-xl bg-[#00875A] hover:bg-[#00734c] text-white font-bold text-sm shadow-md transition-all inline-flex items-center gap-2"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Tariff Options</span>
+          </button>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-12 bg-slate-50 text-slate-900 relative overflow-hidden border-t border-slate-200/80">
@@ -135,8 +189,7 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Form */}
-          <form onSubmit={handleSubmitOrder} className="lg:col-span-2 space-y-8">
+          <form ref={formRef} onSubmit={handleSubmitOrder} className="lg:col-span-2 space-y-8">
             {/* Buyer Contact Card */}
             <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/80 space-y-6 shadow-md">
               <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
@@ -308,22 +361,82 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
               </div>
             ))}
 
-            {/* Submit Action */}
-            <div className="pt-2">
+            {/* Submit Action Card */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/80 shadow-md space-y-6">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-4 border-b border-slate-100">
+                <div className="text-center sm:text-left">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Amount Due</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-slate-900">€{pricing.final_total || 0}</span>
+                    <span className="text-xs text-slate-500 font-mono">({pricing.currency || 'EUR'})</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+                  <Zap className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Instant Policy PDF Issuance</span>
+                </div>
+              </div>
+
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4.5 px-8 rounded-2xl bg-[#00875A] hover:bg-[#00734c] text-white font-bold text-base flex items-center justify-center gap-3 shadow-lg shadow-emerald-700/20 transition-all disabled:opacity-50"
+                className="w-full py-4.5 px-8 rounded-2xl bg-[#00875A] hover:bg-[#00734c] text-white font-bold text-base flex items-center justify-center gap-3 shadow-lg shadow-emerald-700/20 hover:shadow-emerald-700/30 transition-all disabled:opacity-50 group cursor-pointer"
               >
                 {loading ? (
-                  <span>Processing Policy Order...</span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Processing Policy Order...</span>
+                  </div>
                 ) : (
                   <>
-                    <CreditCard className="w-5 h-5" />
+                    <Lock className="w-5 h-5 transition-transform group-hover:scale-110" />
                     <span>Proceed to Secure Instant Checkout (€{pricing.final_total || 0})</span>
                   </>
                 )}
               </button>
+
+              {/* Trust Badges Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
+                  <Lock className="w-4 h-4 text-[#00875A] flex-shrink-0" />
+                  <div className="text-[11px]">
+                    <p className="font-bold text-slate-800">256-Bit SSL</p>
+                    <p className="text-slate-500">Bank-grade security</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
+                  <FileCheck className="w-4 h-4 text-[#00875A] flex-shrink-0" />
+                  <div className="text-[11px]">
+                    <p className="font-bold text-slate-800">Official Tavara PDF</p>
+                    <p className="text-slate-500">With QR verification</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
+                  <ShieldCheck className="w-4 h-4 text-[#00875A] flex-shrink-0" />
+                  <div className="text-[11px]">
+                    <p className="font-bold text-slate-800">100% Visa Approved</p>
+                    <p className="text-slate-500">Money-back guarantee</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Legal & Payment Methods */}
+              <div className="pt-2 text-center text-xs text-slate-500 space-y-2 border-t border-slate-100">
+                <p>
+                  By proceeding, you agree to Tavara's Insurance Policy Conditions and certify that all passenger passport information is accurate.
+                </p>
+                <div className="flex items-center justify-center gap-3 text-slate-400 font-mono text-[11px]">
+                  <span>VISA</span>
+                  <span>•</span>
+                  <span>Mastercard</span>
+                  <span>•</span>
+                  <span>Stripe</span>
+                  <span>•</span>
+                  <span>Apple Pay</span>
+                </div>
+              </div>
             </div>
           </form>
 
@@ -354,6 +467,28 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
                   <span className="text-slate-500">Medical Cover Limit</span>
                   <span className="font-bold text-[#00875A]">{selectedPlanOption?.medical_limit_display}</span>
                 </div>
+                {selectedPlanOption?.coverages && selectedPlanOption.coverages.length > 0 && (
+                  <div className="py-1 border-b border-slate-100">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-slate-500">Included Benefits</span>
+                      <span className="text-[10px] text-[#00875A] font-bold">
+                        {selectedPlanOption.coverages.length} Categories
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {selectedPlanOption.coverages.slice(0, 3).map((c) => (
+                        <span key={c.id || c.coverage_code} className="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">
+                          {c.coverage_name}
+                        </span>
+                      ))}
+                      {selectedPlanOption.coverages.length > 3 && (
+                        <span className="text-[10px] text-emerald-700 font-bold px-1 py-0.5">
+                          +{selectedPlanOption.coverages.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
                 <div className="flex justify-between py-1 border-b border-slate-100">
                   <span className="text-slate-500">Deductible / Excess</span>
                   <span className="font-mono font-bold text-[#00875A]">€0 (Zero Deductible)</span>
@@ -365,7 +500,17 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
                   <span className="text-xs text-slate-500 uppercase font-bold">Total Amount Due</span>
                   <span className="text-3xl font-bold text-[#00875A]">€{pricing.final_total || 0}</span>
                 </div>
-                <p className="text-[10px] text-slate-400">Includes all taxes, embassy stamps, and digital delivery fees.</p>
+                <p className="text-[10px] text-slate-400 mb-4">Includes all taxes, embassy stamps, and digital delivery fees.</p>
+
+                <button
+                  type="button"
+                  onClick={() => formRef.current?.requestSubmit()}
+                  disabled={loading}
+                  className="w-full py-3.5 px-4 rounded-xl bg-[#00875A] hover:bg-[#00734c] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all disabled:opacity-50 cursor-pointer"
+                >
+                  <Lock className="w-4 h-4" />
+                  <span>{loading ? 'Processing...' : `Proceed to Checkout (€${pricing.final_total || 0})`}</span>
+                </button>
               </div>
 
               <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-slate-600 space-y-2">

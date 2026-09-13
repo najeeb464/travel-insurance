@@ -102,6 +102,14 @@ class Command(BaseCommand):
                 'product_type': Product.ProductType.VISA,
             }
         )
+        visit_visa_product, _ = Product.objects.get_or_create(
+            slug='visit-visa-insurance',
+            defaults={
+                'name': 'Visit Visa Travel Insurance',
+                'description': 'Certified visitor visa travel insurance meeting Regulation (EC) No 810/2009 and global embassy standards with €30,000+ medical cover, zero deductible, and visa refusal refund guarantee.',
+                'product_type': Product.ProductType.VISA,
+            }
+        )
 
         # 6. Plans
         start_plan, _ = Plan.objects.get_or_create(
@@ -205,6 +213,7 @@ class Command(BaseCommand):
 
         # 9. Travel Types
         travel_types_data = [
+            {'code': 'VISIT_VISA', 'name': 'Visit / Tourist Visa', 'description': 'Embassy-compliant insurance for Schengen, UK, US, Gulf & Worldwide visitor visas', 'risk_multiplier': Decimal('1.00')},
             {'code': 'CALM', 'name': 'Calm / Leisure', 'description': 'Sightseeing, beach relaxation, museums, and business trips', 'risk_multiplier': Decimal('1.00')},
             {'code': 'ACTIVE', 'name': 'Active / Sports', 'description': 'Amateur fitness, cycling, skiing on marked pistes, swimming, surfing', 'risk_multiplier': Decimal('1.50')},
             {'code': 'EXTREME', 'name': 'Extreme / High Risk', 'description': 'Mountaineering, off-piste skiing, scuba diving, skydiving, paragliding', 'risk_multiplier': Decimal('2.50')},
@@ -233,6 +242,7 @@ class Command(BaseCommand):
 
         # 11. Promotions
         promotions_data = [
+            {'code': 'TAVARA10', 'description': '10% off any Tavara travel insurance quote', 'discount_type': Promotion.DiscountType.PERCENTAGE, 'discount_value': Decimal('10.00'), 'min_amount': Decimal('10.00')},
             {'code': 'EKTA10', 'description': '10% off any travel insurance quote', 'discount_type': Promotion.DiscountType.PERCENTAGE, 'discount_value': Decimal('10.00'), 'min_amount': Decimal('10.00')},
             {'code': 'SUMMER20', 'description': '20% summer holiday special', 'discount_type': Promotion.DiscountType.PERCENTAGE, 'discount_value': Decimal('20.00'), 'min_amount': Decimal('25.00'), 'max_discount': Decimal('50.00')},
             {'code': 'WELCOME5', 'description': '€5 off on first insurance order', 'discount_type': Promotion.DiscountType.FIXED, 'discount_value': Decimal('5.00'), 'min_amount': Decimal('15.00')},
@@ -254,15 +264,21 @@ class Command(BaseCommand):
         faqs_data = [
             {
                 'category': FAQ.Category.GENERAL,
-                'question': 'Is EKTA insurance valid for Schengen visa applications?',
-                'answer': 'Yes! All EKTA policies fully meet Regulation (EC) No 810/2009 of the European Parliament. They include €30,000+ medical cover, repatriation, and zero deductible across all 29 Schengen states.',
+                'question': 'Is Tavara insurance valid for Schengen visa applications?',
+                'answer': 'Yes! All Tavara policies fully meet Regulation (EC) No 810/2009 of the European Parliament. They include €30,000+ medical cover, repatriation, and zero deductible across all 29 Schengen states.',
                 'display_order': 1,
+            },
+            {
+                'category': FAQ.Category.GENERAL,
+                'question': 'Can I use this travel insurance for Visit Visa or Tourist Visa applications?',
+                'answer': 'Absolutely. Tavara Travel Insurance is specifically tailored for Visit Visas and Tourist Visas worldwide (including Schengen, UK Standard Visitor, US B1/B2, UAE / Gulf, Turkey, Canada, and Asian destinations). Each policy includes certified zero deductible, €30,000 to €100,000+ medical emergency coverage, COVID-19 medical protection, medical repatriation, and an official verification QR code recognized by embassies and visa application centres (VFS Global, TLScontact, BLS International). Plus, we offer a 100% money-back Visa Rejection Guarantee.',
+                'display_order': 2,
             },
             {
                 'category': FAQ.Category.PURCHASE,
                 'question': 'How quickly will I receive my insurance policy?',
                 'answer': 'Immediately after successful payment! The electronic insurance certificate and policy document are generated automatically and sent to your email within seconds.',
-                'display_order': 2,
+                'display_order': 3,
             },
             {
                 'category': FAQ.Category.POLICY,
@@ -289,9 +305,9 @@ class Command(BaseCommand):
         # 14. CMS Pages
         pages_data = [
             {
-                'title': 'About EKTA Traveling',
+                'title': 'About Tavara Travel Insurance',
                 'slug': 'about-us',
-                'content': 'EKTA Traveling is an innovative travel insurance platform delivering instant digital insurance policies globally since 2020. Our electronic certificates are backed by international underwriters and accepted by embassies worldwide.',
+                'content': 'Tavara Travel Insurance is an innovative travel insurance platform delivering instant digital insurance policies globally since 2020. Our electronic certificates are backed by international underwriters and accepted by embassies worldwide.',
             },
             {
                 'title': 'Terms & Conditions',
@@ -312,4 +328,4 @@ class Command(BaseCommand):
         for p in pages_data:
             Page.objects.get_or_create(slug=p['slug'], defaults=p)
 
-        self.stdout.write(self.style.SUCCESS("Successfully seeded all EKTA travel insurance initial data!"))
+        self.stdout.write(self.style.SUCCESS("Successfully seeded all Tavara travel insurance initial data!"))

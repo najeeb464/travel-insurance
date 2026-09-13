@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthProvider } from './context/AuthContext';
 import { BookingProvider, useBooking } from './context/BookingContext';
@@ -10,9 +10,12 @@ import TravelerForm from './components/booking/TravelerForm';
 import PolicySuccessView from './components/policy/PolicySuccessView';
 import PaymentModal from './components/booking/PaymentModal';
 import ValidateInsuranceModal from './components/policy/ValidateInsuranceModal';
+import PublicPolicyModal from './components/policy/PublicPolicyModal';
 import AuthModal from './components/customer/AuthModal';
 import UserDashboard from './components/customer/UserDashboard';
+import AdminDashboardModal from './components/admin/AdminDashboardModal';
 import RefundRequestModal from './components/customer/RefundRequestModal';
+import PageModal from './components/cms/PageModal';
 import WhyChooseUs from './components/home/WhyChooseUs';
 import HowItWorks from './components/home/HowItWorks';
 import StoriesBanner from './components/home/StoriesBanner';
@@ -31,16 +34,26 @@ const AppContent = () => {
   // Modal states
   const [isValidateModalOpen, setIsValidateModalOpen] = useState(false);
   const [validatePolicyNumber, setValidatePolicyNumber] = useState('');
+  const [isPublicVerifyOpen, setIsPublicVerifyOpen] = useState(false);
+  const [publicVerifyPolicyNumber, setPublicVerifyPolicyNumber] = useState('');
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+  const [isAdminDashboardOpen, setIsAdminDashboardOpen] = useState(false);
   const [isRefundModalOpen, setIsRefundModalOpen] = useState(false);
   const [refundOrderNumber, setRefundOrderNumber] = useState('');
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [pendingOrderForPayment, setPendingOrderForPayment] = useState(null);
+  const [isPageModalOpen, setIsPageModalOpen] = useState(false);
+  const [pageModalSlug, setPageModalSlug] = useState('terms');
 
   const handleOpenValidate = (policyNum = '') => {
     setValidatePolicyNumber(policyNum);
     setIsValidateModalOpen(true);
+  };
+
+  const handleOpenPublicVerify = (policyNum = '') => {
+    setPublicVerifyPolicyNumber(policyNum);
+    setIsPublicVerifyOpen(true);
   };
 
   const handleOpenRefund = (orderNum = '') => {
@@ -52,6 +65,55 @@ const AppContent = () => {
     setPendingOrderForPayment(orderData);
     setIsPaymentModalOpen(true);
   };
+
+  const handleOpenPage = (slug = 'terms') => {
+    setPageModalSlug(slug);
+    setIsPageModalOpen(true);
+  };
+
+  // Listen for query params (?verify=TAVARA-...) and hash-based deep linking
+  useEffect(() => {
+    const checkUrlForActions = () => {
+      // 1. Check URL query parameters (e.g. from QR code scan: /?verify=TAVARA-2026-...)
+      const params = new URLSearchParams(window.location.search);
+      const verifyParam = params.get('verify') || params.get('validate') || params.get('policy');
+      if (verifyParam) {
+        handleOpenPublicVerify(verifyParam);
+        return;
+      }
+
+      if (params.get('admin') === 'true') {
+        setIsAdminDashboardOpen(true);
+        return;
+      }
+
+      // 2. Check hash actions
+      const hash = window.location.hash.toLowerCase().replace(/^#/, '');
+      if (hash === 'admin' || hash === 'admin-dashboard' || hash === 'dashboard-admin') {
+        setIsAdminDashboardOpen(true);
+        return;
+      }
+      if (hash.startsWith('verify/')) {
+        const num = window.location.hash.replace(/^#verify\//i, '');
+        if (num) {
+          handleOpenPublicVerify(num);
+          return;
+        }
+      }
+
+      if (['terms', 'terms-and-conditions', 'privacy', 'privacy-policy', 'about', 'about-us', 'refund-policy', 'refunds'].includes(hash)) {
+        handleOpenPage(hash);
+      }
+    };
+
+    checkUrlForActions();
+    window.addEventListener('hashchange', checkUrlForActions);
+    window.addEventListener('popstate', checkUrlForActions);
+    return () => {
+      window.removeEventListener('hashchange', checkUrlForActions);
+      window.removeEventListener('popstate', checkUrlForActions);
+    };
+  }, []);
 
   const handleViewPolicyFromDashboard = (policy) => {
     setIssuedPolicy(policy);
@@ -66,6 +128,8 @@ const AppContent = () => {
         onOpenValidateModal={() => handleOpenValidate()}
         onOpenAuthModal={() => setIsAuthModalOpen(true)}
         onOpenDashboard={() => setIsDashboardOpen(true)}
+        onOpenAdminDashboard={() => setIsAdminDashboardOpen(true)}
+        onOpenPage={handleOpenPage}
       />
 
       {/* Dynamic Content based on Booking Step */}
@@ -132,6 +196,7 @@ const AppContent = () => {
       <Footer
         onOpenValidateModal={() => handleOpenValidate()}
         onOpenRefundModal={() => handleOpenRefund()}
+        onOpenPage={handleOpenPage}
       />
 
       {/* Global Modals */}
@@ -145,6 +210,13 @@ const AppContent = () => {
         isOpen={isValidateModalOpen}
         onClose={() => setIsValidateModalOpen(false)}
         initialPolicyNumber={validatePolicyNumber}
+        onOpenPublicVerify={handleOpenPublicVerify}
+      />
+
+      <PublicPolicyModal
+        isOpen={isPublicVerifyOpen}
+        onClose={() => setIsPublicVerifyOpen(false)}
+        policyNumber={publicVerifyPolicyNumber}
       />
 
       <AuthModal
@@ -157,12 +229,25 @@ const AppContent = () => {
         onClose={() => setIsDashboardOpen(false)}
         onSelectPolicyForView={handleViewPolicyFromDashboard}
         onOpenRefundModal={handleOpenRefund}
+        onOpenAdminDashboard={() => setIsAdminDashboardOpen(true)}
+      />
+
+      <AdminDashboardModal
+        isOpen={isAdminDashboardOpen}
+        onClose={() => setIsAdminDashboardOpen(false)}
+        onViewPolicy={handleOpenPublicVerify}
       />
 
       <RefundRequestModal
         isOpen={isRefundModalOpen}
         onClose={() => setIsRefundModalOpen(false)}
         initialOrderNumber={refundOrderNumber}
+      />
+
+      <PageModal
+        isOpen={isPageModalOpen}
+        onClose={() => setIsPageModalOpen(false)}
+        initialSlug={pageModalSlug}
       />
     </div>
   );

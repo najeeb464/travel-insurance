@@ -528,7 +528,7 @@
     "updated_at": "2026-09-08T15:08:02.825Z",
     "name": "Schengen Visa Insurance",
     "slug": "schengen-visa-insurance",
-    "description": "Meets 100% of EU Regulation requirements: €30,000+ medical cover, zero deductible, repatriation guaranteed.",
+    "description": "Meets 100% of EU Regulation requirements: â‚¬30,000+ medical cover, zero deductible, repatriation guaranteed.",
     "product_type": "VISA",
     "is_active": true
   }
@@ -542,10 +542,10 @@
     "product": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
     "name": "Gold",
     "code": "GOLD",
-    "description": "Most popular tariff! Includes comprehensive €50,000 medical protection, baggage loss, and flight delays.",
+    "description": "Most popular tariff! Includes comprehensive â‚¬50,000 medical protection, baggage loss, and flight delays.",
     "base_price_per_day": "2.50",
     "currency": "EUR",
-    "medical_limit_display": "€50,000",
+    "medical_limit_display": "â‚¬50,000",
     "is_popular": true,
     "is_active": true,
     "display_order": 2
@@ -563,7 +563,7 @@
     "description": "Essential coverage for budget-conscious travelers. Covers unexpected medical emergencies and repatriation.",
     "base_price_per_day": "1.50",
     "currency": "EUR",
-    "medical_limit_display": "€30,000",
+    "medical_limit_display": "â‚¬30,000",
     "is_popular": false,
     "is_active": true,
     "display_order": 1
@@ -578,10 +578,10 @@
     "product": "435a3a03-2b2d-46a2-b6c0-cf7933d9a146",
     "name": "Max+",
     "code": "MAX_PLUS",
-    "description": "Maximum peace of mind with €100,000 coverage, active sports, legal assistance, and high baggage limit.",
+    "description": "Maximum peace of mind with â‚¬100,000 coverage, active sports, legal assistance, and high baggage limit.",
     "base_price_per_day": "4.00",
     "currency": "EUR",
-    "medical_limit_display": "€100,000",
+    "medical_limit_display": "â‚¬100,000",
     "is_popular": false,
     "is_active": true,
     "display_order": 3
@@ -723,7 +723,7 @@
     "coverage": "593718cf-4042-474d-8d5e-e489b796b555",
     "limit_display": "VIP 24/7 Priority",
     "limit_amount": null,
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -737,9 +737,9 @@
     "updated_at": "2026-09-08T15:08:02.874Z",
     "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
     "coverage": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
-    "limit_display": "€50,000",
+    "limit_display": "â‚¬50,000",
     "limit_amount": "50000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -753,9 +753,9 @@
     "updated_at": "2026-09-08T15:08:02.866Z",
     "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
     "coverage": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
-    "limit_display": "€1,000 Included",
+    "limit_display": "â‚¬1,000 Included",
     "limit_amount": "1000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -769,9 +769,9 @@
     "updated_at": "2026-09-08T15:08:02.861Z",
     "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
     "coverage": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
-    "limit_display": "€30,000",
+    "limit_display": "â‚¬30,000",
     "limit_amount": "30000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -787,7 +787,7 @@
     "coverage": "593718cf-4042-474d-8d5e-e489b796b555",
     "limit_display": "24/7 Included",
     "limit_amount": null,
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -801,9 +801,9 @@
     "updated_at": "2026-09-08T15:08:02.852Z",
     "plan": "1b44c7da-3285-400a-8006-974257805f92",
     "coverage": "90247aee-bd1c-40f9-85bc-6dd37ebb2adc",
-    "limit_display": "€10,000",
+    "limit_display": "â‚¬10,000",
     "limit_amount": "10000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -817,9 +817,9 @@
     "updated_at": "2026-09-08T15:08:02.879Z",
     "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
     "coverage": "978e5696-6a17-4154-93b5-36af018a2e1c",
-    "limit_display": "€50,000 Included",
+    "limit_display": "â‚¬50,000 Included",
     "limit_amount": "50000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -833,9 +833,9 @@
     "updated_at": "2026-09-08T15:08:02.859Z",
     "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
     "coverage": "1608523f-1745-421b-9b22-a1c7907dfa62",
-    "limit_display": "€50,000",
+    "limit_display": "â‚¬50,000",
     "limit_amount": "50000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -851,7 +851,7 @@
     "coverage": "593718cf-4042-474d-8d5e-e489b796b555",
     "limit_display": "24/7 Included",
     "limit_amount": null,
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -865,9 +865,9 @@
     "updated_at": "2026-09-08T15:08:02.872Z",
     "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
     "coverage": "1608523f-1745-421b-9b22-a1c7907dfa62",
-    "limit_display": "€100,000",
+    "limit_display": "â‚¬100,000",
     "limit_amount": "100000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -881,9 +881,9 @@
     "updated_at": "2026-09-08T15:08:02.876Z",
     "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
     "coverage": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
-    "limit_display": "€2,000 Included",
+    "limit_display": "â‚¬2,000 Included",
     "limit_amount": "2000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -897,9 +897,9 @@
     "updated_at": "2026-09-08T15:08:02.849Z",
     "plan": "1b44c7da-3285-400a-8006-974257805f92",
     "coverage": "1608523f-1745-421b-9b22-a1c7907dfa62",
-    "limit_display": "€30,000",
+    "limit_display": "â‚¬30,000",
     "limit_amount": "30000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -913,9 +913,9 @@
     "updated_at": "2026-09-08T15:08:02.867Z",
     "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
     "coverage": "0b149cfe-fc84-4241-939d-bce630c4993c",
-    "limit_display": "€300 Included",
+    "limit_display": "â‚¬300 Included",
     "limit_amount": "300.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -929,9 +929,9 @@
     "updated_at": "2026-09-08T15:08:02.884Z",
     "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
     "coverage": "f73e2215-67bb-4cbc-98d9-adb53f795ff1",
-    "limit_display": "€25,000 Included",
+    "limit_display": "â‚¬25,000 Included",
     "limit_amount": "25000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -945,9 +945,9 @@
     "updated_at": "2026-09-08T15:08:02.882Z",
     "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
     "coverage": "52b15cfb-b483-4240-b4d0-050fcdee3d9b",
-    "limit_display": "€500 Included",
+    "limit_display": "â‚¬500 Included",
     "limit_amount": "500.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -961,9 +961,9 @@
     "updated_at": "2026-09-08T15:08:02.868Z",
     "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
     "coverage": "52b15cfb-b483-4240-b4d0-050fcdee3d9b",
-    "limit_display": "€300 Included",
+    "limit_display": "â‚¬300 Included",
     "limit_amount": "300.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -977,9 +977,9 @@
     "updated_at": "2026-09-08T15:08:02.854Z",
     "plan": "1b44c7da-3285-400a-8006-974257805f92",
     "coverage": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
-    "limit_display": "€30,000 Included",
+    "limit_display": "â‚¬30,000 Included",
     "limit_amount": "30000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -993,9 +993,9 @@
     "updated_at": "2026-09-08T15:08:02.858Z",
     "plan": "1b44c7da-3285-400a-8006-974257805f92",
     "coverage": "978e5696-6a17-4154-93b5-36af018a2e1c",
-    "limit_display": "Up to €10,000",
+    "limit_display": "Up to â‚¬10,000",
     "limit_amount": "10000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": false,
     "is_optional_addon": true,
     "addon_price_per_day": "0.90"
@@ -1009,9 +1009,9 @@
     "updated_at": "2026-09-08T15:08:02.871Z",
     "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
     "coverage": "978e5696-6a17-4154-93b5-36af018a2e1c",
-    "limit_display": "Up to €20,000",
+    "limit_display": "Up to â‚¬20,000",
     "limit_amount": "20000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": false,
     "is_optional_addon": true,
     "addon_price_per_day": "0.80"
@@ -1025,9 +1025,9 @@
     "updated_at": "2026-09-08T15:08:02.857Z",
     "plan": "1b44c7da-3285-400a-8006-974257805f92",
     "coverage": "46800212-9fab-41c2-ab5e-a01c99cfec2f",
-    "limit_display": "Up to €1,000",
+    "limit_display": "Up to â‚¬1,000",
     "limit_amount": "1000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": false,
     "is_optional_addon": true,
     "addon_price_per_day": "0.60"
@@ -1041,9 +1041,9 @@
     "updated_at": "2026-09-08T15:08:02.875Z",
     "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
     "coverage": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
-    "limit_display": "€100,000 Included",
+    "limit_display": "â‚¬100,000 Included",
     "limit_amount": "100000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -1057,9 +1057,9 @@
     "updated_at": "2026-09-08T15:08:02.878Z",
     "plan": "30575349-b72b-4761-9125-2fee1a856ed4",
     "coverage": "0b149cfe-fc84-4241-939d-bce630c4993c",
-    "limit_display": "€600 Included",
+    "limit_display": "â‚¬600 Included",
     "limit_amount": "600.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -1073,9 +1073,9 @@
     "updated_at": "2026-09-08T15:08:02.863Z",
     "plan": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
     "coverage": "ca1d3f86-879e-4131-8e22-8ae87c865a1d",
-    "limit_display": "€50,000 Included",
+    "limit_display": "â‚¬50,000 Included",
     "limit_amount": "50000.00",
-    "deductible_display": "€0",
+    "deductible_display": "â‚¬0",
     "is_included": true,
     "is_optional_addon": false,
     "addon_price_per_day": "0.00"
@@ -1116,6 +1116,19 @@
     "name": "Calm / Leisure",
     "code": "CALM",
     "description": "Sightseeing, beach relaxation, museums, and business trips",
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "products.traveltype",
+  "pk": "7c60920c-9c77-4808-af86-af7ff3ef0212",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.887Z",
+    "updated_at": "2026-09-08T15:08:02.887Z",
+    "name": "Visit / Tourist Visa",
+    "code": "VISIT_VISA",
+    "description": "Embassy-compliant insurance for Schengen, UK, US, Gulf & Worldwide visitor visas",
     "risk_multiplier": "1.00",
     "is_active": true
   }
@@ -1250,7 +1263,7 @@
     "created_at": "2026-09-08T15:08:02.907Z",
     "updated_at": "2026-09-08T15:08:02.907Z",
     "code": "WELCOME5",
-    "description": "€5 off on first insurance order",
+    "description": "â‚¬5 off on first insurance order",
     "discount_type": "FIXED",
     "discount_value": "5.00",
     "min_amount": "15.00",
@@ -1282,70 +1295,14 @@
   }
 },
 {
-  "model": "reviews.review",
-  "pk": "10ac1631-32b6-47d3-b8ab-4f5a78eb85cd",
-  "fields": {
-    "created_at": "2026-09-08T15:08:02.911Z",
-    "updated_at": "2026-09-08T15:08:02.911Z",
-    "reviewer_name": "Farhan Khan",
-    "rating": 5,
-    "comment": "Very transparent pricing, no hidden charges. Downloaded the electronic PDF policy immediately after payment.",
-    "country": "Pakistan",
-    "is_verified": true,
-    "is_active": true
-  }
-},
-{
-  "model": "reviews.review",
-  "pk": "2630d440-586b-484d-9733-4ffdb53ae741",
-  "fields": {
-    "created_at": "2026-09-08T15:08:02.912Z",
-    "updated_at": "2026-09-08T15:08:02.912Z",
-    "reviewer_name": "Elena Schulz",
-    "rating": 4,
-    "comment": "Great pricing for active skiing insurance in Austria. Very smooth process.",
-    "country": "Germany",
-    "is_verified": true,
-    "is_active": true
-  }
-},
-{
-  "model": "reviews.review",
-  "pk": "b30b91e6-c384-4907-9a36-fef3334b1e03",
-  "fields": {
-    "created_at": "2026-09-08T15:08:02.909Z",
-    "updated_at": "2026-09-08T15:08:02.909Z",
-    "reviewer_name": "Sarah Jenkins",
-    "rating": 5,
-    "comment": "Bought policy in 2 minutes for our Spain trip. Embassy accepted it instantly for Schengen requirements!",
-    "country": "United Kingdom",
-    "is_verified": true,
-    "is_active": true
-  }
-},
-{
-  "model": "reviews.review",
-  "pk": "d2696169-dad5-481c-b72d-3a18dfe19cd9",
-  "fields": {
-    "created_at": "2026-09-08T15:08:02.910Z",
-    "updated_at": "2026-09-08T15:08:02.910Z",
-    "reviewer_name": "Marco Rossi",
-    "rating": 5,
-    "comment": "Excellent assistance when my flight in Frankfurt got cancelled. Received rapid support on WhatsApp.",
-    "country": "Italy",
-    "is_verified": true,
-    "is_active": true
-  }
-},
-{
   "model": "cms.page",
   "pk": "0d386986-5da1-42a1-9914-feb25e8fd275",
   "fields": {
     "created_at": "2026-09-08T15:08:02.923Z",
     "updated_at": "2026-09-08T15:08:02.923Z",
-    "title": "About EKTA Traveling",
+    "title": "About Tavara Travel Insurance",
     "slug": "about-us",
-    "content": "EKTA Traveling is an innovative travel insurance platform delivering instant digital insurance policies globally since 2020. Our electronic certificates are backed by international underwriters and accepted by embassies worldwide.",
+    "content": "Tavara Travel Insurance is an innovative travel insurance platform delivering instant digital insurance policies globally since 2020. Our electronic certificates are backed by international underwriters and accepted by embassies worldwide.",
     "is_active": true
   }
 },
@@ -1418,8 +1375,8 @@
     "created_at": "2026-09-08T15:08:02.916Z",
     "updated_at": "2026-09-08T15:08:02.916Z",
     "category": "GENERAL",
-    "question": "Is EKTA insurance valid for Schengen visa applications?",
-    "answer": "Yes! All EKTA policies fully meet Regulation (EC) No 810/2009 of the European Parliament. They include €30,000+ medical cover, repatriation, and zero deductible across all 29 Schengen states.",
+    "question": "Is Tavara insurance valid for Schengen visa applications?",
+    "answer": "Yes! All Tavara policies fully meet Regulation (EC) No 810/2009 of the European Parliament. They include â‚¬30,000+ medical cover, repatriation, and zero deductible across all 29 Schengen states.",
     "display_order": 1,
     "is_active": true
   }
@@ -1447,6 +1404,62 @@
     "question": "Can I cancel my policy and get a refund?",
     "answer": "Yes. You can request a refund prior to the policy start date directly via our online refund request form.",
     "display_order": 5,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "10ac1631-32b6-47d3-b8ab-4f5a78eb85cd",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.911Z",
+    "updated_at": "2026-09-08T15:08:02.911Z",
+    "reviewer_name": "Farhan Khan",
+    "rating": 5,
+    "comment": "Very transparent pricing, no hidden charges. Downloaded the electronic PDF policy immediately after payment.",
+    "country": "Pakistan",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "2630d440-586b-484d-9733-4ffdb53ae741",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.912Z",
+    "updated_at": "2026-09-08T15:08:02.912Z",
+    "reviewer_name": "Elena Schulz",
+    "rating": 4,
+    "comment": "Great pricing for active skiing insurance in Austria. Very smooth process.",
+    "country": "Germany",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "b30b91e6-c384-4907-9a36-fef3334b1e03",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.909Z",
+    "updated_at": "2026-09-08T15:08:02.909Z",
+    "reviewer_name": "Sarah Jenkins",
+    "rating": 5,
+    "comment": "Bought policy in 2 minutes for our Spain trip. Embassy accepted it instantly for Schengen requirements!",
+    "country": "United Kingdom",
+    "is_verified": true,
+    "is_active": true
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": "d2696169-dad5-481c-b72d-3a18dfe19cd9",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.910Z",
+    "updated_at": "2026-09-08T15:08:02.910Z",
+    "reviewer_name": "Marco Rossi",
+    "rating": 5,
+    "comment": "Excellent assistance when my flight in Frankfurt got cancelled. Received rapid support on WhatsApp.",
+    "country": "Italy",
+    "is_verified": true,
     "is_active": true
   }
 }

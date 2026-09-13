@@ -21,6 +21,34 @@ class CreateOrderView(views.APIView):
 
         customer = request.user if request.user.is_authenticated else quote.customer
 
+        existing_order = Order.objects.filter(quote=quote, status=Order.Status.PENDING_PAYMENT).first()
+        if existing_order:
+            order = existing_order
+            if customer and not order.customer:
+                order.customer = customer
+            order.contact_email = data['contact_email']
+            order.contact_phone = data['contact_phone']
+            order.contact_full_name = data['contact_full_name']
+            order.save(update_fields=['customer', 'contact_email', 'contact_phone', 'contact_full_name'])
+
+            order.travelers.all().delete()
+            for idx, t_data in enumerate(data['travelers']):
+                is_primary = t_data.get('is_primary', (idx == 0))
+                Traveler.objects.create(
+                    order=order,
+                    first_name=t_data['first_name'],
+                    last_name=t_data['last_name'],
+                    date_of_birth=t_data['date_of_birth'],
+                    gender=t_data.get('gender', Traveler.Gender.MALE),
+                    nationality=t_data.get('nationality', 'Pakistan'),
+                    passport_number=t_data['passport_number'],
+                    passport_expiry=t_data['passport_expiry'],
+                    email=t_data.get('email', data['contact_email']),
+                    phone=t_data.get('phone', data['contact_phone']),
+                    is_primary=is_primary,
+                )
+            return Response(OrderSerializer(order).data, status=status.HTTP_200_OK)
+
         order = Order.objects.create(
             customer=customer,
             quote=quote,
@@ -41,6 +69,7 @@ class CreateOrderView(views.APIView):
                 'end_date': str(quote.end_date),
                 'plan_name': quote.plan.name if quote.plan else 'Custom',
                 'plan_code': quote.plan.code if quote.plan else 'CUSTOM',
+                'medical_limit': quote.plan.medical_limit_display if quote.plan else '€30,000',
                 'travel_type': quote.travel_type.name,
                 'breakdown': quote.breakdown_data,
                 'promo_code': quote.promo_code_used,
@@ -94,6 +123,34 @@ class OrderDetailView(views.APIView):
 
         return Response(OrderSerializer(order).data)
 
+    def delete(self, request, order_number):
+        try:
+            order = Order.objects.get(order_number=order_number)
+        except Order.DoesNotExist:
+            return Response({'error': 'Order not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        # Prohibit deletion of PAID or ISSUED orders
+        if order.status in [Order.Status.PAID, Order.Status.ISSUED, Order.Status.REFUNDED]:
+            return Response({
+                'error': f'Order cannot be deleted in status {order.status}. Issued policies must be preserved for audit and compliance.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check ownership
+        if order.customer and request.user.is_authenticated and not request.user.is_staff:
+            if order.customer != request.user:
+                return Response({'error': 'Permission denied.'}, status=status.HTTP_403_FORBIDDEN)
+
+        # If order had a converted quote, release the quote back to CALCULATED
+        if order.quote and order.quote.status == Quote.Status.CONVERTED:
+            order.quote.status = Quote.Status.CALCULATED
+            order.quote.save(update_fields=['status'])
+
+        order.delete()
+        return Response({
+            'message': 'Order successfully removed.',
+            'order_number': order_number
+        }, status=status.HTTP_200_OK)
+
 
 class MyOrdersView(generics.ListAPIView):
     serializer_class = OrderSerializer
@@ -112,9 +169,19 @@ class CancelOrderView(views.APIView):
         except Order.DoesNotExist:
             return Response({'error': 'Order not found'}, status=status.HTTP_404_NOT_FOUND)
 
+        if order.customer and request.user.is_authenticated and not request.user.is_staff:
+            if order.customer != request.user:
+                return Response({'error': 'Permission denied.'}, status=status.HTTP_403_FORBIDDEN)
+
         if order.status not in [Order.Status.PENDING_PAYMENT, Order.Status.DRAFT]:
             return Response({'error': f'Order cannot be cancelled in status {order.status}'}, status=status.HTTP_400_BAD_REQUEST)
 
         order.status = Order.Status.CANCELLED
         order.save(update_fields=['status'])
+
+        # If quote was converted, revert quote status back to CALCULATED
+        if order.quote and order.quote.status == Quote.Status.CONVERTED:
+            order.quote.status = Quote.Status.CALCULATED
+            order.quote.save(update_fields=['status'])
+
         return Response({'message': 'Order successfully cancelled', 'order_number': order.order_number, 'status': order.status})

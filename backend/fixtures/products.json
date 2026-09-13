@@ -26,6 +26,19 @@
   }
 },
 {
+  "model": "products.product",
+  "pk": "c1f7b889-4d6e-4a8f-9a1b-3c7d5e8f2a90",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.825Z",
+    "updated_at": "2026-09-08T15:08:02.825Z",
+    "name": "Visit Visa Travel Insurance",
+    "slug": "visit-visa-insurance",
+    "description": "Certified visitor visa travel insurance meeting Regulation (EC) No 810/2009 and global embassy standards with €30,000+ medical cover, zero deductible, and visa refusal refund guarantee.",
+    "product_type": "VISA",
+    "is_active": true
+  }
+},
+{
   "model": "products.plan",
   "pk": "0c0c1913-c647-4b60-b77e-a432ef7d9e29",
   "fields": {
@@ -608,6 +621,19 @@
     "name": "Calm / Leisure",
     "code": "CALM",
     "description": "Sightseeing, beach relaxation, museums, and business trips",
+    "risk_multiplier": "1.00",
+    "is_active": true
+  }
+},
+{
+  "model": "products.traveltype",
+  "pk": "7c60920c-9c77-4808-af86-af7ff3ef0212",
+  "fields": {
+    "created_at": "2026-09-08T15:08:02.887Z",
+    "updated_at": "2026-09-08T15:08:02.887Z",
+    "name": "Visit / Tourist Visa",
+    "code": "VISIT_VISA",
+    "description": "Embassy-compliant insurance for Schengen, UK, US, Gulf & Worldwide visitor visas",
     "risk_multiplier": "1.00",
     "is_active": true
   }
