@@ -75,11 +75,11 @@ class PolicyService:
             },
             'emergency_assistance': {
                 'hotline': '+380 44 590 55 55 / +44 20 7946 0192',
-                'email': 'support@tavarainsurance.com',
+                'email': 'support@tayaratravelinsurance.com',
                 'viber_whatsapp': '+380 67 123 4567',
                 'available_24_7': True,
             },
-            'terms_and_conditions_url': 'https://tavarainsurance.com/terms',
+            'terms_and_conditions_url': 'https://tayaratravelinsurance.com/terms',
         }
 
         # Determine clean medical limit display (e.g. €30,000)

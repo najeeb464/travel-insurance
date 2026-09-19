@@ -29,7 +29,7 @@ class IsAdminOrStaff(permissions.BasePermission):
 
 class AdminStatisticsView(views.APIView):
     """
-    Comprehensive statistical endpoint for the Tavara Admin Dashboard.
+    Comprehensive statistical endpoint for the Tayara Admin Dashboard.
     Aggregates metrics for customers, policies, orders, quotes, payments, and refunds.
     """
     permission_classes = [IsAdminOrStaff]

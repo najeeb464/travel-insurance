@@ -44,7 +44,12 @@ class CreateOrderFromQuoteSerializer(serializers.Serializer):
     contact_email = serializers.EmailField()
     contact_phone = serializers.CharField(max_length=30)
     contact_full_name = serializers.CharField(max_length=150)
-    travelers = TravelerCreateSerializer(many=True, min_length=1)
+    travelers = TravelerCreateSerializer(many=True)
+
+    def validate_travelers(self, value):
+        if not value:
+            raise serializers.ValidationError("At least one traveler is required.")
+        return value
 
     def validate_quote_number(self, value):
         from apps.quotations.models import Quote

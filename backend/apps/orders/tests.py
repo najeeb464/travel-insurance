@@ -131,7 +131,7 @@ class EktaInsuranceBookingFlowTests(APITestCase):
         checkout_res = self.client.post('/api/v1/payments/checkout/', checkout_payload, format='json')
         self.assertEqual(checkout_res.status_code, status.HTTP_200_OK)
         policy_number = checkout_res.data['policy_number']
-        self.assertTrue(policy_number.startswith('TAVARA-'))
+        self.assertTrue(policy_number.startswith('TAYARA-'))
 
         # 4. Verify Order transitioned to ISSUED / PAID
         order = Order.objects.get(order_number=order_number)
