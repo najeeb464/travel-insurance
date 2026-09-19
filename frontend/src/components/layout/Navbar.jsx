@@ -17,7 +17,7 @@ const Navbar = ({ onOpenValidateModal, onOpenAuthModal, onOpenDashboard, onOpenP
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 text-slate-900 shadow-sm transition-all print:hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Tavara Brand Logo */}
+          {/* Tayara Brand Logo */}
           <motion.div 
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -29,7 +29,7 @@ const Navbar = ({ onOpenValidateModal, onOpenAuthModal, onOpenDashboard, onOpenP
             </div>
             <div>
               <div className="flex items-center gap-1.5 leading-none">
-                <span className="text-xl font-black tracking-tight font-heading text-slate-900">Tavara</span>
+                <span className="text-xl font-black tracking-tight font-heading text-slate-900">Tayara</span>
               </div>
               <p className="text-[9px] text-slate-500 font-mono tracking-widest uppercase font-bold mt-0.5">TRAVEL INSURANCE</p>
             </div>

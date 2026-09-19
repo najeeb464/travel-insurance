@@ -24,7 +24,7 @@ const PolicyCertificate = ({ policy }) => {
   const assistance = cert.emergency_assistance || {};
 
   // Construct official public verification URL
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://tavarainsurance.com';
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://tayaratravelinsurance.com';
   const publicVerifyUrl = `${origin}/?verify=${encodeURIComponent(policy.policy_number)}`;
 
   // Generate crisp QR code on mount
@@ -124,7 +124,7 @@ const PolicyCertificate = ({ policy }) => {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl sm:text-2xl print:text-lg font-serif font-black tracking-tight text-slate-900">
-                  TAVARA TRAVEL INSURANCE
+                  TAYARA TRAVEL INSURANCE
                 </h1>
                 <span className="hidden sm:inline-flex px-2 py-0.5 rounded bg-emerald-100 text-[#00875A] text-[9px] font-bold uppercase tracking-wider print:inline-flex">
                   OFFICIAL
@@ -274,7 +274,7 @@ const PolicyCertificate = ({ policy }) => {
             </div>
             <div>
               <span className="text-slate-400 block text-[9px] print:text-[7px] uppercase">Email</span>
-              <span className="text-white">{assistance.email || 'support@tavarainsurance.com'}</span>
+              <span className="text-white">{assistance.email || 'support@tayaratravelinsurance.com'}</span>
             </div>
           </div>
         </div>
@@ -316,13 +316,13 @@ const PolicyCertificate = ({ policy }) => {
             {/* Stamp graphic */}
             <div className="w-14 h-14 print:w-12 print:h-12 rounded-full border-2 border-dashed border-[#00875A] p-1 flex items-center justify-center text-center flex-shrink-0 opacity-90 rotate-[-6deg]">
               <div className="text-[6.5px] print:text-[5.5px] font-black font-mono text-[#00875A] uppercase leading-tight">
-                TAVARA<br />OFFICIAL<br />SEAL
+                TAYARA<br />OFFICIAL<br />SEAL
               </div>
             </div>
 
             <div className="text-right">
               <div className="font-serif italic text-sm print:text-xs font-bold text-slate-800">
-                Tavara Underwriting Team
+                Tayara Underwriting Team
               </div>
               <div className="text-[9px] print:text-[7.5px] uppercase tracking-wider text-slate-400 font-mono">
                 Authorized Electronic Underwriter

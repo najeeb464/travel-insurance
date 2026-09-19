@@ -2,11 +2,11 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const BookingContext = createContext(null);
 
-const SESSION_KEY = 'tavara_booking_session';
+const SESSION_KEY = 'tayara_booking_session';
 
 const loadSavedSession = () => {
   try {
-    const raw = sessionStorage.getItem(SESSION_KEY);
+    const raw = sessionStorage.getItem(SESSION_KEY) || sessionStorage.getItem('tavara_booking_session');
     return raw ? JSON.parse(raw) : null;
   } catch (e) {
     return null;

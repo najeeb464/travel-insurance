@@ -22,14 +22,14 @@ const FaqSection = ({ onOpenValidateModal }) => {
     {
       id: 1,
       category_display: 'General Questions',
-      question: 'Is Tavara insurance valid for Schengen and Visit Visa applications?',
-      answer: 'Yes! All Tavara policies fully meet Regulation (EC) No 810/2009 of the European Parliament and international embassy requirements for Schengen, UK Standard Visitor, US B1/B2, UAE / Gulf, Turkey, and worldwide tourist visas. They include €30,000+ medical cover, emergency medical evacuation, repatriation of mortal remains, zero deductible, official verification QR code, and a 100% money-back Visa Rejection Guarantee.',
+      question: 'Is Tayara insurance valid for Schengen and Visit Visa applications?',
+      answer: 'Yes! All Tayara policies fully meet Regulation (EC) No 810/2009 of the European Parliament and international embassy requirements for Schengen, UK Standard Visitor, US B1/B2, UAE / Gulf, Turkey, and worldwide tourist visas. They include €30,000+ medical cover, emergency medical evacuation, repatriation of mortal remains, zero deductible, official verification QR code, and a 100% money-back Visa Rejection Guarantee.',
     },
     {
       id: 11,
       category_display: 'Visit Visa & Embassy',
       question: 'What happens if my visit visa application is rejected by the embassy?',
-      answer: 'Tavara offers a 100% Visa Refusal Guarantee. If your visit visa application is refused by any embassy or consulate, simply upload your official embassy refusal letter prior to your departure date for a full refund.',
+      answer: 'Tayara offers a 100% Visa Refusal Guarantee. If your visit visa application is refused by any embassy or consulate, simply upload your official embassy refusal letter prior to your departure date for a full refund.',
     },
     {
       id: 2,
@@ -138,7 +138,7 @@ const FaqSection = ({ onOpenValidateModal }) => {
               <FileCheck className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-slate-900">Need to verify a certificate issued by Tavara?</h4>
+              <h4 className="text-sm font-bold text-slate-900">Need to verify a certificate issued by Tayara?</h4>
               <p className="text-xs text-slate-600">Use our live public database tool to confirm status, coverage dates, and embassy status.</p>
             </div>
           </div>

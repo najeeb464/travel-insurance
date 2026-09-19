@@ -408,7 +408,7 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
                 <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
                   <FileCheck className="w-4 h-4 text-[#00875A] flex-shrink-0" />
                   <div className="text-[11px]">
-                    <p className="font-bold text-slate-800">Official Tavara PDF</p>
+                    <p className="font-bold text-slate-800">Official Tayara PDF</p>
                     <p className="text-slate-500">With QR verification</p>
                   </div>
                 </div>
@@ -425,7 +425,7 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
               {/* Legal & Payment Methods */}
               <div className="pt-2 text-center text-xs text-slate-500 space-y-2 border-t border-slate-100">
                 <p>
-                  By proceeding, you agree to Tavara's Insurance Policy Conditions and certify that all passenger passport information is accurate.
+                  By proceeding, you agree to Tayara's Insurance Policy Conditions and certify that all passenger passport information is accurate.
                 </p>
                 <div className="flex items-center justify-center gap-3 text-slate-400 font-mono text-[11px]">
                   <span>VISA</span>

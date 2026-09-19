@@ -83,7 +83,7 @@ const ValidateInsuranceModal = ({ isOpen, onClose, initialPolicyNumber = '', onO
                     <input
                       type="text"
                       required
-                      placeholder="e.g. TAVARA-2026-ABC1234"
+                      placeholder="e.g. TAYARA-2026-ABC1234"
                       value={policyNumber}
                       onChange={(e) => setPolicyNumber(e.target.value.toUpperCase())}
                       className="w-full p-3.5 pl-10 rounded-xl bg-slate-50 border border-slate-200 text-sm font-mono font-bold uppercase tracking-wider text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"

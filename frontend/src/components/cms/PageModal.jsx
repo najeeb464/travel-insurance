@@ -38,14 +38,14 @@ const normalizeSlug = (slug) => {
 // Rich fallback content if backend data is loading or minimal
 const FALLBACK_PAGES = {
   'about-us': {
-    title: 'About Tavara Travel Insurance',
+    title: 'About Tayara Travel Insurance',
     subtitle: 'Next-generation digital travel insurance accepted across 190+ countries worldwide.',
     updated_at: '2026-09-08T15:08:02.923Z',
-    intro: 'Tavara Travel Insurance is an innovative travel insurance platform delivering instant digital insurance policies globally. Backed by top-tier international underwriters, our electronic certificates are officially validated and accepted by embassies, visa centres, and border authorities worldwide.',
+    intro: 'Tayara Travel Insurance is an innovative travel insurance platform delivering instant digital insurance policies globally. Backed by top-tier international underwriters, our electronic certificates are officially validated and accepted by embassies, visa centres, and border authorities worldwide.',
     sections: [
       {
         heading: 'Our Mission & Vision',
-        content: 'We believe travel protection should be instantaneous, transparent, and completely paperless. Gone are the days of printing endless forms or waiting days for underwriter approvals. With Tavara, travelers obtain compliant, embassy-recognized insurance in under 2 minutes.',
+        content: 'We believe travel protection should be instantaneous, transparent, and completely paperless. Gone are the days of printing endless forms or waiting days for underwriter approvals. With Tayara, travelers obtain compliant, embassy-recognized insurance in under 2 minutes.',
       },
       {
         heading: 'Schengen & Global Visa Compliance',
@@ -66,7 +66,7 @@ const FALLBACK_PAGES = {
     title: 'Terms & Conditions of Insurance',
     subtitle: 'Comprehensive terms and conditions of travel insurance contract, policyholder obligations, and claims procedures.',
     updated_at: '2026-09-08T15:08:02.924Z',
-    intro: 'Please review these Terms & Conditions carefully prior to purchasing a policy. By completing checkout, you enter into a legally binding insurance contract between yourself (and all insured travelers) and Tavara Insurance Underwriters.',
+    intro: 'Please review these Terms & Conditions carefully prior to purchasing a policy. By completing checkout, you enter into a legally binding insurance contract between yourself (and all insured travelers) and Tayara Insurance Underwriters.',
     sections: [
       {
         heading: '1. Eligibility & Scope of Coverage',
@@ -86,7 +86,7 @@ const FALLBACK_PAGES = {
       },
       {
         heading: '5. Policy Verification & Border Acceptance',
-        content: 'Policy certificates are delivered electronically via email in PDF format. Each policy is registered on our public verification database and conforms with Schengen visa requirements under Regulation (EC) No 810/2009.',
+        content: 'Policy certificates are delivered electronically via email in PDF format. Every policy is registered on our public verification database and conforms with Schengen visa requirements under Regulation (EC) No 810/2009.',
       },
     ],
     badges: ['Zero Deductible', 'Schengen Compliant', '30-Day Claim Window', 'Electronic Certificate'],
@@ -95,7 +95,7 @@ const FALLBACK_PAGES = {
     title: 'Privacy & Data Protection Policy',
     subtitle: 'How we collect, encrypt, store, and safeguard your personal and passport information in full compliance with GDPR.',
     updated_at: '2026-09-08T15:08:02.925Z',
-    intro: 'At Tavara, protecting your personal information and travel data is foundational to our service. This Privacy Policy details our encryption protocols, data retention policies, and your individual rights under international privacy frameworks including GDPR.',
+    intro: 'At Tayara, protecting your personal information and travel data is foundational to our service. This Privacy Policy details our encryption protocols, data retention policies, and your individual rights under international privacy frameworks including GDPR.',
     sections: [
       {
         heading: '1. Information We Collect',
@@ -115,7 +115,7 @@ const FALLBACK_PAGES = {
       },
       {
         heading: '5. Your GDPR Rights & Data Erasure',
-        content: 'You retain the right to request access to your stored data, rectify any errors, or request erasure after mandatory statutory insurance record-retention periods have elapsed. For privacy inquiries, contact privacy@tavara.example.',
+        content: 'You retain the right to request access to your stored data, rectify any errors, or request erasure after mandatory statutory insurance record-retention periods have elapsed. For privacy inquiries, contact privacy@tayaratravelinsurance.com.',
       },
     ],
     badges: ['GDPR Compliant', '256-Bit TLS Encryption', 'PCI-DSS Tokenized', 'No Third-Party Ad Tracking'],
@@ -230,7 +230,7 @@ const PageModal = ({ isOpen, onClose, initialSlug = 'terms' }) => {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-300">
-                    Tavara Legal & Company
+                    Tayara Legal & Company
                   </span>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-800/60 text-emerald-200 border border-emerald-700/50">
                     Official Document
@@ -381,7 +381,7 @@ const PageModal = ({ isOpen, onClose, initialSlug = 'terms' }) => {
           {/* Footer controls */}
           <div className="bg-slate-50 border-t border-slate-200 px-6 py-4 flex items-center justify-between flex-shrink-0 text-xs">
             <span className="text-slate-500 font-mono">
-              Tavara Document ID: CMS-{activeSlug.toUpperCase()}
+              Tayara Document ID: CMS-{activeSlug.toUpperCase()}
             </span>
             <div className="flex items-center gap-2">
               <button

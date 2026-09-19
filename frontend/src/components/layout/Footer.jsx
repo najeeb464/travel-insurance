@@ -50,7 +50,7 @@ const Footer = ({ onOpenValidateModal, onOpenRefundModal, onOpenPage }) => {
               <div className="w-10 h-10 rounded-xl bg-[#00875A] flex items-center justify-center text-white shadow-md">
                 <Plane className="w-5 h-5 stroke-[2.4] -rotate-45" />
               </div>
-              <span className="text-2xl font-black font-heading tracking-tight text-white">Tavara</span>
+              <span className="text-2xl font-black font-heading tracking-tight text-white">Tayara</span>
             </div>
             <p className="text-xs leading-relaxed text-emerald-200/80 max-w-sm font-sans">
               Digital travel protection built for people who want to spend less time on paperwork and more time going places.
@@ -100,7 +100,7 @@ const Footer = ({ onOpenValidateModal, onOpenRefundModal, onOpenPage }) => {
                   Request Refund
                 </button>
               </li>
-              <li><a href="mailto:help@tavara.example" className="text-emerald-300 hover:underline">help@tavara.example</a></li>
+              <li><a href="mailto:help@tayaratravelinsurance.com" className="text-emerald-300 hover:underline">help@tayaratravelinsurance.com</a></li>
             </ul>
           </div>
 
@@ -121,7 +121,7 @@ const Footer = ({ onOpenValidateModal, onOpenRefundModal, onOpenPage }) => {
 
         {/* Bottom copyright */}
         <div className="mt-12 pt-8 border-t border-emerald-900/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-emerald-300/70 font-sans">
-          <p>© {new Date().getFullYear()} Tavara Travel Insurance — Travel Insurance in Minutes. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Tayara Travel Insurance — Travel Insurance in Minutes. All rights reserved.</p>
           <div className="flex flex-wrap gap-5 font-mono text-[11px]">
             <button
               type="button"

@@ -184,7 +184,7 @@ const PlanComparisonCards = () => {
             <div className="relative flex-1">
               <input
                 type="text"
-                placeholder="PROMO CODE (e.g. TAVARA10)"
+                placeholder="PROMO CODE (e.g. TAYARA10)"
                 value={promoCodeInput}
                 onChange={(e) => setPromoCodeInput(e.target.value.toUpperCase())}
                 className="w-full p-3.5 pl-10 rounded-xl bg-white border border-slate-200 text-xs font-mono font-bold tracking-wider uppercase text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm"
@@ -238,7 +238,7 @@ const PlanComparisonCards = () => {
                   </span>
                 </div>
                 <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  All Tavara plans satisfy mandatory requirements for Schengen, UK Standard Visitor, US B1/B2, UAE / Gulf, Turkey & Worldwide visitor visas: min. €30,000 emergency medical care, zero deductible, repatriation & QR verification code.
+                  All Tayara plans satisfy mandatory requirements for Schengen, UK Standard Visitor, US B1/B2, UAE / Gulf, Turkey & Worldwide visitor visas: min. €30,000 emergency medical care, zero deductible, repatriation & QR verification code.
                 </p>
               </div>
             </div>

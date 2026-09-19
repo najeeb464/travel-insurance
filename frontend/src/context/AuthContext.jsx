@@ -8,11 +8,13 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('tavara_access_token') || localStorage.getItem('ekta_access_token');
+    const token = localStorage.getItem('tayara_access_token') || localStorage.getItem('tavara_access_token') || localStorage.getItem('ekta_access_token');
     if (token) {
       authApi.getMe()
         .then((res) => setUser(res.data))
         .catch(() => {
+          localStorage.removeItem('tayara_access_token');
+          localStorage.removeItem('tayara_refresh_token');
           localStorage.removeItem('tavara_access_token');
           localStorage.removeItem('tavara_refresh_token');
           localStorage.removeItem('ekta_access_token');
@@ -27,8 +29,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const res = await authApi.login({ email, password });
-    localStorage.setItem('tavara_access_token', res.data.access);
-    localStorage.setItem('tavara_refresh_token', res.data.refresh);
+    localStorage.setItem('tayara_access_token', res.data.access);
+    localStorage.setItem('tayara_refresh_token', res.data.refresh);
     setUser(res.data.user);
     return res.data.user;
   };
@@ -39,6 +41,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    localStorage.removeItem('tayara_access_token');
+    localStorage.removeItem('tayara_refresh_token');
     localStorage.removeItem('tavara_access_token');
     localStorage.removeItem('tavara_refresh_token');
     localStorage.removeItem('ekta_access_token');

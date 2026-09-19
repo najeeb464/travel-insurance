@@ -187,7 +187,7 @@ const AdminDashboardModal = ({ isOpen, onClose, onViewPolicy }) => {
   // Export to CSV utility
   const handleExportCSV = () => {
     let rows = [];
-    let filename = `tavara_${activeTab}_report.csv`;
+    let filename = `tayara_${activeTab}_report.csv`;
 
     if (activeTab === 'orders') {
       rows = [
@@ -322,7 +322,7 @@ const AdminDashboardModal = ({ isOpen, onClose, onViewPolicy }) => {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h2 className="text-lg font-black tracking-tight font-heading text-white">Tavara Operations & Admin Center</h2>
+                  <h2 className="text-lg font-black tracking-tight font-heading text-white">Tayara Operations & Admin Center</h2>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                     LIVE
                   </span>

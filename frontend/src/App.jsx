@@ -71,10 +71,10 @@ const AppContent = () => {
     setIsPageModalOpen(true);
   };
 
-  // Listen for query params (?verify=TAVARA-...) and hash-based deep linking
+  // Listen for query params (?verify=TAYARA-...) and hash-based deep linking
   useEffect(() => {
     const checkUrlForActions = () => {
-      // 1. Check URL query parameters (e.g. from QR code scan: /?verify=TAVARA-2026-...)
+      // 1. Check URL query parameters (e.g. from QR code scan: /?verify=TAYARA-2026-...)
       const params = new URLSearchParams(window.location.search);
       const verifyParam = params.get('verify') || params.get('validate') || params.get('policy');
       if (verifyParam) {

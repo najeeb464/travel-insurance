@@ -111,7 +111,7 @@ const PublicPolicyModal = ({ isOpen, onClose, policyNumber }) => {
             {loading ? (
               <div className="py-20 text-center space-y-4">
                 <div className="w-12 h-12 border-4 border-[#00875A]/20 border-t-[#00875A] rounded-full animate-spin mx-auto" />
-                <p className="text-sm font-bold text-slate-700">Verifying policy with Tavara secure database...</p>
+                <p className="text-sm font-bold text-slate-700">Verifying policy with Tayara secure database...</p>
                 <p className="text-xs text-slate-400 font-mono">Reference: {policyNumber}</p>
               </div>
             ) : error ? (
