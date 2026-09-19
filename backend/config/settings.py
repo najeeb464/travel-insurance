@@ -178,9 +178,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",      # React dev server
     "http://127.0.0.1:5173",
     "http://127.0.0.1:3000",
-    '198.54.126.242',
+    'https://198.54.126.242',
     'https://tayaratravelinsurance.com',
-    '198.54.126.242:443'
+    'https://198.54.126.242:443'
     
 # Network IP for LAN access
 ]
