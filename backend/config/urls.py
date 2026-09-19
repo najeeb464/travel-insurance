@@ -5,7 +5,6 @@ from pathlib import Path
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.static import serve
-from django.views.generic import TemplateView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -49,27 +48,35 @@ def api_root(request):
     })
 
 
-frontend_dist = settings.BASE_DIR / 'frontend' / 'dist'
-frontend_assets = frontend_dist / 'assets'
+
+api_patterns = [
+    path('', api_root, name='api_root_sub'),
+    path('auth/', include('apps.accounts.urls')),
+    path('destinations/', include('apps.destinations.urls')),
+    path('products/', include('apps.products.urls')),
+    path('promotions/', include('apps.promotions.urls')),
+    path('quotes/', include('apps.quotations.urls')),
+    path('orders/', include('apps.orders.urls')),
+    path('payments/', include('apps.payments.urls')),
+    path('policies/', include('apps.policies.urls')),
+    path('refunds/', include('apps.refunds.urls')),
+    path('reviews/', include('apps.reviews.urls')),
+    path('cms/', include('apps.cms.urls')),
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', api_root, name='api_root'),
-    path('api/v1/auth/', include('apps.accounts.urls', namespace='accounts')),
-    path('api/v1/destinations/', include('apps.destinations.urls', namespace='destinations')),
-    path('api/v1/products/', include('apps.products.urls', namespace='products')),
-    path('api/v1/promotions/', include('apps.promotions.urls', namespace='promotions')),
-    path('api/v1/quotes/', include('apps.quotations.urls', namespace='quotations')),
-    path('api/v1/orders/', include('apps.orders.urls', namespace='orders')),
-    path('api/v1/payments/', include('apps.payments.urls', namespace='payments')),
-    path('api/v1/policies/', include('apps.policies.urls', namespace='policies')),
-    path('api/v1/refunds/', include('apps.refunds.urls', namespace='refunds')),
-    path('api/v1/reviews/', include('apps.reviews.urls', namespace='reviews')),
-    path('api/v1/cms/', include('apps.cms.urls', namespace='cms')),
-]
+    path('', api_root, name='api_root_base'),
 
-if frontend_dist.exists():
-    urlpatterns += [
-        re_path(r'^assets/(?P<path>.*)$', serve, {'document_root': str(frontend_assets)}),
-        re_path(r'^(?!api/|admin/|assets/).*$', TemplateView.as_view(template_name='index.html')),
-    ]
+    # Direct v1 paths (when cPanel mounts app at /api)
+    path('v1/', api_root, name='api_root_v1'),
+    path('v1/', include(api_patterns)),
+
+    # Standard api/v1 paths (for local dev or root deployments)
+    path('api/v1/', api_root, name='api_root'),
+    path('api/v1/', include(api_patterns)),
+
+    # Static & Media file serving for Django Admin & API (supports both /static/ and /api/static/)
+    re_path(r'^(?:api/)?static/(?P<path>.*)$', serve, {'document_root': str(settings.STATIC_ROOT)}),
+    re_path(r'^(?:api/)?media/(?P<path>.*)$', serve, {'document_root': str(settings.MEDIA_ROOT)}),
+]

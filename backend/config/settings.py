@@ -92,12 +92,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Custom User model
@@ -131,6 +131,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Fixtures directory
 FIXTURE_DIRS = [
@@ -175,6 +178,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",      # React dev server
     "http://127.0.0.1:5173",
     "http://127.0.0.1:3000",
+    '198.54.126.242',
+    'https://tayaratravelinsurance.com',
+    '198.54.126.242:443'
+    
 # Network IP for LAN access
 ]
 
@@ -211,19 +218,19 @@ CORS_ALLOW_HEADERS = [
 
 import os
 
-DB_NAME = os.environ.get('DB_NAME', 'travel')
-DB_USER = os.environ.get('DB_USER', 'postgres')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', 'postgres')
-DB_HOST = os.environ.get('DB_HOST', '127.0.0.1')
-DB_PORT = os.environ.get('DB_PORT', '5432')
+# DB_NAME = os.environ.get('DB_NAME', 'travel')
+# DB_USER = os.environ.get('DB_USER', 'postgres')
+# DB_PASSWORD = os.environ.get('DB_PASSWORD', 'postgres')
+# DB_HOST = os.environ.get('DB_HOST', '127.0.0.1')
+# DB_PORT = os.environ.get('DB_PORT', '5432')
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": DB_NAME,
-        "USER": DB_USER,
-        "PASSWORD": DB_PASSWORD,
-        "HOST": DB_HOST,
-        "PORT": DB_PORT,
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": DB_NAME,
+#         "USER": DB_USER,
+#         "PASSWORD": DB_PASSWORD,
+#         "HOST": DB_HOST,
+#         "PORT": DB_PORT,
+#     }
+# }
