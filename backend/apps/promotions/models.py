@@ -25,7 +25,7 @@ class Promotion(TimeStampedModel):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.code} ({self.discount_value}{'%' if self.discount_type == self.DiscountType.PERCENTAGE else 'EUR'})"
+        return f"{self.code} ({self.discount_value}{'%' if self.discount_type == self.DiscountType.PERCENTAGE else 'USD'})"
 
     def is_valid_for_amount(self, amount: Decimal) -> bool:
         if not self.is_active:

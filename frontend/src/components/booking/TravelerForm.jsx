@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { useBooking } from '../../context/BookingContext';
 import { useAuth } from '../../context/AuthContext';
+import { useCurrency } from '../../context/CurrencyContext';
 import { ordersApi } from '../../api';
 
 const TravelerForm = ({ onOpenPaymentModal }) => {
@@ -65,6 +66,8 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
 
   const durationDays = calculateDays();
   const pricing = selectedPlanOption?.pricing || {};
+  const { formatPrice } = useCurrency();
+  const formattedTotal = formatPrice(pricing.final_total || 0);
 
   const handleTravelerFieldChange = (index, field, value) => {
     const updated = [...travelers];
@@ -367,8 +370,8 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
                 <div className="text-center sm:text-left">
                   <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Amount Due</span>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold text-slate-900">€{pricing.final_total || 0}</span>
-                    <span className="text-xs text-slate-500 font-mono">({pricing.currency || 'EUR'})</span>
+                    <span className="text-3xl font-bold text-slate-900">${pricing.final_total || 0}</span>
+                    <span className="text-xs text-slate-500 font-mono">({pricing.currency || 'USD'})</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
@@ -390,7 +393,7 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
                 ) : (
                   <>
                     <Lock className="w-5 h-5 transition-transform group-hover:scale-110" />
-                    <span>Proceed to Secure Instant Checkout (€{pricing.final_total || 0})</span>
+                    <span>Proceed to Secure Instant Checkout ({formattedTotal.usd} USD{formattedTotal.approxText ? ` • ${formattedTotal.approxText}` : ''})</span>
                   </>
                 )}
               </button>
@@ -491,14 +494,24 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
                 )}
                 <div className="flex justify-between py-1 border-b border-slate-100">
                   <span className="text-slate-500">Deductible / Excess</span>
-                  <span className="font-mono font-bold text-[#00875A]">€0 (Zero Deductible)</span>
+                  <span className="font-mono font-bold text-[#00875A]">$0 / €0 (Zero Deductible)</span>
                 </div>
               </div>
 
               <div className="pt-3 border-t border-slate-200">
                 <div className="flex justify-between items-baseline mb-1">
-                  <span className="text-xs text-slate-500 uppercase font-bold">Total Amount Due</span>
-                  <span className="text-3xl font-bold text-[#00875A]">€{pricing.final_total || 0}</span>
+                  <div>
+                    <span className="text-xs text-slate-500 uppercase font-bold block">Total Amount Due</span>
+                    {formattedTotal.approxText && (
+                      <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 inline-block mt-1">
+                        {formattedTotal.approxText} (approx. local)
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <span className="text-3xl font-bold text-[#00875A]">{formattedTotal.usd}</span>
+                    <span className="text-[10px] font-mono font-bold text-slate-400 block uppercase">USD Settlement</span>
+                  </div>
                 </div>
                 <p className="text-[10px] text-slate-400 mb-4">Includes all taxes, embassy stamps, and digital delivery fees.</p>
 
@@ -509,7 +522,7 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
                   className="w-full py-3.5 px-4 rounded-xl bg-[#00875A] hover:bg-[#00734c] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all disabled:opacity-50 cursor-pointer"
                 >
                   <Lock className="w-4 h-4" />
-                  <span>{loading ? 'Processing...' : `Proceed to Checkout (€${pricing.final_total || 0})`}</span>
+                  <span>{loading ? 'Processing...' : `Proceed to Checkout (${formattedTotal.usd} USD)`}</span>
                 </button>
               </div>
 
@@ -519,7 +532,7 @@ const TravelerForm = ({ onOpenPaymentModal }) => {
                   <span>Embassy Guarantee</span>
                 </div>
                 <p className="text-[11px] leading-relaxed">
-                  Meets European Parliament Regulation (EC) No 810/2009. Eligible for Schengen visa application.
+                  Meets Regulation (EC) No 810/2009 with min. €30,000 / $35,000+ medical cover. Eligible for Schengen and worldwide visa applications.
                 </p>
               </div>
             </div>

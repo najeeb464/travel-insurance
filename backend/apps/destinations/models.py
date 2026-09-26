@@ -19,7 +19,7 @@ class Country(TimeStampedModel):
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=True, related_name='countries')
     name = models.CharField(max_length=100, unique=True)
     iso_code = models.CharField(max_length=3, unique=True, help_text="ISO 3166-1 alpha-2 or alpha-3 code")
-    currency = models.CharField(max_length=10, default='EUR')
+    currency = models.CharField(max_length=10, default='USD')
     is_schengen = models.BooleanField(default=False)
     risk_multiplier = models.DecimalField(max_digits=4, decimal_places=2, default=1.00)
     is_active = models.BooleanField(default=True)

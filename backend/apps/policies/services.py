@@ -74,9 +74,9 @@ class PolicyService:
                 'currency': order.currency,
             },
             'emergency_assistance': {
-                'hotline': '+380 44 590 55 55 / +44 20 7946 0192',
+                'hotline': '+44 20 7946 0192 / +1 800 555 0199',
                 'email': 'support@tayaratravelinsurance.com',
-                'viber_whatsapp': '+380 67 123 4567',
+                'viber_whatsapp': '+44 7700 900077',
                 'available_24_7': True,
             },
             'terms_and_conditions_url': 'https://tayaratravelinsurance.com/terms',

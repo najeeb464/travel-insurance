@@ -1,6 +1,6 @@
-# Tavara Travel Insurance — End-to-End Process Workflow
+# Tayara Travel Insurance — End-to-End Process Workflow
 
-This document provides a comprehensive technical and operational breakdown of the entire **Tavara Travel Insurance** lifecycle: from the initial quote calculation and pricing engine algorithms, through traveler passport entry and order creation, to payment processing, live policy issuance, and public QR verification.
+This document provides a comprehensive technical and operational breakdown of the entire **Tayara Travel Insurance** lifecycle: from the initial quote calculation and pricing engine algorithms, through traveler passport entry and order creation, to payment processing, live policy issuance, and public QR verification.
 
 ---
 
@@ -142,7 +142,7 @@ The user is presented with the checkout modal (`PaymentModal.jsx`).
 ### Issuance Steps:
 1. Checks if a policy has already been issued for this order (prevents duplicate policies).
 2. Generates a unique consular policy number:
-   $$\text{TAVARA-YYYY-XXXXXXX}$$
+   $$\text{TAYARA-YYYY-XXXXXXX}$$
 3. Assembles the immutable `certificate_data` dictionary:
    - Consular compliance declaration under **Regulation (EC) No 810/2009**.
    - Insured travelers with masked passport numbers (e.g., `AB****67`).
@@ -161,7 +161,7 @@ The user is presented with the checkout modal (`PaymentModal.jsx`).
 - Features `@page { size: A4 portrait; margin: 6mm 8mm; }` with non-printable components (`Navbar`, `Footer`, celebration banner) set to `display: none !important;`.
 - Uses `break-inside: avoid;` to prevent awkward splits across sections.
 - Contains:
-  - Official Tavara crest, logo, and European Parliament & Council accreditation notice.
+  - Official Tayara crest, logo, and European Parliament & Council accreditation notice.
   - Trip parameters grid (Territory, Plan, Valid From, Valid Until).
   - Insured travelers table with medical limits.
   - Summary of covered benefits (Hospitalization, Repatriation 100%, COVID-19, €0 Deductible).
@@ -171,10 +171,10 @@ The user is presented with the checkout modal (`PaymentModal.jsx`).
 ### Public QR Verification (`PublicPolicyModal.jsx`):
 - The document dynamically generates a high-resolution QR code encoding the public verification URL:
   ```text
-  https://<domain>/?verify=TAVARA-YYYY-XXXXXXX
+  https://<domain>/?verify=TAYARA-YYYY-XXXXXXX
   ```
 - **When scanned with any smartphone camera**:
-  1. The browser opens the Tavara domain with `?verify=TAVARA-...`.
+  1. The browser opens the Tayara domain with `?verify=TAYARA-...`.
   2. `App.jsx` intercepts the parameter on page load.
   3. Queries the public verification API (`/api/v1/policies/validate/<number>/` and `/api/v1/policies/<number>/`).
   4. Launches `PublicPolicyModal.jsx` showing the verified consular validity status, covered travelers, and printable official certificate.

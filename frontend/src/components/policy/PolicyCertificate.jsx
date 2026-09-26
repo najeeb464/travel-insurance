@@ -46,14 +46,20 @@ const PolicyCertificate = ({ policy }) => {
 
   // Medical limit formatter
   const formatMedicalLimit = (limit) => {
-    if (!limit) return '€30,000';
+    if (!limit) return '€30,000 / $35,000+';
     const s = String(limit).trim();
-    if (s.includes('€') || s.includes('$')) return s;
+    if (s.includes('$') && s.includes('€')) return s;
+    if (s.includes('€') && !s.includes('$')) {
+      if (s.includes('30,000')) return '€30,000 / $35,000+';
+      if (s.includes('50,000')) return '€50,000 / $55,000+';
+      if (s.includes('100,000')) return '€100,000 / $110,000+';
+      return `${s} / $35,000+`;
+    }
     const upper = s.toUpperCase();
-    if (upper === 'START') return '€30,000';
-    if (upper === 'COMFORT') return '€50,000';
-    if (upper === 'PREMIUM') return '€100,000';
-    if (upper === 'VISIT_VISA' || upper === 'VISIT VISA') return '€30,000';
+    if (upper === 'START') return '€30,000 / $35,000+';
+    if (upper === 'COMFORT' || upper === 'GOLD') return '€50,000 / $55,000+';
+    if (upper === 'PREMIUM' || upper === 'MAX_PLUS') return '€100,000 / $110,000+';
+    if (upper === 'VISIT_VISA' || upper === 'VISIT VISA') return '€30,000 / $35,000+';
     return s;
   };
 
@@ -247,7 +253,7 @@ const PolicyCertificate = ({ policy }) => {
             </div>
             <div className="py-2 px-3 print:py-1.5 print:px-2.5 rounded-lg border border-slate-200 flex justify-between items-center bg-slate-50">
               <span className="text-slate-600">Client Deductible / Policy Excess:</span>
-              <span className="font-bold text-[#00875A] font-mono">€0 (Zero Deductible)</span>
+              <span className="font-bold text-[#00875A] font-mono">$0 / €0 (Zero Deductible)</span>
             </div>
           </div>
         </div>
@@ -266,11 +272,11 @@ const PolicyCertificate = ({ policy }) => {
           <div className="flex flex-wrap gap-x-6 gap-y-1 pt-1 text-[10.5px] print:text-[8.5px] font-mono font-bold">
             <div>
               <span className="text-slate-400 block text-[9px] print:text-[7px] uppercase">Hotlines</span>
-              <span className="text-white">{assistance.hotline || '+380 44 590 55 55 / +44 20 7946 0192'}</span>
+              <span className="text-white">{assistance.hotline || '+44 20 7946 0192 / +1 800 555 0199'}</span>
             </div>
             <div>
               <span className="text-slate-400 block text-[9px] print:text-[7px] uppercase">WhatsApp Support</span>
-              <span className="text-emerald-400">{assistance.viber_whatsapp || '+380 67 123 4567'}</span>
+              <span className="text-emerald-400">{assistance.viber_whatsapp || '+44 7700 900077'}</span>
             </div>
             <div>
               <span className="text-slate-400 block text-[9px] print:text-[7px] uppercase">Email</span>

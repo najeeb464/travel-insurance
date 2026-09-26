@@ -60,7 +60,7 @@ const FALLBACK_PAGES = {
         content: 'Our multilingual emergency assistance teams operate round the clock. Whether you require urgent hospital coordination, translation assistance, or emergency medical evacuation, help is always a phone call away.',
       },
     ],
-    badges: ['190+ Countries Accepted', '€30,000+ Schengen Standard', '24/7 Human Support', 'Instant PDF Delivery'],
+    badges: ['190+ Countries Accepted', '€30,000 / $35,000+ Schengen Standard', '24/7 Human Support', 'Instant PDF Delivery'],
   },
   'terms': {
     title: 'Terms & Conditions of Insurance',
@@ -74,7 +74,7 @@ const FALLBACK_PAGES = {
       },
       {
         heading: '2. Insured Benefits & Deductibles',
-        content: 'Medical expenses resulting from sudden acute illness or unforeseen accidents during the journey are covered up to the maximum policy benefit stated on your certificate (€30,000 for Start, €50,000 for Gold, and €100,000 for Max+). All plans feature a 0€ deductible (zero excess).',
+        content: 'Medical expenses resulting from sudden acute illness or unforeseen accidents during the journey are covered up to the maximum policy benefit stated on your certificate (€30,000 / $35,000+ for Start, €50,000 / $55,000+ for Gold, and €100,000 / $110,000+ for Max+). All plans feature a $0 / €0 deductible (zero excess).',
       },
       {
         heading: '3. Pre-Existing Conditions & Exclusions',

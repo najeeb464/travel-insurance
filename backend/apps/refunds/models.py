@@ -24,7 +24,7 @@ class RefundRequest(TimeStampedModel):
     contact_email = models.EmailField()
     reason = models.TextField()
     requested_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    currency = models.CharField(max_length=10, default='EUR')
+    currency = models.CharField(max_length=10, default='USD')
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.REQUESTED)
     admin_notes = models.TextField(blank=True)
     processed_at = models.DateTimeField(null=True, blank=True)

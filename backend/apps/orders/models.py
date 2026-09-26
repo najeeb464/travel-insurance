@@ -33,7 +33,7 @@ class Order(TimeStampedModel):
     contact_phone = models.CharField(max_length=30)
     contact_full_name = models.CharField(max_length=150)
 
-    currency = models.CharField(max_length=10, default='EUR')
+    currency = models.CharField(max_length=10, default='USD')
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)
     discount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     tax = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

@@ -26,7 +26,7 @@ class Payment(TimeStampedModel):
     provider = models.CharField(max_length=30, choices=Provider.choices, default=Provider.MOCK)
     transaction_id = models.CharField(max_length=100, unique=True, db_index=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    currency = models.CharField(max_length=10, default='EUR')
+    currency = models.CharField(max_length=10, default='USD')
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.INITIATED)
     payment_method = models.CharField(max_length=50, default='CARD')
     gateway_response = models.JSONField(default=dict, blank=True)

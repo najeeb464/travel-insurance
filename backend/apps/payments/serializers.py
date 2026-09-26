@@ -36,3 +36,13 @@ class PaymentWebhookSerializer(serializers.Serializer):
     status = serializers.ChoiceField(choices=['SUCCESS', 'FAILED', 'REFUNDED'])
     provider = serializers.CharField(required=False, default='WEBHOOK')
     metadata = serializers.DictField(required=False, default=dict)
+
+
+class PayPalCreateOrderSerializer(serializers.Serializer):
+    order_number = serializers.CharField(max_length=50)
+
+
+class PayPalCaptureOrderSerializer(serializers.Serializer):
+    order_number = serializers.CharField(max_length=50)
+    paypal_order_id = serializers.CharField(max_length=100)
+

@@ -14,6 +14,7 @@ import {
   Crown
 } from 'lucide-react';
 import { useBooking } from '../../context/BookingContext';
+import { useCurrency } from '../../context/CurrencyContext';
 import { promotionsApi, quotesApi } from '../../api';
 
 const PlanComparisonCards = () => {
@@ -31,6 +32,8 @@ const PlanComparisonCards = () => {
     setActiveQuote,
     calculateDays,
   } = useBooking();
+
+  const { formatPrice } = useCurrency();
 
   const [promoCodeInput, setPromoCodeInput] = useState('');
   const [promoLoading, setPromoLoading] = useState(false);
@@ -238,7 +241,7 @@ const PlanComparisonCards = () => {
                   </span>
                 </div>
                 <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  All Tayara plans satisfy mandatory requirements for Schengen, UK Standard Visitor, US B1/B2, UAE / Gulf, Turkey & Worldwide visitor visas: min. €30,000 emergency medical care, zero deductible, repatriation & QR verification code.
+                  All Tayara plans satisfy mandatory requirements for Schengen, UK Standard Visitor, US B1/B2, UAE / Gulf, Turkey & Worldwide visitor visas: min. €30,000 / $35,000+ emergency medical care, zero deductible, repatriation & QR verification code.
                 </p>
               </div>
             </div>
@@ -265,6 +268,19 @@ const PlanComparisonCards = () => {
             const total = pricing.final_total || 0;
             const subtotal = pricing.subtotal || total;
             const discount = pricing.total_discount || 0;
+            const formattedTotal = formatPrice(total);
+            const formattedSubtotal = formatPrice(subtotal);
+            const formattedDiscount = formatPrice(discount);
+
+            const displayLimit = plan.medical_limit_display?.includes('$')
+              ? plan.medical_limit_display
+              : plan.medical_limit_display?.includes('30,000')
+              ? '€30,000 / $35,000+'
+              : plan.medical_limit_display?.includes('50,000')
+              ? '€50,000 / $55,000+'
+              : plan.medical_limit_display?.includes('100,000')
+              ? '€100,000 / $110,000+'
+              : plan.medical_limit_display || '€30,000 / $35,000+';
 
             let cardBg = 'bg-white border-slate-200 shadow-md hover:border-emerald-300';
             let btnStyle = 'bg-[#00875A] hover:bg-[#00734c] text-white shadow-md shadow-emerald-700/20';
@@ -312,22 +328,32 @@ const PlanComparisonCards = () => {
                     
                     <div className={`mt-4 p-3.5 rounded-2xl border flex items-center justify-between ${limitBadge}`}>
                       <span className="text-xs font-semibold text-slate-600">Medical Cover Limit</span>
-                      <span className="text-base font-bold tracking-tight">{plan.medical_limit_display}</span>
+                      <span className="text-base font-bold tracking-tight">{displayLimit}</span>
                     </div>
                   </div>
 
                   {/* Price Block */}
                   <div className="pt-2 pb-4 border-b border-slate-100">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-4xl sm:text-5xl font-serif font-bold text-slate-900">€{total}</span>
-                      <span className="text-xs font-medium text-slate-500">total for {durationDays} days</span>
+                    <div className="flex flex-col gap-1.5">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-4xl sm:text-5xl font-serif font-bold text-slate-900">{formattedTotal.usd}</span>
+                        <span className="text-xs font-bold text-slate-400 font-mono uppercase">USD</span>
+                        <span className="text-xs font-medium text-slate-500">· total for {durationDays} days</span>
+                      </div>
+
+                      {formattedTotal.approxText && (
+                        <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/80 w-fit">
+                          <span>{formattedTotal.approxText}</span>
+                          <span className="text-[10px] text-slate-500 font-normal font-sans">(approx. local)</span>
+                        </div>
+                      )}
                     </div>
 
                     {discount > 0 && (
                       <div className="flex items-center gap-2 mt-2">
-                        <span className="text-xs text-slate-400 line-through font-mono">€{subtotal}</span>
+                        <span className="text-xs text-slate-400 line-through font-mono">{formattedSubtotal.usd}</span>
                         <span className="text-xs font-bold text-[#00875A] bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
-                          Saved €{discount}
+                          Saved {formattedDiscount.usd}
                         </span>
                       </div>
                     )}
@@ -430,7 +456,7 @@ const PlanComparisonCards = () => {
                     onClick={() => handleSelectPlan(plan)}
                     className={`w-full py-3.5 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${btnStyle}`}
                   >
-                    <span>Select {plan.plan_name}</span>
+                    <span>Select {plan.plan_name} ({formattedTotal.usd})</span>
                     <ChevronRight className="w-4 h-4 stroke-[2.5]" />
                   </motion.button>
                 </div>

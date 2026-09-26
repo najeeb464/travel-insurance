@@ -80,24 +80,25 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 
-# # Database - PostgreSQL as requested
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "ekta_travel_db",
-#         "USER": "postgres",
-#         "PASSWORD": "1234",
-#         "HOST": "localhost",
-#         "PORT": "5432",
-#     }
-# }
-
+# Database - PostgreSQL as requested
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        # "NAME": "tayara_travel_db",
+        "NAME": "travel",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Custom User model
@@ -218,19 +219,8 @@ CORS_ALLOW_HEADERS = [
 
 import os
 
-# DB_NAME = os.environ.get('DB_NAME', 'travel')
-# DB_USER = os.environ.get('DB_USER', 'postgres')
-# DB_PASSWORD = os.environ.get('DB_PASSWORD', 'postgres')
-# DB_HOST = os.environ.get('DB_HOST', '127.0.0.1')
-# DB_PORT = os.environ.get('DB_PORT', '5432')
+# PayPal Payment Gateway Configuration
+PAYPAL_MODE = os.environ.get('PAYPAL_MODE', 'sandbox').lower()  # 'sandbox' or 'live'
+PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID', 'BAAYt0ZDfYMDUolcd9U4GDpBwuwvtbDSqWEL3ZGCuHtDahGcANlFKVD9Nn5IiiNlQNwhJrjEwL5XHGVRZg')
+PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET', 'EDHEe22rSJrsa7zzfN64wdHv9xK-OlIm5cA3I8i_xvtf2OeBNgmH7dKNk9Fo5vatWTkM0DQTmvuaeW6C')
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": DB_NAME,
-#         "USER": DB_USER,
-#         "PASSWORD": DB_PASSWORD,
-#         "HOST": DB_HOST,
-#         "PORT": DB_PORT,
-#     }
-# }

@@ -18,10 +18,12 @@ import {
 import { policiesApi, ordersApi, quotesApi } from '../../api';
 import { useAuth } from '../../context/AuthContext';
 import { useBooking } from '../../context/BookingContext';
+import { useCurrency } from '../../context/CurrencyContext';
 
 const UserDashboard = ({ isOpen, onClose, onSelectPolicyForView, onOpenRefundModal, onOpenAdminDashboard }) => {
   const { user } = useAuth();
   const { resumeQuote } = useBooking();
+  const { formatPrice } = useCurrency();
   const [activeTab, setActiveTab] = useState('policies');
   const [policies, setPolicies] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -249,8 +251,13 @@ const UserDashboard = ({ isOpen, onClose, onSelectPolicyForView, onOpenRefundMod
                         <p className="text-xs text-slate-500 mt-0.5 font-mono">
                           {q.destination_details?.name} • {q.start_date} to {q.end_date} • {q.travelers?.length || 1} traveler(s)
                         </p>
-                        <div className="text-sm font-bold text-[#00875A] mt-1">
-                          €{q.total} {q.currency}
+                        <div className="text-sm font-bold text-[#00875A] mt-1 flex items-center gap-1.5 flex-wrap">
+                          <span>${q.total} USD</span>
+                          {formatPrice(q.total).approxText && (
+                            <span className="text-xs text-slate-500 font-normal">
+                              ({formatPrice(q.total).approxText})
+                            </span>
+                          )}
                         </div>
                       </div>
 
@@ -312,7 +319,14 @@ const UserDashboard = ({ isOpen, onClose, onSelectPolicyForView, onOpenRefundMod
                             {ord.status}
                           </span>
                         </div>
-                        <h4 className="text-base font-bold text-slate-900 mt-0.5">€{ord.total} {ord.currency}</h4>
+                        <h4 className="text-base font-bold text-slate-900 mt-0.5 flex items-center gap-1.5 flex-wrap">
+                          <span>${ord.total} {ord.currency || 'USD'}</span>
+                          {formatPrice(ord.total).approxText && (
+                            <span className="text-xs text-slate-500 font-normal">
+                              ({formatPrice(ord.total).approxText})
+                            </span>
+                          )}
+                        </h4>
                         <p className="text-xs text-slate-500 font-mono">Status: {ord.status}</p>
                       </div>
 

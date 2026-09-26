@@ -83,7 +83,7 @@ class AdminStatisticsView(views.APIView):
             'quote_conversion_rate': quote_conversion_rate,
             'gross_revenue': gross_revenue,
             'avg_order_value': avg_order_value,
-            'currency': 'EUR',
+            'currency': 'USD',
             'total_refunds_count': total_refunds_count,
             'pending_refunds_count': pending_refunds_count,
             'total_refunded_amount': total_refunded_amount,

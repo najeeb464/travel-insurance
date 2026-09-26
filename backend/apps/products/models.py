@@ -29,7 +29,7 @@ class Plan(TimeStampedModel):
     code = models.CharField(max_length=50, unique=True)
     description = models.TextField(blank=True)
     base_price_per_day = models.DecimalField(max_digits=10, decimal_places=2, default=1.50)
-    currency = models.CharField(max_length=10, default='EUR')
+    currency = models.CharField(max_length=10, default='USD')
     medical_limit_display = models.CharField(max_length=50, default='€30,000')
     is_popular = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

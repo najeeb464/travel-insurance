@@ -1,4 +1,5 @@
 from decimal import Decimal
+from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from apps.destinations.models import Region, Country, Destination
@@ -12,78 +13,35 @@ User = get_user_model()
 
 
 class Command(BaseCommand):
-    help = 'Seeds database with realistic EKTA travel insurance products, plans, destinations, rules, FAQs, and reviews.'
+    help = 'Seeds database with realistic Tayara travel insurance products, plans, destinations, rules, FAQs, and reviews.'
 
     def handle(self, *args, **options):
         self.stdout.write(self.style.NOTICE("Starting database seed..."))
 
         # 1. Admin / Demo User
-        if not User.objects.filter(email='admin@ektatraveling.com').exists():
-            admin_user = User.objects.create_superuser(
-                username='admin',
-                email='admin@ektatraveling.com',
+        if not User.objects.filter(email='admin@tayaratravelinsurance.com').exists():
+            User.objects.create_superuser(
+                username='tayara_admin',
+                email='admin@tayaratravelinsurance.com',
                 password='adminpassword123',
-                first_name='Ekta',
+                first_name='Tayara',
                 last_name='Admin',
                 role=User.Role.ADMIN
             )
-            self.stdout.write(self.style.SUCCESS("Created admin user: admin@ektatraveling.com / adminpassword123"))
+            self.stdout.write(self.style.SUCCESS("Created admin user: admin@tayaratravelinsurance.com / adminpassword123"))
 
-        # 2. Regions
-        regions_data = [
-            {'name': 'Europe', 'code': 'EUR', 'description': 'Schengen zone, UK, and greater Europe'},
-            {'name': 'Asia', 'code': 'ASI', 'description': 'East, Southeast, and South Asia'},
-            {'name': 'Americas', 'code': 'AME', 'description': 'North, Central, and South America'},
-            {'name': 'Middle East & Africa', 'code': 'MEA', 'description': 'Gulf countries and African continent'},
-            {'name': 'Worldwide', 'code': 'WLD', 'description': 'All destinations globally'},
-        ]
-        regions = {}
-        for rd in regions_data:
-            r, _ = Region.objects.get_or_create(code=rd['code'], defaults=rd)
-            regions[rd['code']] = r
-
-        # 3. Countries
-        countries_data = [
-            {'name': 'France', 'iso_code': 'FR', 'region': regions['EUR'], 'is_schengen': True, 'risk_multiplier': Decimal('1.00')},
-            {'name': 'Germany', 'iso_code': 'DE', 'region': regions['EUR'], 'is_schengen': True, 'risk_multiplier': Decimal('1.00')},
-            {'name': 'Italy', 'iso_code': 'IT', 'region': regions['EUR'], 'is_schengen': True, 'risk_multiplier': Decimal('1.00')},
-            {'name': 'Spain', 'iso_code': 'ES', 'region': regions['EUR'], 'is_schengen': True, 'risk_multiplier': Decimal('1.00')},
-            {'name': 'Switzerland', 'iso_code': 'CH', 'region': regions['EUR'], 'is_schengen': True, 'risk_multiplier': Decimal('1.10')},
-            {'name': 'Greece', 'iso_code': 'GR', 'region': regions['EUR'], 'is_schengen': True, 'risk_multiplier': Decimal('1.00')},
-            {'name': 'Poland', 'iso_code': 'PL', 'region': regions['EUR'], 'is_schengen': True, 'risk_multiplier': Decimal('1.00')},
-            {'name': 'United Kingdom', 'iso_code': 'GB', 'region': regions['EUR'], 'is_schengen': False, 'risk_multiplier': Decimal('1.15')},
-            {'name': 'Turkey', 'iso_code': 'TR', 'region': regions['EUR'], 'is_schengen': False, 'risk_multiplier': Decimal('1.05')},
-            {'name': 'United States', 'iso_code': 'US', 'region': regions['AME'], 'is_schengen': False, 'risk_multiplier': Decimal('1.40')},
-            {'name': 'Thailand', 'iso_code': 'TH', 'region': regions['ASI'], 'is_schengen': False, 'risk_multiplier': Decimal('1.10')},
-            {'name': 'United Arab Emirates', 'iso_code': 'AE', 'region': regions['MEA'], 'is_schengen': False, 'risk_multiplier': Decimal('1.10')},
-            {'name': 'Japan', 'iso_code': 'JP', 'region': regions['ASI'], 'is_schengen': False, 'risk_multiplier': Decimal('1.15')},
-            {'name': 'Pakistan', 'iso_code': 'PK', 'region': regions['ASI'], 'is_schengen': False, 'risk_multiplier': Decimal('1.00')},
-        ]
-        countries = {}
-        for cd in countries_data:
-            c, _ = Country.objects.get_or_create(iso_code=cd['iso_code'], defaults=cd)
-            countries[cd['iso_code']] = c
-
-        # 4. Destinations
-        Destination.objects.get_or_create(
-            name='Worldwide (all countries)',
-            defaults={'destination_type': Destination.DestinationType.WORLDWIDE, 'region': regions['WLD'], 'is_popular': True}
-        )
-        Destination.objects.get_or_create(
-            name='Schengen Zone (all member states)',
-            defaults={'destination_type': Destination.DestinationType.SCHENGEN, 'region': regions['EUR'], 'is_popular': True}
-        )
-        Destination.objects.get_or_create(
-            name='Europe (entire continent)',
-            defaults={'destination_type': Destination.DestinationType.REGION, 'region': regions['EUR'], 'is_popular': True}
-        )
-        for iso, country in countries.items():
-            is_pop = iso in ['FR', 'DE', 'IT', 'ES', 'TR', 'TH', 'US', 'AE']
-            Destination.objects.get_or_create(
-                name=country.name,
-                country=country,
-                defaults={'destination_type': Destination.DestinationType.COUNTRY, 'is_popular': is_pop}
+        if not User.objects.filter(email='admin@ektatraveling.com').exists():
+            User.objects.create_superuser(
+                username='admin',
+                email='admin@ektatraveling.com',
+                password='adminpassword123',
+                first_name='Tayara',
+                last_name='Admin',
+                role=User.Role.ADMIN
             )
+
+        # 2. Worldwide Regions, Countries & Destinations (195+ sovereign nations & territories)
+        call_command('seed_worldwide_destinations')
 
         # 5. Products
         travel_product, _ = Product.objects.get_or_create(

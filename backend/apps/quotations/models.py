@@ -29,7 +29,7 @@ class Quote(TimeStampedModel):
     end_date = models.DateField()
     travel_type = models.ForeignKey(TravelType, on_delete=models.CASCADE, related_name='quotes')
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE, related_name='quotes', null=True, blank=True)
-    currency = models.CharField(max_length=10, default='EUR')
+    currency = models.CharField(max_length=10, default='USD')
 
     subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     discount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

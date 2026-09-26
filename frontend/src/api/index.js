@@ -31,7 +31,10 @@ export const ordersApi = {
 };
 
 export const paymentsApi = {
+  getConfig: () => api.get('/payments/config/'),
   checkout: (data) => api.post('/payments/checkout/', data),
+  createPaypalOrder: (data) => api.post('/payments/paypal/create-order/', data),
+  capturePaypalOrder: (data) => api.post('/payments/paypal/capture-order/', data),
   getPayment: (transactionId) => api.get(`/payments/${transactionId}/`),
 };
 

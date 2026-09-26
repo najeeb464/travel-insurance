@@ -23,7 +23,7 @@ const FaqSection = ({ onOpenValidateModal }) => {
       id: 1,
       category_display: 'General Questions',
       question: 'Is Tayara insurance valid for Schengen and Visit Visa applications?',
-      answer: 'Yes! All Tayara policies fully meet Regulation (EC) No 810/2009 of the European Parliament and international embassy requirements for Schengen, UK Standard Visitor, US B1/B2, UAE / Gulf, Turkey, and worldwide tourist visas. They include €30,000+ medical cover, emergency medical evacuation, repatriation of mortal remains, zero deductible, official verification QR code, and a 100% money-back Visa Rejection Guarantee.',
+      answer: 'Yes! All Tayara policies fully meet Regulation (EC) No 810/2009 of the European Parliament and international embassy requirements for Schengen, UK Standard Visitor, US B1/B2, UAE / Gulf, Turkey, and worldwide tourist visas. They include €30,000 / $35,000+ medical cover, emergency medical evacuation, repatriation of mortal remains, zero deductible, official verification QR code, and a 100% money-back Visa Rejection Guarantee.',
     },
     {
       id: 11,

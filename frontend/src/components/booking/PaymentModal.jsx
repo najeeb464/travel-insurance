@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
@@ -6,14 +6,19 @@ import {
   Lock, 
   CheckCircle2, 
   AlertCircle,
-  Smartphone
+  Smartphone,
+  ShieldCheck,
+  Loader2
 } from 'lucide-react';
 import { paymentsApi } from '../../api';
 import { useBooking } from '../../context/BookingContext';
+import { useCurrency } from '../../context/CurrencyContext';
 
 const PaymentModal = ({ isOpen, onClose, orderData }) => {
   const { setIssuedPolicy, setCurrentStep } = useBooking();
-  const [selectedMethod, setSelectedMethod] = useState('CARD');
+  const { formatPrice } = useCurrency();
+  const formattedPrice = formatPrice(orderData?.total || 0);
+  const [selectedMethod, setSelectedMethod] = useState('PAYPAL');
   const [cardNumber, setCardNumber] = useState('4242 •••• •••• 4242');
   const [cardHolder, setCardHolder] = useState(orderData?.contact_full_name || 'JOHN DOE');
   const [expiry, setExpiry] = useState('12/28');
@@ -22,7 +27,127 @@ const PaymentModal = ({ isOpen, onClose, orderData }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [paypalConfig, setPaypalConfig] = useState(null);
+  const [sdkLoading, setSdkLoading] = useState(false);
 
+  const paypalContainerRef = useRef(null);
+
+  // Fetch PayPal public config when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setError('');
+      paymentsApi.getConfig()
+        .then((res) => {
+          setPaypalConfig(res.data);
+          if (res.data?.paypal_enabled) {
+            setSelectedMethod('PAYPAL');
+          }
+        })
+        .catch((err) => {
+          console.warn('Could not load payment configuration:', err);
+        });
+    }
+  }, [isOpen]);
+
+  // Load PayPal JavaScript SDK and render Smart Buttons
+  useEffect(() => {
+    if (!isOpen || !orderData || selectedMethod !== 'PAYPAL' || !paypalConfig?.paypal_client_id) {
+      return;
+    }
+
+    const scriptId = 'paypal-sdk-script';
+    let script = document.getElementById(scriptId);
+
+    const renderButtons = () => {
+      if (!window.paypal || !paypalContainerRef.current) return;
+      paypalContainerRef.current.innerHTML = '';
+
+      try {
+        window.paypal.Buttons({
+          style: {
+            layout: 'vertical',
+            color: 'gold',
+            shape: 'rect',
+            label: 'paypal',
+            height: 48,
+          },
+          createOrder: async () => {
+            setError('');
+            setLoading(true);
+            try {
+              const res = await paymentsApi.createPaypalOrder({
+                order_number: orderData.order_number,
+              });
+              return res.data.paypal_order_id;
+            } catch (err) {
+              const msg = err.response?.data?.error || err.response?.data?.message || 'Failed to initialize PayPal order.';
+              setError(msg);
+              setLoading(false);
+              throw err;
+            }
+          },
+          onApprove: async (data) => {
+            setLoading(true);
+            setError('');
+            try {
+              const res = await paymentsApi.capturePaypalOrder({
+                order_number: orderData.order_number,
+                paypal_order_id: data.orderID,
+              });
+
+              if (res.data.policy) {
+                setIssuedPolicy(res.data.policy);
+                onClose();
+                setCurrentStep(4);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              } else {
+                setError('Payment completed, but failed to retrieve policy.');
+              }
+            } catch (err) {
+              console.error('PayPal capture error:', err);
+              setError(err.response?.data?.error || err.response?.data?.message || 'Failed to capture PayPal payment.');
+            } finally {
+              setLoading(false);
+            }
+          },
+          onError: (err) => {
+            console.error('PayPal Buttons Error:', err);
+            setError('An error occurred during the PayPal checkout process.');
+            setLoading(false);
+          },
+          onCancel: () => {
+            setLoading(false);
+          },
+        }).render(paypalContainerRef.current);
+      } catch (renderErr) {
+        console.error('Failed to render PayPal Buttons:', renderErr);
+      }
+    };
+
+    if (window.paypal) {
+      renderButtons();
+    } else if (script) {
+      script.addEventListener('load', renderButtons);
+    } else {
+      setSdkLoading(true);
+      const currency = (orderData?.currency || paypalConfig?.currency || 'USD').toUpperCase();
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(paypalConfig.paypal_client_id)}&currency=${currency}&intent=capture`;
+      script.async = true;
+      script.onload = () => {
+        setSdkLoading(false);
+        renderButtons();
+      };
+      script.onerror = () => {
+        setSdkLoading(false);
+        setError('Failed to load PayPal secure payment SDK. Please verify your connection.');
+      };
+      document.body.appendChild(script);
+    }
+  }, [isOpen, orderData?.order_number, selectedMethod, paypalConfig]);
+
+  // Fallback simulated card checkout
   const handlePay = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -79,7 +204,7 @@ const PaymentModal = ({ isOpen, onClose, orderData }) => {
               </div>
               <button
                 onClick={onClose}
-                className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -88,8 +213,13 @@ const PaymentModal = ({ isOpen, onClose, orderData }) => {
             {/* Amount banner */}
             <div className="px-6 py-4 bg-emerald-50 border-b border-emerald-100 flex items-center justify-between">
               <div>
-                <span className="text-xs font-mono text-slate-500">Total Amount Due</span>
-                <div className="text-2xl font-serif font-bold text-[#00875A]">€{orderData.total} {orderData.currency}</div>
+                <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">Total Settlement (USD)</span>
+                <div className="text-2xl font-serif font-bold text-[#00875A]">${orderData.total} USD</div>
+                {formattedPrice.approxText && (
+                  <div className="text-xs font-semibold text-emerald-800 mt-0.5">
+                    {formattedPrice.approxText} <span className="text-[10px] text-slate-500 font-normal">(approx. charged by your bank)</span>
+                  </div>
+                )}
               </div>
               <div className="text-right">
                 <span className="text-xs font-mono text-slate-500">Certificate Status</span>
@@ -109,135 +239,76 @@ const PaymentModal = ({ isOpen, onClose, orderData }) => {
                 </div>
               )}
 
-              {/* Payment Methods */}
-              <div>
-                <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-2">
-                  Select Payment Method
-                </label>
-                <div className="grid grid-cols-3 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedMethod('CARD')}
-                    className={`p-3 rounded-xl border text-xs font-bold flex flex-col items-center gap-1.5 transition-all ${
-                      selectedMethod === 'CARD'
-                        ? 'bg-[#00875A] text-white border-[#00875A]'
-                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
-                    }`}
-                  >
-                    <CreditCard className="w-5 h-5" />
-                    <span>Credit Card</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setSelectedMethod('APPLE_PAY')}
-                    className={`p-3 rounded-xl border text-xs font-bold flex flex-col items-center gap-1.5 transition-all ${
-                      selectedMethod === 'APPLE_PAY'
-                        ? 'bg-[#00875A] text-white border-[#00875A]'
-                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
-                    }`}
-                  >
-                    <Smartphone className="w-5 h-5" />
-                    <span>Apple Pay</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setSelectedMethod('PAYPAL')}
-                    className={`p-3 rounded-xl border text-xs font-bold flex flex-col items-center gap-1.5 transition-all ${
-                      selectedMethod === 'PAYPAL'
-                        ? 'bg-[#00875A] text-white border-[#00875A]'
-                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
-                    }`}
-                  >
-                    <Lock className="w-5 h-5" />
-                    <span>PayPal</span>
-                  </button>
+              {/* Official Payment Gateway Banner */}
+              <div className="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#00875A] text-white flex items-center justify-center font-serif font-black italic text-base shadow-sm">
+                    P
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-slate-900">Official PayPal Gateway</span>
+                      {paypalConfig?.paypal_mode === 'sandbox' && (
+                        <span className="px-1.5 py-0.5 rounded text-[9px] font-mono bg-amber-400 text-slate-900 font-black">
+                          SANDBOX
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[10px] text-slate-500 font-sans mt-0.5">
+                      PayPal Account • Debit or Credit Card • Visa • Mastercard • AMEX
+                    </p>
+                  </div>
+                </div>
+                <div className="hidden sm:flex items-center gap-1 text-[11px] font-bold text-[#00875A]">
+                  <Lock className="w-3.5 h-3.5" />
+                  <span>256-Bit SSL</span>
                 </div>
               </div>
 
-              {/* Form */}
-              <form onSubmit={handlePay} className="space-y-4">
-                {selectedMethod === 'CARD' && (
-                  <>
-                    <div>
-                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-1">
-                        Card Number
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={cardNumber}
-                        onChange={(e) => setCardNumber(e.target.value)}
-                        className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                      />
+              {/* PayPal Smart Buttons View */}
+              <div className="space-y-4">
+                {paypalConfig?.paypal_enabled ? (
+                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
+                    <div className="flex items-center justify-between text-xs text-slate-600">
+                      <span className="font-medium flex items-center gap-1.5">
+                        <ShieldCheck className="w-4 h-4 text-[#00875A]" />
+                        Official PayPal Buyer Protection
+                      </span>
+                      <span className="font-mono text-[10px] text-slate-400">256-Bit SSL</span>
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-1">
-                        Cardholder Name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={cardHolder}
-                        onChange={(e) => setCardHolder(e.target.value.toUpperCase())}
-                        className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-1">
-                          Expiry Date
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={expiry}
-                          onChange={(e) => setExpiry(e.target.value)}
-                          className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500 text-center"
-                        />
+                    {sdkLoading ? (
+                      <div className="py-8 flex flex-col items-center justify-center gap-2 text-slate-500 text-xs font-mono">
+                        <Loader2 className="w-6 h-6 animate-spin text-[#00875A]" />
+                        <span>Connecting to PayPal Gateway...</span>
                       </div>
-
-                      <div>
-                        <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-1">
-                          CVV / CVC
-                        </label>
-                        <input
-                          type="password"
-                          required
-                          maxLength={4}
-                          value={cvv}
-                          onChange={(e) => setCvv(e.target.value)}
-                          className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs font-mono font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500 text-center"
-                        />
+                    ) : (
+                      <div className="min-h-[100px] flex flex-col justify-center">
+                        <div ref={paypalContainerRef} className="w-full z-10" />
                       </div>
+                    )}
+
+                    {loading && (
+                      <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-[#00875A] font-bold text-center flex items-center justify-center gap-2 animate-pulse">
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Finalizing transaction & issuing policy certificate...</span>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 space-y-2 text-xs">
+                    <div className="flex items-center gap-2 font-bold text-amber-800">
+                      <AlertCircle className="w-4 h-4 text-amber-600" />
+                      <span>PayPal Gateway Setup Required</span>
                     </div>
-                  </>
+                    <p className="leading-relaxed">
+                      To accept live online payments, add your PayPal <strong>Client ID</strong> and <strong>Client Secret</strong> in your backend settings.
+                    </p>
+                  </div>
                 )}
+              </div>
 
-                {/* Simulation toggle */}
-                <div className="pt-1 flex items-center justify-between text-xs text-slate-500">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={simulateFailure}
-                      onChange={(e) => setSimulateFailure(e.target.checked)}
-                      className="rounded text-[#00875A] focus:ring-emerald-500"
-                    />
-                    <span>Simulate Payment Failure (Testing)</span>
-                  </label>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-4 px-6 rounded-xl bg-[#00875A] hover:bg-[#00734c] text-white font-bold text-sm shadow-md shadow-emerald-700/20 transition-all disabled:opacity-50 mt-2"
-                >
-                  {loading ? 'Processing Payment...' : `Pay €${orderData.total} & Generate Certificate`}
-                </button>
-              </form>
+              {/* Note: Direct card form is disabled. Reserved for future direct gateway additions (e.g., Stripe / Checkout.com). */}
             </div>
           </motion.div>
         </motion.div>
@@ -247,3 +318,4 @@ const PaymentModal = ({ isOpen, onClose, orderData }) => {
 };
 
 export default PaymentModal;
+

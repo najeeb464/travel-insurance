@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthProvider } from './context/AuthContext';
+import { CurrencyProvider } from './context/CurrencyContext';
 import { BookingProvider, useBooking } from './context/BookingContext';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -256,9 +257,11 @@ const AppContent = () => {
 const App = () => {
   return (
     <AuthProvider>
-      <BookingProvider>
-        <AppContent />
-      </BookingProvider>
+      <CurrencyProvider>
+        <BookingProvider>
+          <AppContent />
+        </BookingProvider>
+      </CurrencyProvider>
     </AuthProvider>
   );
 };
